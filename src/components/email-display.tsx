@@ -57,12 +57,12 @@ export function EmailDisplay() {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-6">
-        <div className="w-full px-4">
+        <div className="w-full">
           <Input
             readOnly
             value={email}
             aria-label="Temporary Email Address"
-            className="text-2xl text-center font-mono bg-muted/50 h-16"
+            className="text-3xl text-center font-mono bg-muted/50 h-20"
           />
         </div>
         <div className="flex flex-col gap-4 items-center w-full max-w-sm">
