@@ -50,7 +50,7 @@ export function EmailDisplay() {
   };
 
   return (
-    <Card className="max-w-5xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border">
+    <Card className="max-w-7xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border">
       <CardHeader>
         <CardTitle className="text-center font-headline text-2xl text-primary">
           Your Temporary Email Address
