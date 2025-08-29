@@ -57,59 +57,54 @@ export function EmailDisplay() {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-6">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-2xl">
           <Input
             readOnly
             value={email}
             aria-label="Temporary Email Address"
-            className="text-sm text-center font-mono bg-muted/50 h-12 px-4"
+            className="text-center font-mono text-base bg-muted/50 h-12 px-4"
           />
         </div>
-        <div className="flex flex-col gap-4 items-center w-full max-w-sm">
-          <div className="flex items-stretch gap-4 w-full">
-            {email !== 'generating...' && (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="p-2 h-auto flex-col gap-2 w-28"
-                  >
-                    <QrCode className="h-10 w-10" />
-                    <span className="text-xs text-muted-foreground">
-                      Show QR
-                    </span>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-2 bg-white">
-                  <Image
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${email}&qzone=1`}
-                    alt="Email QR Code"
-                    width={150}
-                    height={150}
-                    data-ai-hint="qr code"
-                  />
-                </PopoverContent>
-              </Popover>
-            )}
-            <Button
-              onClick={copyToClipboard}
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground h-auto flex-1 flex-col"
-            >
-              <Copy className="h-6 w-6 mb-1" />
-              <span className="text-base">{copyText}</span>
-            </Button>
-          </div>
-          <div className="flex gap-2 justify-center w-full">
-            <Button onClick={generateNewEmail} variant="secondary" className="w-full">
-              <RefreshCw />
-              Refresh
-            </Button>
-            <Button variant="outline" className="w-full">
-              <Settings />
-              Customize
-            </Button>
-          </div>
+        <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full max-w-sm">
+          {email !== 'generating...' && (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" className="w-full h-12 text-sm">
+                  <QrCode className="mr-2" />
+                  Show QR
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-2 bg-white">
+                <Image
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${email}&qzone=1`}
+                  alt="Email QR Code"
+                  width={150}
+                  height={150}
+                  data-ai-hint="qr code"
+                />
+              </PopoverContent>
+            </Popover>
+          )}
+          <Button
+            onClick={copyToClipboard}
+            variant="outline"
+            className="w-full h-12 text-sm"
+          >
+            <Copy className="mr-2" />
+            {copyText}
+          </Button>
+          <Button
+            onClick={generateNewEmail}
+            variant="secondary"
+            className="w-full h-12 text-sm"
+          >
+            <RefreshCw className="mr-2" />
+            Refresh
+          </Button>
+          <Button variant="outline" className="w-full h-12 text-sm">
+            <Settings className="mr-2" />
+            Customize
+          </Button>
         </div>
       </CardContent>
     </Card>
