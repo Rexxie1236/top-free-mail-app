@@ -50,7 +50,7 @@ export function EmailDisplay() {
   };
 
   return (
-    <Card className="max-w-2xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border">
+    <Card className="max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border">
       <CardHeader>
         <CardTitle className="text-center font-headline text-2xl text-primary">
           Your Temporary Email Address
@@ -62,7 +62,7 @@ export function EmailDisplay() {
             readOnly
             value={email}
             aria-label="Temporary Email Address"
-            className="text-2xl text-center font-mono bg-muted/50 h-14"
+            className="text-xl text-center font-mono bg-muted/50 h-14"
           />
         </div>
         <div className="flex flex-col gap-4 items-center w-full max-w-sm">
