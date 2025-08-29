@@ -57,15 +57,15 @@ export function EmailDisplay() {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-6">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-4xl">
           <Input
             readOnly
             value={email}
             aria-label="Temporary Email Address"
-            className="text-center font-mono text-base bg-muted/50 h-12 px-4"
+            className="text-center font-mono text-base bg-muted/50 h-14 px-4 text-lg"
           />
         </div>
-        <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full max-w-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full max-w-sm">
           {email !== 'generating...' && (
             <Popover>
               <PopoverTrigger asChild>
