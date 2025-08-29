@@ -52,7 +52,7 @@ export function EmailDisplay() {
   return (
     <Card className="max-w-2xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border">
       <CardHeader>
-        <CardTitle className="text-center font-headline text-2xl text-primary">
+        <CardTitle className="text-center font-headline text-xl text-primary">
           Your Temporary Email Address
         </CardTitle>
       </CardHeader>
@@ -62,17 +62,17 @@ export function EmailDisplay() {
             readOnly
             value={email}
             aria-label="Temporary Email Address"
-            className="text-lg text-center font-mono bg-muted/50 h-12"
+            className="text-2xl text-center font-mono bg-muted/50 h-14"
           />
         </div>
-        <div className="flex flex-col gap-4 items-center">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-4 items-center w-full max-w-sm">
+          <div className="flex items-stretch gap-4 w-full">
             {email !== 'generating...' && (
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    className="p-2 h-auto flex-col gap-2"
+                    className="p-2 h-auto flex-col gap-2 w-28"
                   >
                     <QrCode className="h-10 w-10" />
                     <span className="text-xs text-muted-foreground">
@@ -94,19 +94,19 @@ export function EmailDisplay() {
             <Button
               onClick={copyToClipboard}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground h-16 w-32 flex-col"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground h-auto flex-1 flex-col"
             >
               <Copy className="h-6 w-6 mb-1" />
-              {copyText}
+              <span className="text-base">{copyText}</span>
             </Button>
           </div>
           <div className="flex gap-2 justify-center w-full">
-            <Button onClick={generateNewEmail} variant="secondary" className='w-full'>
-              <RefreshCw className="mr-2 h-4 w-4" />
+            <Button onClick={generateNewEmail} variant="secondary" className="w-full">
+              <RefreshCw />
               Refresh
             </Button>
-            <Button variant="outline" className='w-full'>
-              <Settings className="mr-2 h-4 w-4" />
+            <Button variant="outline" className="w-full">
+              <Settings />
               Customize
             </Button>
           </div>
