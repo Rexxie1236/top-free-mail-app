@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
-      <main className="flex-grow container mx-auto px-4 md:px-8 py-6 md:py-8">
+      <main className="flex-grow container mx-auto px-4 md:px-8 py-4 md:py-6">
         <EmailDisplay />
 
         <Separator className="my-12 md:my-16 bg-border/50" />
