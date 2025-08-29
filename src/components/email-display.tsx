@@ -62,7 +62,7 @@ export function EmailDisplay() {
             readOnly
             value={email}
             aria-label="Temporary Email Address"
-            className="text-base text-center font-mono bg-muted/50 h-14 px-6"
+            className="text-lg text-center font-mono bg-muted/50 h-14 px-6"
           />
         </div>
         <div className="flex flex-col gap-4 items-center w-full max-w-sm">
