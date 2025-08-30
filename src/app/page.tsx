@@ -17,7 +17,7 @@ export default function Home() {
           temporary, secure, anonymous, free, disposable email address.
         </p>
 
-        <Separator className="my-12 md:my-16 bg-border/50" />
+        <Separator className="my-8 bg-border/50" />
 
         <div className="space-y-6">
           <h2 className="text-3xl font-bold font-headline text-center">
