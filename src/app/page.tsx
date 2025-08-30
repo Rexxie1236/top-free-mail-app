@@ -2,6 +2,7 @@ import { Header } from '@/components/header';
 import { EmailDisplay } from '@/components/email-display';
 import { Inbox } from '@/components/inbox';
 import { Separator } from '@/components/ui/separator';
+import { ChangeEmailAddress } from '@/components/change-email-address';
 
 export default function Home() {
   return (
@@ -24,6 +25,10 @@ export default function Home() {
           </h2>
           <Inbox />
         </div>
+
+        <Separator className="my-12 md:my-16 bg-border/50" />
+
+        <ChangeEmailAddress />
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t border-border mt-auto">
         <p>TopFreeMail &copy; 2024. All Rights Reserved.</p>
