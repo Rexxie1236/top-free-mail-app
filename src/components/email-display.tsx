@@ -65,7 +65,7 @@ export function EmailDisplay() {
             className="text-center font-mono bg-muted/50 h-12 px-4 text-base"
           />
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           {email !== 'generating...' && (
             <Popover>
               <PopoverTrigger asChild>
