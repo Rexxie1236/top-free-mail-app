@@ -65,11 +65,11 @@ export function EmailDisplay() {
             className="text-center font-mono bg-muted/50 h-12 px-4 text-base"
           />
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="grid grid-cols-2 gap-3">
           {email !== 'generating...' && (
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="h-12 w-32 text-sm px-4">
+                <Button variant="outline" className="h-12 w-32 text-sm px-4 rounded-lg">
                   <QrCode className="mr-2" />
                   Show QR
                 </Button>
@@ -88,7 +88,7 @@ export function EmailDisplay() {
           <Button
             onClick={copyToClipboard}
             variant="outline"
-            className="h-12 w-32 text-sm px-4"
+            className="h-12 w-32 text-sm px-4 rounded-lg"
           >
             <Copy className="mr-2" />
             {copyText}
@@ -96,12 +96,12 @@ export function EmailDisplay() {
           <Button
             onClick={generateNewEmail}
             variant="secondary"
-            className="h-12 w-32 text-sm px-4"
+            className="h-12 w-32 text-sm px-4 rounded-lg"
           >
             <RefreshCw className="mr-2" />
             Refresh
           </Button>
-          <Button variant="outline" className="h-12 w-32 text-sm px-4">
+          <Button variant="outline" className="h-12 w-32 text-sm px-4 rounded-lg">
             <Settings className="mr-2" />
             Customize
           </Button>
