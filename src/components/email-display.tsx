@@ -57,7 +57,7 @@ export function EmailDisplay() {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-6">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-4xl">
           <Input
             readOnly
             value={email}
@@ -65,11 +65,11 @@ export function EmailDisplay() {
             className="text-center font-mono bg-muted/50 h-12 px-6 text-base"
           />
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-2">
           {email !== 'generating...' && (
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="h-12 text-sm px-4">
+                <Button variant="outline" className="h-12 w-32 text-sm px-4">
                   <QrCode className="mr-2" />
                   Show QR
                 </Button>
@@ -88,7 +88,7 @@ export function EmailDisplay() {
           <Button
             onClick={copyToClipboard}
             variant="outline"
-            className="h-12 text-sm px-4"
+            className="h-12 w-32 text-sm px-4"
           >
             <Copy className="mr-2" />
             {copyText}
@@ -96,12 +96,12 @@ export function EmailDisplay() {
           <Button
             onClick={generateNewEmail}
             variant="secondary"
-            className="h-12 text-sm px-4"
+            className="h-12 w-32 text-sm px-4"
           >
             <RefreshCw className="mr-2" />
             Refresh
           </Button>
-          <Button variant="outline" className="h-12 text-sm px-4">
+          <Button variant="outline" className="h-12 w-32 text-sm px-4">
             <Settings className="mr-2" />
             Customize
           </Button>
