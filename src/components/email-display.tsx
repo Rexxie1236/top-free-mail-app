@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Copy, RefreshCw, QrCode, Settings } from 'lucide-react';
+import { Copy, RefreshCw, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -35,11 +35,21 @@ export function EmailDisplay() {
 
   const generateNewEmail = () => {
     const randomPart = generateRandomString(10);
-    setEmail(`${randomPart}@topfreemail.dev`);
+    const newEmail = `${randomPart}@topfreemail.dev`;
+    setEmail(newEmail);
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('currentEmail', newEmail);
+      window.dispatchEvent(new Event('emailChanged'));
+    }
   };
 
   useEffect(() => {
-    generateNewEmail();
+    const storedEmail = sessionStorage.getItem('currentEmail');
+    if (storedEmail) {
+      setEmail(storedEmail);
+    } else {
+      generateNewEmail();
+    }
   }, []);
 
   const copyToClipboard = () => {
@@ -72,7 +82,7 @@ export function EmailDisplay() {
           />
         </div>
         <TooltipProvider>
-          <div className="flex flex-row items-center justify-center gap-2">
+          <div className="flex flex-row items-center justify-center gap-4">
             {email !== 'generating...' && (
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -129,17 +139,6 @@ export function EmailDisplay() {
               </TooltipTrigger>
               <TooltipContent>
                 <p>Refresh</p>
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
-                  <Settings />
-                  <span className="sr-only">Customize</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Customize</p>
               </TooltipContent>
             </Tooltip>
           </div>
