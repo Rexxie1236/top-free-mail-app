@@ -160,9 +160,9 @@ export function EmailDisplay() {
                 <p>{copyText}</p>
               </TooltipContent>
             </Tooltip>
-            <Tooltip>
+             <Tooltip>
               <TooltipTrigger asChild>
-                 <Button
+                <Button
                   onClick={handleRefreshInbox}
                   variant="secondary"
                   className="h-12 rounded-lg px-4"
@@ -175,7 +175,7 @@ export function EmailDisplay() {
                 <p>Refresh Inbox</p>
               </TooltipContent>
             </Tooltip>
-             <Tooltip>
+            <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   onClick={generateNewEmail}
