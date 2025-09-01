@@ -3,6 +3,7 @@ import { EmailDisplay } from '@/components/email-display';
 import { Inbox } from '@/components/inbox';
 import { Separator } from '@/components/ui/separator';
 import { ChangeEmailAddress } from '@/components/change-email-address';
+import { AdBanner } from '@/components/ad-banner';
 
 export default function Home() {
   return (
@@ -25,6 +26,8 @@ export default function Home() {
           </h2>
           <Inbox />
         </div>
+
+        <AdBanner />
 
         <Separator className="my-12 md:my-16 bg-border/50" />
 
