@@ -32,27 +32,22 @@ export function Inbox() {
   const { toast } = useToast();
 
   const handleEmailChange = useCallback(() => {
-    const storedEmail = sessionStorage.getItem('currentEmail');
-    setLoadingEmails(true);
-    setEmails([]);
-    setCurrentEmail(storedEmail);
+    if (typeof window !== 'undefined') {
+      const storedEmail = sessionStorage.getItem('currentEmail');
+      setCurrentEmail(storedEmail);
+    }
   }, []);
 
   useEffect(() => {
-    // Run this only on the client
-    if (typeof window !== 'undefined') {
-      handleEmailChange(); // Set initial email
-      window.addEventListener('emailChanged', handleEmailChange);
-
-      return () => {
-        window.removeEventListener('emailChanged', handleEmailChange);
-      };
-    }
+    handleEmailChange();
+    window.addEventListener('emailChanged', handleEmailChange);
+    return () => {
+      window.removeEventListener('emailChanged', handleEmailChange);
+    };
   }, [handleEmailChange]);
 
   useEffect(() => {
     if (!currentEmail) {
-      // If there's no email, we are in a loading state until the email is set.
       setLoadingEmails(true);
       return;
     }
