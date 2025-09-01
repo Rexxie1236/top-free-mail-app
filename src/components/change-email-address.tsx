@@ -63,7 +63,7 @@ export function ChangeEmailAddress() {
       </CardContent>
       <CardFooter className="flex flex-col">
         <Button className="w-full rounded-lg h-12 text-base">
-          Get Premium
+          Save Address
         </Button>
       </CardFooter>
     </Card>
