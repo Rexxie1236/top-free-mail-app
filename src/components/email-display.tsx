@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { Copy, RefreshCw, QrCode } from 'lucide-react';
+import { Copy, RefreshCw, QrCode, PlusSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -28,10 +28,35 @@ function generateRandomString(length: number) {
   return result;
 }
 
+const REFRESH_INTERVAL = 30; // 30 seconds
+
 export function EmailDisplay() {
   const [email, setEmail] = useState('generating...');
   const [copyText, setCopyText] = useState('Copy');
+  const [countdown, setCountdown] = useState(REFRESH_INTERVAL);
   const { toast } = useToast();
+
+  const handleRefreshInbox = useCallback(() => {
+    window.dispatchEvent(new Event('refreshInbox'));
+    setCountdown(REFRESH_INTERVAL);
+    toast({
+      title: 'Inbox Refreshed',
+      description: 'Checked for new emails.',
+    });
+  }, [toast]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          handleRefreshInbox();
+          return REFRESH_INTERVAL;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [handleRefreshInbox]);
 
   const generateNewEmail = () => {
     const randomPart = generateRandomString(10);
@@ -105,7 +130,7 @@ export function EmailDisplay() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-2 bg-white">
                       <Image
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${email}&qzone=1`}
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=mailto:${email}&qzone=1`}
                         alt="Email QR Code"
                         width={150}
                         height={150}
@@ -137,18 +162,33 @@ export function EmailDisplay() {
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button
-                  onClick={generateNewEmail}
+                 <Button
+                  onClick={handleRefreshInbox}
                   variant="secondary"
-                  size="icon"
-                  className="h-12 w-12 rounded-lg"
+                  className="h-12 rounded-lg px-4"
                 >
                   <RefreshCw />
-                  <span className="sr-only">Refresh</span>
+                  <span>Refresh Inbox ({countdown}s)</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Refresh</p>
+                <p>Refresh Inbox</p>
+              </TooltipContent>
+            </Tooltip>
+             <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={generateNewEmail}
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-lg"
+                >
+                  <PlusSquare />
+                  <span className="sr-only">New Email</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Generate New Email</p>
               </TooltipContent>
             </Tooltip>
           </div>

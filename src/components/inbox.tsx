@@ -13,7 +13,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Wand2, Loader2, Trash2, Inbox as InboxIcon } from 'lucide-react';
 import { db } from '@/lib/firebase';
-import { collection, query, where, onSnapshot, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, orderBy, doc, deleteDoc, getDocs } from 'firebase/firestore';
 
 interface Email {
   id: string;
@@ -31,24 +31,64 @@ export function Inbox() {
   const [loadingEmails, setLoadingEmails] = useState(true);
   const { toast } = useToast();
 
-  const handleEmailChange = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      const storedEmail = sessionStorage.getItem('currentEmail');
-      setCurrentEmail(storedEmail);
+  const fetchEmails = useCallback(async (email: string) => {
+    setLoadingEmails(true);
+    try {
+      const q = query(
+        collection(db, 'inbox'),
+        where('recipient', '==', email),
+        orderBy('createdAt', 'desc')
+      );
+      const querySnapshot = await getDocs(q);
+      const emailsData: Email[] = [];
+      querySnapshot.forEach((doc) => {
+        emailsData.push({ id: doc.id, ...doc.data() } as Email);
+      });
+      setEmails(emailsData);
+    } catch (error) {
+      console.error('Error fetching emails: ', error);
+      toast({
+        variant: 'destructive',
+        title: 'Error fetching emails',
+        description:
+          'Could not connect to the inbox. Please check your connection and security rules.',
+      });
+    } finally {
+      setLoadingEmails(false);
     }
-  }, []);
+  }, [toast]);
+
+
+  const handleEmailChange = useCallback(() => {
+    const storedEmail = typeof window !== 'undefined' ? sessionStorage.getItem('currentEmail') : null;
+    if (storedEmail && storedEmail !== currentEmail) {
+      setCurrentEmail(storedEmail);
+      fetchEmails(storedEmail);
+    } else if (!storedEmail) {
+      setLoadingEmails(false);
+    }
+  }, [currentEmail, fetchEmails]);
+
+  const handleRefreshInbox = useCallback(() => {
+    if (currentEmail) {
+      fetchEmails(currentEmail);
+    }
+  }, [currentEmail, fetchEmails]);
 
   useEffect(() => {
-    handleEmailChange();
+    handleEmailChange(); // Initial load
     window.addEventListener('emailChanged', handleEmailChange);
+    window.addEventListener('refreshInbox', handleRefreshInbox);
     return () => {
       window.removeEventListener('emailChanged', handleEmailChange);
+      window.removeEventListener('refreshInbox', handleRefreshInbox);
     };
-  }, [handleEmailChange]);
+  }, [handleEmailChange, handleRefreshInbox]);
+
 
   useEffect(() => {
     if (!currentEmail) {
-      setLoadingEmails(true);
+      setLoadingEmails(false);
       return;
     }
 
