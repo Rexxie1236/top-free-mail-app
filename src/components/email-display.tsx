@@ -12,6 +12,12 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 function generateRandomString(length: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -65,47 +71,79 @@ export function EmailDisplay() {
             className="text-center font-mono bg-muted/50 h-12 px-4 text-base"
           />
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          {email !== 'generating...' && (
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="h-12 w-32 text-sm px-4 rounded-lg">
-                  <QrCode className="mr-2" />
-                  Show QR
+        <TooltipProvider>
+          <div className="flex flex-row items-center justify-center gap-2">
+            {email !== 'generating...' && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
+                        <QrCode />
+                        <span className="sr-only">Show QR Code</span>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-2 bg-white">
+                      <Image
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${email}&qzone=1`}
+                        alt="Email QR Code"
+                        width={150}
+                        height={150}
+                        data-ai-hint="qr code"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Show QR Code</p>
+                </TooltipContent>
+              </Tooltip>
+            )}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={copyToClipboard}
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-lg"
+                >
+                  <Copy />
+                  <span className="sr-only">{copyText}</span>
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-2 bg-white">
-                <Image
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${email}&qzone=1`}
-                  alt="Email QR Code"
-                  width={150}
-                  height={150}
-                  data-ai-hint="qr code"
-                />
-              </PopoverContent>
-            </Popover>
-          )}
-          <Button
-            onClick={copyToClipboard}
-            variant="outline"
-            className="h-12 w-32 text-sm px-4 rounded-lg"
-          >
-            <Copy className="mr-2" />
-            {copyText}
-          </Button>
-          <Button
-            onClick={generateNewEmail}
-            variant="secondary"
-            className="h-12 w-32 text-sm px-4 rounded-lg"
-          >
-            <RefreshCw className="mr-2" />
-            Refresh
-          </Button>
-          <Button variant="outline" className="h-12 w-32 text-sm px-4 rounded-lg">
-            <Settings className="mr-2" />
-            Customize
-          </Button>
-        </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{copyText}</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={generateNewEmail}
+                  variant="secondary"
+                  size="icon"
+                  className="h-12 w-12 rounded-lg"
+                >
+                  <RefreshCw />
+                  <span className="sr-only">Refresh</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Refresh</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
+                  <Settings />
+                  <span className="sr-only">Customize</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Customize</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+        </TooltipProvider>
       </CardContent>
     </Card>
   );
