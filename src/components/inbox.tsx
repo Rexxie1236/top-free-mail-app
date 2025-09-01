@@ -32,29 +32,35 @@ export function Inbox() {
   const { toast } = useToast();
 
   useEffect(() => {
-    const updateEmail = () => {
-      setLoadingEmails(true);
+    const initializeEmail = () => {
       const storedEmail = sessionStorage.getItem('currentEmail');
       setCurrentEmail(storedEmail);
+      // Don't set loading to false here yet.
     }
     
-    window.addEventListener('emailChanged', updateEmail);
-    updateEmail(); // Initial check
+    initializeEmail(); // Set initial email on component mount
+    
+    window.addEventListener('emailChanged', initializeEmail); // Listen for changes
 
     return () => {
-      window.removeEventListener('emailChanged', updateEmail);
+      window.removeEventListener('emailChanged', initializeEmail);
     }
   }, []);
 
   useEffect(() => {
+    // This effect runs whenever currentEmail changes.
+    // It's responsible for fetching data.
+    
     if (!currentEmail) {
-      setLoadingEmails(false);
+      // If there's no email address yet, we are in a loading state.
+      setLoadingEmails(true);
       setEmails([]);
       return;
     };
 
     setLoadingEmails(true);
     const q = query(collection(db, "inbox"), where("recipient", "==", currentEmail), orderBy("createdAt", "desc"));
+    
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const emailsData: Email[] = [];
       querySnapshot.forEach((doc) => {
@@ -67,12 +73,12 @@ export function Inbox() {
       toast({
         variant: 'destructive',
         title: 'Error fetching emails',
-        description: 'Could not connect to the inbox. Please try again later.',
+        description: 'Could not connect to the inbox. Please check your connection and security rules.',
       });
-      setLoadingEmails(false);
+      setLoadingEmails(false); // Stop loading even on error
     });
 
-    return () => unsubscribe();
+    return () => unsubscribe(); // Cleanup the listener when the component unmounts or email changes
   }, [currentEmail, toast]);
 
   const onSummarize = async (emailId: string, body: string) => {
