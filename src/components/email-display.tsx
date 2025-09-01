@@ -44,11 +44,14 @@ export function EmailDisplay() {
   };
 
   useEffect(() => {
-    const storedEmail = sessionStorage.getItem('currentEmail');
-    if (storedEmail) {
-      setEmail(storedEmail);
-    } else {
-      generateNewEmail();
+    // Only run on the client
+    if (typeof window !== 'undefined') {
+      const storedEmail = sessionStorage.getItem('currentEmail');
+      if (storedEmail) {
+        setEmail(storedEmail);
+      } else {
+        generateNewEmail();
+      }
     }
   }, []);
 

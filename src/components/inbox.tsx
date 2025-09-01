@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { handleSummarize } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -27,39 +27,42 @@ export function Inbox() {
   const [emails, setEmails] = useState<Email[]>([]);
   const [currentEmail, setCurrentEmail] = useState<string | null>(null);
   const [summaries, setSummaries] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState<Record<string, boolean>>({});
+  const [loadingSummaries, setLoadingSummaries] = useState<Record<string, boolean>>({});
   const [loadingEmails, setLoadingEmails] = useState(true);
   const { toast } = useToast();
 
-  useEffect(() => {
-    const initializeEmail = () => {
-      const storedEmail = sessionStorage.getItem('currentEmail');
-      setCurrentEmail(storedEmail);
-      // Don't set loading to false here yet.
-    }
-    
-    initializeEmail(); // Set initial email on component mount
-    
-    window.addEventListener('emailChanged', initializeEmail); // Listen for changes
-
-    return () => {
-      window.removeEventListener('emailChanged', initializeEmail);
-    }
+  const handleEmailChange = useCallback(() => {
+    const storedEmail = sessionStorage.getItem('currentEmail');
+    setLoadingEmails(true);
+    setEmails([]);
+    setCurrentEmail(storedEmail);
   }, []);
 
   useEffect(() => {
-    // This effect runs whenever currentEmail changes.
-    // It's responsible for fetching data.
-    
+    // Run this only on the client
+    if (typeof window !== 'undefined') {
+      handleEmailChange(); // Set initial email
+      window.addEventListener('emailChanged', handleEmailChange);
+
+      return () => {
+        window.removeEventListener('emailChanged', handleEmailChange);
+      };
+    }
+  }, [handleEmailChange]);
+
+  useEffect(() => {
     if (!currentEmail) {
-      // If there's no email address yet, we are in a loading state.
+      // If there's no email, we are in a loading state until the email is set.
       setLoadingEmails(true);
-      setEmails([]);
       return;
-    };
+    }
 
     setLoadingEmails(true);
-    const q = query(collection(db, "inbox"), where("recipient", "==", currentEmail), orderBy("createdAt", "desc"));
+    const q = query(
+      collection(db, 'inbox'),
+      where('recipient', '==', currentEmail),
+      orderBy('createdAt', 'desc')
+    );
     
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const emailsData: Email[] = [];
@@ -75,14 +78,14 @@ export function Inbox() {
         title: 'Error fetching emails',
         description: 'Could not connect to the inbox. Please check your connection and security rules.',
       });
-      setLoadingEmails(false); // Stop loading even on error
+      setLoadingEmails(false);
     });
 
-    return () => unsubscribe(); // Cleanup the listener when the component unmounts or email changes
+    return () => unsubscribe();
   }, [currentEmail, toast]);
 
   const onSummarize = async (emailId: string, body: string) => {
-    setLoading((prev) => ({ ...prev, [emailId]: true }));
+    setLoadingSummaries((prev) => ({ ...prev, [emailId]: true }));
     const result = await handleSummarize(body);
     if (result.error) {
       toast({
@@ -93,7 +96,7 @@ export function Inbox() {
     } else if (result.summary) {
       setSummaries((prev) => ({ ...prev, [emailId]: result.summary }));
     }
-    setLoading((prev) => ({ ...prev, [emailId]: false }));
+    setLoadingSummaries((prev) => ({ ...prev, [emailId]: false }));
   };
 
   const deleteEmail = async (emailId: string) => {
@@ -119,7 +122,7 @@ export function Inbox() {
         <Loader2 className="h-12 w-12 animate-spin" />
         <h3 className="text-xl font-semibold">Loading your inbox...</h3>
       </div>
-    )
+    );
   }
 
   if (emails.length === 0) {
@@ -186,11 +189,11 @@ export function Inbox() {
                 {email.body.split(' ').length > 50 && !summaries[email.id] && (
                   <Button
                     onClick={() => onSummarize(email.id, email.body)}
-                    disabled={loading[email.id]}
+                    disabled={loadingSummaries[email.id]}
                     variant="outline"
                     className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
                   >
-                    {loading[email.id] ? (
+                    {loadingSummaries[email.id] ? (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     ) : (
                       <Wand2 className="mr-2 h-4 w-4" />
