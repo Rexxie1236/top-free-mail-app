@@ -162,6 +162,21 @@ export function EmailDisplay() {
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
+                 <Button
+                  onClick={handleRefreshInbox}
+                  variant="secondary"
+                  className="h-12 rounded-lg px-4"
+                >
+                  <RefreshCw />
+                  <span>({countdown}s)</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Refresh Inbox</p>
+              </TooltipContent>
+            </Tooltip>
+             <Tooltip>
+              <TooltipTrigger asChild>
                 <Button
                   onClick={generateNewEmail}
                   variant="outline"
@@ -174,21 +189,6 @@ export function EmailDisplay() {
               </TooltipTrigger>
               <TooltipContent>
                 <p>Generate New Email</p>
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                 <Button
-                  onClick={handleRefreshInbox}
-                  variant="secondary"
-                  className="h-12 rounded-lg px-4"
-                >
-                  <RefreshCw />
-                  <span>Refresh ({countdown}s)</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Refresh Inbox</p>
               </TooltipContent>
             </Tooltip>
           </div>
