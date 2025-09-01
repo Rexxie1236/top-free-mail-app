@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Copy, RefreshCw, QrCode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -43,8 +43,7 @@ export function EmailDisplay() {
     }
   };
 
-  useEffect(() => {
-    // Only run on the client
+  const handleEmailChange = useCallback(() => {
     if (typeof window !== 'undefined') {
       const storedEmail = sessionStorage.getItem('currentEmail');
       if (storedEmail) {
@@ -54,6 +53,14 @@ export function EmailDisplay() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    handleEmailChange();
+    window.addEventListener('emailChanged', handleEmailChange);
+    return () => {
+      window.removeEventListener('emailChanged', handleEmailChange);
+    };
+  }, [handleEmailChange]);
 
   const copyToClipboard = () => {
     if (email === 'generating...') return;
