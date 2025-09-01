@@ -33,36 +33,35 @@ export function ChangeEmailAddress() {
       </CardHeader>
       <CardContent>
         <form>
-          <div className="grid w-full items-center gap-4">
+          <div className="grid w-full items-center gap-4 max-w-sm mx-auto">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="login">Login</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="login"
-                  placeholder="Enter your desired email name"
-                  className="bg-muted/50"
-                />
-                <Select>
-                  <SelectTrigger className="w-[180px] bg-muted/50">
-                    <SelectValue placeholder="@domain" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="topfreemail.dev">
-                      @topfreemail.dev
-                    </SelectItem>
-                    <SelectItem value="tempmail.com">@tempmail.com</SelectItem>
-                    <SelectItem value="disposable.io">
-                      @disposable.io
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              <Label htmlFor="login" className="sr-only">Login</Label>
+              <Input
+                id="login"
+                placeholder="Login"
+                className="bg-muted/50 rounded-full h-12 px-6"
+              />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+               <Label htmlFor="domain" className="sr-only">Domain</Label>
+              <Select>
+                <SelectTrigger id="domain" className="bg-muted/50 rounded-full h-12 px-6 border-2 border-accent text-muted-foreground">
+                  <SelectValue placeholder="@domain***1.com" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="topfreemail.dev">
+                    @topfreemail.dev
+                  </SelectItem>
+                  <SelectItem value="tempmail.com">@tempmail.com</SelectItem>
+                  <SelectItem value="disposable.io">@disposable.io</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex flex-col">
-        <Button className="w-full rounded-lg h-12 text-base">
+        <Button className="w-full max-w-sm mx-auto rounded-lg h-12 text-base">
           Save Address
         </Button>
       </CardFooter>
