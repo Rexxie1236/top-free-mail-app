@@ -33,11 +33,9 @@ export function Inbox() {
 
   useEffect(() => {
     const updateEmail = () => {
+      setLoadingEmails(true);
       const storedEmail = sessionStorage.getItem('currentEmail');
       setCurrentEmail(storedEmail);
-      if (storedEmail) {
-        setLoadingEmails(true); // Set loading to true when email changes
-      }
     }
     
     window.addEventListener('emailChanged', updateEmail);
@@ -55,6 +53,7 @@ export function Inbox() {
       return;
     };
 
+    setLoadingEmails(true);
     const q = query(collection(db, "inbox"), where("recipient", "==", currentEmail), orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const emailsData: Email[] = [];
@@ -65,19 +64,16 @@ export function Inbox() {
       setLoadingEmails(false);
     }, (error) => {
       console.error("Error fetching emails: ", error);
-      // Only show toast if it's a persistent error, not on initial load
-      if (!loadingEmails) {
-        toast({
-          variant: 'destructive',
-          title: 'Error fetching emails',
-          description: 'Could not connect to the inbox. Please try again later.',
-        });
-      }
+      toast({
+        variant: 'destructive',
+        title: 'Error fetching emails',
+        description: 'Could not connect to the inbox. Please try again later.',
+      });
       setLoadingEmails(false);
     });
 
     return () => unsubscribe();
-  }, [currentEmail, toast, loadingEmails]);
+  }, [currentEmail, toast]);
 
   const onSummarize = async (emailId: string, body: string) => {
     setLoading((prev) => ({ ...prev, [emailId]: true }));
