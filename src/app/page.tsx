@@ -9,7 +9,6 @@ import { Separator } from '@/components/ui/separator';
 import { ChangeEmailAddress } from '@/components/change-email-address';
 import { AdBanner } from '@/components/ad-banner';
 import { ChannelView } from '@/components/channel-view';
-import { DevPanel } from '@/components/dev-panel';
 import { useTranslation } from '@/hooks/use-translation';
 
 export type AppMode = 'single' | 'channel';
@@ -39,8 +38,6 @@ export default function Home() {
             <AdBanner />
             <Separator className="my-12 md:my-16 bg-border/50" />
             <ChangeEmailAddress />
-            <Separator className="my-12 md:my-16 bg-border/50" />
-            <DevPanel />
           </>
         ) : (
           <ChannelView />
