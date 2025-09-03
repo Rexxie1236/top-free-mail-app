@@ -28,6 +28,9 @@ export default function LoginPage() {
   const handleAnonymousLogin = async () => {
     setIsLoading(true);
     try {
+      if (!auth) {
+        throw new Error("Auth service is not initialized.");
+      }
       await signInAnonymously(auth);
       router.push('/');
     } catch (error: any) {

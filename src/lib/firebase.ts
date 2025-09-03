@@ -1,7 +1,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApp, getApps } from "firebase/app";
-import { getAuth, initializeAuth, indexedDBLocalPersistence } from "firebase/auth";
+import { getAuth, initializeAuth, indexedDBLocalPersistence, browserLocalPersistence } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -23,10 +23,11 @@ const db = getFirestore(app);
 let auth;
 if (typeof window !== 'undefined') {
   auth = initializeAuth(app, {
-    persistence: indexedDBLocalPersistence
+    persistence: browserLocalPersistence
   });
 } else {
   auth = getAuth(app);
 }
+
 
 export { app, db, auth };
