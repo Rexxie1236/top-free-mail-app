@@ -16,6 +16,8 @@ import {
 import { Button } from './ui/button';
 import { Plus, Trash2 } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
 
 function generateRandomString(length: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -29,6 +31,7 @@ function generateRandomString(length: number) {
 export function ChannelView() {
   const [channels, setChannels] = useState<string[]>([]);
   const [activeChannel, setActiveChannel] = useState<string | null>(null);
+  const [newChannelName, setNewChannelName] = useState('');
 
   const getChannelsFromStorage = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -57,11 +60,14 @@ export function ChannelView() {
       } else {
         const newActive = storedChannels[0];
         setActiveChannel(newActive);
-        sessionStorage.setItem('currentEmail', newActive);
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('currentEmail', newActive);
+        }
       }
     } else {
       createNewChannel();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const syncChannelsToStorage = (newChannels: string[]) => {
@@ -71,12 +77,13 @@ export function ChannelView() {
   };
 
   const createNewChannel = () => {
-    const randomPart = generateRandomString(10);
-    const newEmail = `${randomPart}@topfreemail.dev`;
+    const namePart = newChannelName.trim() === '' ? generateRandomString(10) : newChannelName.trim().replace(/\s+/g, '.');
+    const newEmail = `${namePart}@topfreemail.dev`;
     const newChannels = [...channels, newEmail];
     setChannels(newChannels);
     syncChannelsToStorage(newChannels);
     switchActiveChannel(newEmail);
+    setNewChannelName('');
   };
 
   const deleteChannel = (channelToDelete: string) => {
@@ -88,6 +95,7 @@ export function ChannelView() {
       if (newChannels.length > 0) {
         switchActiveChannel(newChannels[0]);
       } else {
+        // If the last channel is deleted, create a new one.
         createNewChannel();
       }
     }
@@ -112,9 +120,21 @@ export function ChannelView() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button onClick={createNewChannel} className="w-full">
-              <Plus className="mr-2 h-4 w-4" /> Create New Address
-            </Button>
+            <div className="space-y-2">
+               <Label htmlFor="new-channel-name" className="text-sm font-medium">Create New Address</Label>
+               <div className="flex items-center space-x-2">
+                 <Input 
+                   id="new-channel-name"
+                   placeholder="Optional: type a name"
+                   value={newChannelName}
+                   onChange={(e) => setNewChannelName(e.target.value)}
+                   onKeyDown={(e) => e.key === 'Enter' && createNewChannel()}
+                 />
+                <Button onClick={createNewChannel} size="icon" className="shrink-0">
+                  <Plus className="h-4 w-4" />
+                </Button>
+               </div>
+            </div>
             <Separator />
             <ScrollArea className="h-96">
               <div className="space-y-2 pr-4">
