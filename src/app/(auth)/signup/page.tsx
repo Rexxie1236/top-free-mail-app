@@ -62,12 +62,12 @@ export default function SignupPage() {
       );
       router.push('/');
     } catch (error: any) {
+      console.error('Signup Error:', error);
       toast({
         variant: 'destructive',
         title: T('auth.error.title'),
         description: error.message,
       });
-      console.error('Signup Error:', error);
     } finally {
       setIsLoading(false);
     }

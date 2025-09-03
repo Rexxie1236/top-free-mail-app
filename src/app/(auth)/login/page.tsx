@@ -56,12 +56,12 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       router.push('/');
     } catch (error: any) {
+      console.error('Login Error:', error);
       toast({
         variant: 'destructive',
         title: T('auth.error.title'),
         description: error.message || T('auth.error.invalidCredentials'),
       });
-      console.error('Login Error:', error);
     } finally {
       setIsLoading(false);
     }
