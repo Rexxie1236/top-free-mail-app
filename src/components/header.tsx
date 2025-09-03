@@ -3,9 +3,15 @@
 
 import type { AppMode } from '@/app/page';
 import { Logo } from '@/components/logo';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
-import { Mail, List } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Mail, List, MoreVertical } from 'lucide-react';
 
 interface HeaderProps {
   mode: AppMode;
@@ -13,10 +19,6 @@ interface HeaderProps {
 }
 
 export function Header({ mode, setMode }: HeaderProps) {
-  const handleModeChange = (isChecked: boolean) => {
-    setMode(isChecked ? 'channel' : 'single');
-  };
-
   return (
     <header className="py-4 px-4 md:px-6 border-b border-border/50 sticky top-0 bg-background/80 backdrop-blur-sm z-10 rounded-b-xl">
       <div className="flex items-center justify-between gap-3">
@@ -27,21 +29,33 @@ export function Header({ mode, setMode }: HeaderProps) {
           </span>
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Label htmlFor="mode-switch" className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Mail className={`h-5 w-5 transition-colors ${mode === 'single' ? 'text-primary' : ''}`}/>
-            <span>Single</span>
-          </Label>
-          <Switch
-            id="mode-switch"
-            checked={mode === 'channel'}
-            onCheckedChange={handleModeChange}
-          />
-          <Label htmlFor="mode-switch" className="flex items-center gap-2 text-sm text-muted-foreground">
-            <List className={`h-5 w-5 transition-colors ${mode === 'channel' ? 'text-primary' : ''}`} />
-            <span>Channels</span>
-          </Label>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <MoreVertical className="h-5 w-5" />
+              <span className="sr-only">Switch Mode</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuRadioGroup
+              value={mode}
+              onValueChange={(value) => setMode(value as AppMode)}
+            >
+              <DropdownMenuRadioItem value="single">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  <span>Single Mode</span>
+                </div>
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="channel">
+                <div className="flex items-center gap-2">
+                  <List className="h-4 w-4" />
+                  <span>Channel Mode</span>
+                </div>
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
