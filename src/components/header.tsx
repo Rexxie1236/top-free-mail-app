@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { AppMode } from '@/app/page';
@@ -15,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { MoreVertical, Paintbrush, SunMoon, Info } from 'lucide-react';
+import { useTheme } from '@/components/theme-provider';
 
 interface HeaderProps {
   mode: AppMode;
@@ -22,6 +22,12 @@ interface HeaderProps {
 }
 
 export function Header({ mode, setMode }: HeaderProps) {
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
     <header className="py-4 px-4 md:px-6 border-b border-border/50 sticky top-0 bg-background/80 backdrop-blur-sm z-10 rounded-b-xl">
       <div className="flex items-center justify-between gap-3">
@@ -90,9 +96,9 @@ export function Header({ mode, setMode }: HeaderProps) {
               <Paintbrush className="mr-2 h-4 w-4" />
               <span>Modernize Email</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={toggleTheme}>
               <SunMoon className="mr-2 h-4 w-4" />
-              <span>Dark/Light Theme</span>
+              <span>{theme === 'dark' ? 'Light' : 'Dark'} Theme</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Info className="mr-2 h-4 w-4" />
