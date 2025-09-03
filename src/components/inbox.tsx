@@ -141,7 +141,7 @@ export function Inbox() {
           <AccordionItem
             value={`item-${email.id}`}
             key={email.id}
-            className="border rounded-lg bg-card/50 data-[state=open]:bg-muted/30 transition-colors"
+            className="border rounded-lg bg-card/50 data-[state=open]:bg-muted/30 transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]"
           >
             <AccordionTrigger className="hover:no-underline px-4 py-3 text-left w-full">
               <div className="flex justify-between items-center w-full gap-4">

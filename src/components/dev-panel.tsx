@@ -63,7 +63,7 @@ export function DevPanel() {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border text-left">
+    <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border text-left transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <TestTube2 className="text-primary" />

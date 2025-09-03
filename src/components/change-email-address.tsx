@@ -49,7 +49,7 @@ export function ChangeEmailAddress() {
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border">
+    <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold font-headline">
           Change E-mail Address

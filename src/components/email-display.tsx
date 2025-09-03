@@ -101,7 +101,7 @@ export function EmailDisplay() {
   };
 
   return (
-    <Card className="w-full bg-card/50 shadow-lg shadow-primary/10 border-border">
+    <Card className="w-full bg-card/50 shadow-lg shadow-primary/10 border-border transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
       <CardHeader>
         <CardTitle className="text-center font-headline text-2xl text-primary">
           Your Temporary Email Address
@@ -160,21 +160,6 @@ export function EmailDisplay() {
                 <p>{copyText}</p>
               </TooltipContent>
             </Tooltip>
-             <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  onClick={handleRefreshInbox}
-                  variant="secondary"
-                  className="h-12 rounded-lg px-4"
-                >
-                  <RefreshCw />
-                  <span>({countdown}s)</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Refresh Inbox</p>
-              </TooltipContent>
-            </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -189,6 +174,21 @@ export function EmailDisplay() {
               </TooltipTrigger>
               <TooltipContent>
                 <p>Generate New Email</p>
+              </TooltipContent>
+            </Tooltip>
+             <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={handleRefreshInbox}
+                  variant="secondary"
+                  className="h-12 rounded-lg px-4"
+                >
+                  <RefreshCw />
+                  <span>({countdown}s)</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Refresh Inbox</p>
               </TooltipContent>
             </Tooltip>
           </div>
