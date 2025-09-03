@@ -32,16 +32,30 @@ const TranslationContext = createContext<TranslationContextType | undefined>(
 const translationsCache: { [key: string]: Translations } = {};
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<string>('en');
+  const [language, setLanguageState] = useState<string>('en'); // Default to English
   const [translations, setTranslations] = useState<Translations>({});
 
+  const setLanguage = (lang: string) => {
+    if (languages[lang]) {
+      setLanguageState(lang);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('language', lang);
+      }
+    }
+  };
+
   useEffect(() => {
-    const detectedLanguage =
-      navigator.language.split('-')[0] || window.navigator.language;
-    if (languages[detectedLanguage]) {
-      setLanguage(detectedLanguage);
+    const savedLanguage = localStorage.getItem('language');
+    const browserLanguage = navigator.language.split('-')[0];
+
+    if (savedLanguage && languages[savedLanguage]) {
+      setLanguageState(savedLanguage);
+    } else if (languages[browserLanguage]) {
+      setLanguageState(browserLanguage);
+      localStorage.setItem('language', browserLanguage);
     } else {
-      setLanguage('en');
+      setLanguageState('en');
+      localStorage.setItem('language', 'en');
     }
   }, []);
 
