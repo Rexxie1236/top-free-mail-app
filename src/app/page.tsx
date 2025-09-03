@@ -24,24 +24,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (mode === 'channel' && !loading && !user) {
       router.push('/login');
     }
-  }, [user, loading, router]);
-
-  if (loading || !user) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <Loader2 className="h-16 w-16 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <Header mode={mode} setMode={setMode} />
-      <main className="flex-grow container mx-auto px-4 md:px-8 py-4 md:py-6">
-        {mode === 'single' ? (
+  }, [mode, user, loading, router]);
+  
+  const renderContent = () => {
+    if (mode === 'single') {
+       return (
           <>
             <EmailDisplay />
             <p className="text-center text-muted-foreground max-w-2xl mx-auto mt-6">
@@ -59,9 +49,31 @@ export default function Home() {
             <Separator className="my-12 md:my-16 bg-border/50" />
             <ChangeEmailAddress />
           </>
-        ) : (
-          <ChannelView />
-        )}
+       )
+    }
+
+    if (mode === 'channel') {
+      if (loading) {
+        return (
+          <div className="flex items-center justify-center min-h-[50vh]">
+            <Loader2 className="h-16 w-16 animate-spin text-primary" />
+          </div>
+        )
+      }
+      if (user) {
+        return <ChannelView />;
+      }
+    }
+
+    return null;
+  }
+
+
+  return (
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <Header mode={mode} setMode={setMode} />
+      <main className="flex-grow container mx-auto px-4 md:px-8 py-4 md:py-6">
+        {renderContent()}
          <Separator className="my-12 md:my-16 bg-border/50" />
         <DevPanel />
       </main>

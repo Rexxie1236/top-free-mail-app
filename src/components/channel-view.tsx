@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { EmailDisplay } from './email-display';
 import { Inbox } from './inbox';
 import { AdBanner } from './ad-banner';
@@ -14,7 +15,7 @@ import {
   CardTitle,
 } from './ui/card';
 import { Button } from './ui/button';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Loader2 } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -44,7 +45,8 @@ export function ChannelView() {
   const [activeChannel, setActiveChannel] = useState<string | null>(null);
   const [newChannelName, setNewChannelName] = useState('');
   const { T } = useTranslation();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
   const switchActiveChannel = useCallback((channel: string) => {
     setActiveChannel(channel);
@@ -66,7 +68,6 @@ export function ChannelView() {
       const userDocRef = doc(db, 'users', user.uid);
       await updateDoc(userDocRef, { channels: arrayUnion(newEmail) });
 
-      // No need to setChannels locally, firestore listener will do it.
       if (isInitial || !activeChannel) {
         switchActiveChannel(newEmail);
       }
@@ -76,6 +77,11 @@ export function ChannelView() {
   );
 
   useEffect(() => {
+    if (!loading && !user) {
+      router.push('/login');
+      return;
+    }
+    
     if (!user) return;
 
     const userDocRef = doc(db, 'users', user.uid);
@@ -96,8 +102,6 @@ export function ChannelView() {
           switchActiveChannel(dbChannels[0]);
         }
       } else {
-        // If there are no channels, maybe create one?
-        // For now, we'll just have an empty list.
         setActiveChannel(null);
         if (typeof window !== 'undefined') {
           sessionStorage.removeItem('currentEmail');
@@ -107,13 +111,12 @@ export function ChannelView() {
     });
 
     const handleChannelsUpdate = () => {
-      // This is a simple way to re-trigger the snapshot listener,
+       // This is a simple way to re-trigger the snapshot listener,
       // though Firestore's listener should do this automatically.
     };
 
     window.addEventListener('channelsUpdated', handleChannelsUpdate);
 
-    // Initial check to create a channel if none exist
     getDoc(userDocRef).then((doc) => {
       if (!doc.exists() || !doc.data()?.channels?.length) {
         createNewChannel(true);
@@ -124,7 +127,7 @@ export function ChannelView() {
       unsubscribe();
       window.removeEventListener('channelsUpdated', handleChannelsUpdate);
     };
-  }, [user, createNewChannel, switchActiveChannel]);
+  }, [user, loading, router, createNewChannel, switchActiveChannel]);
 
   const deleteChannel = async (channelToDelete: string) => {
     if (!user || channels.length <= 1) return;
@@ -132,6 +135,14 @@ export function ChannelView() {
     const userDocRef = doc(db, 'users', user.uid);
     await updateDoc(userDocRef, { channels: arrayRemove(channelToDelete) });
   };
+  
+  if (loading) {
+     return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="grid md:grid-cols-3 gap-8">

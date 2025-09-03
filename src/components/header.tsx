@@ -55,8 +55,17 @@ export function Header({ mode, setMode }: HeaderProps) {
 
   const handleSignOut = async () => {
     await signOut();
-    router.push('/login');
+    setMode('single'); // Revert to single mode on sign out
+    router.push('/');
   };
+
+  const handleModeChange = (newMode: AppMode) => {
+    if (newMode === 'channel' && !user) {
+      router.push('/login');
+    } else {
+      setMode(newMode);
+    }
+  }
 
   const SingleModeIcon = () => (
     <svg
@@ -161,7 +170,7 @@ export function Header({ mode, setMode }: HeaderProps) {
                 <DropdownMenuLabel>{T('header.mode')}</DropdownMenuLabel>
                 <DropdownMenuRadioGroup
                   value={mode}
-                  onValueChange={(value) => setMode(value as AppMode)}
+                  onValueChange={(value) => handleModeChange(value as AppMode)}
                 >
                   <DropdownMenuRadioItem value="single">
                     <div className="flex items-center gap-2">
