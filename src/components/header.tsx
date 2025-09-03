@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { AppMode } from '@/app/page';
@@ -16,12 +17,19 @@ import {
   DropdownMenuSubContent,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { MoreVertical, Paintbrush, SunMoon, Info, Languages } from 'lucide-react';
+import {
+  MoreVertical,
+  Paintbrush,
+  SunMoon,
+  Info,
+  Languages,
+} from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from './ui/scroll-area';
 import { useState } from 'react';
+import { AboutDialog } from './about-dialog';
 
 interface HeaderProps {
   mode: AppMode;
@@ -31,10 +39,7 @@ interface HeaderProps {
 export function Header({ mode, setMode }: HeaderProps) {
   const { theme, setTheme } = useTheme();
   const [language, setLanguage] = useState('English');
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   const SingleModeIcon = () => (
     <svg
@@ -69,95 +74,121 @@ export function Header({ mode, setMode }: HeaderProps) {
     </svg>
   );
 
-
   return (
-    <header className="py-4 px-4 md:px-6 border-b border-border/50 sticky top-0 bg-background/80 backdrop-blur-sm z-10 rounded-b-xl">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <Logo className="h-8 w-8" />
-          <span className="text-2xl font-bold font-headline text-foreground">
-            TopFreeMail
-          </span>
-        </div>
+    <>
+      <header className="py-4 px-4 md:px-6 border-b border-border/50 sticky top-0 bg-background/80 backdrop-blur-sm z-10 rounded-b-xl">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <Logo className="h-8 w-8" />
+            <span className="text-2xl font-bold font-headline text-foreground">
+              TopFreeMail
+            </span>
+          </div>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <MoreVertical className="h-5 w-5" />
-              <span className="sr-only">Open main menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>Mode</DropdownMenuLabel>
-            <DropdownMenuRadioGroup
-              value={mode}
-              onValueChange={(value) => setMode(value as AppMode)}
-            >
-              <DropdownMenuRadioItem value="single">
-                <div className="flex items-center gap-2">
-                   <SingleModeIcon />
-                  <span>Single Mode</span>
-                </div>
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="channel">
-                <div className="flex items-center gap-2">
-                  <ChannelModeIcon />
-                  <span>Channel Mode</span>
-                </div>
-              </DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <MoreVertical className="h-5 w-5" />
+                <span className="sr-only">Open main menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuLabel>Mode</DropdownMenuLabel>
+              <DropdownMenuRadioGroup
+                value={mode}
+                onValueChange={(value) => setMode(value as AppMode)}
+              >
+                <DropdownMenuRadioItem value="single">
+                  <div className="flex items-center gap-2">
+                    <SingleModeIcon />
+                    <span>Single Mode</span>
+                  </div>
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="channel">
+                  <div className="flex items-center gap-2">
+                    <ChannelModeIcon />
+                    <span>Channel Mode</span>
+                  </div>
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
 
-            <DropdownMenuSeparator />
+              <DropdownMenuSeparator />
 
-            <DropdownMenuLabel>Settings</DropdownMenuLabel>
-            <DropdownMenuItem>
+              <DropdownMenuLabel>Settings</DropdownMenuLabel>
+              <DropdownMenuItem>
                 <Paintbrush className="mr-2 h-4 w-4" />
                 <span>Modernize Email</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onSelect={(e) => e.preventDefault()}
-              className="flex items-center justify-between"
-            >
-              <Label
-                htmlFor="theme-switch"
-                className="flex items-center gap-2 cursor-pointer"
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={(e) => e.preventDefault()}
+                className="flex items-center justify-between"
               >
-                <SunMoon className="mr-2 h-4 w-4" />
-                <span>{theme === 'dark' ? 'Dark' : 'Light'} Theme</span>
-              </Label>
-              <Switch
-                id="theme-switch"
-                checked={theme === 'dark'}
-                onCheckedChange={toggleTheme}
-              />
-            </DropdownMenuItem>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>
-                <Languages className="mr-2 h-4 w-4" />
-                <span>Language</span>
-              </DropdownMenuSubTrigger>
-              <DropdownMenuSubContent>
-                <ScrollArea className="h-48">
-                  <DropdownMenuItem onSelect={() => setLanguage('English')}>English</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Spanish')}>Español</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('French')}>Français</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('German')}>Deutsch</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Japanese')}>日本語</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Chinese')}>中文</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Russian')}>Русский</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Arabic')}>العربية</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Portuguese')}>Português</DropdownMenuItem>
-                  <DropdownMenuItem onSelect={() => setLanguage('Hindi')}>हिन्दी</DropdownMenuItem>
-                </ScrollArea>
-              </DropdownMenuSubContent>
-            </DropdownMenuSub>
-            <DropdownMenuItem>
-              <Info className="mr-2 h-4 w-4" />
-              <span>About</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-    </header>
+                <Label
+                  htmlFor="theme-switch"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <SunMoon className="mr-2 h-4 w-4" />
+                  <span>{theme === 'dark' ? 'Dark' : 'Light'} Theme</span>
+                </Label>
+                <Switch
+                  id="theme-switch"
+                  checked={theme === 'dark'}
+                  onCheckedChange={(checked) =>
+                    setTheme(checked ? 'dark' : 'light')
+                  }
+                />
+              </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Languages className="mr-2 h-4 w-4" />
+                  <span>Language</span>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <ScrollArea className="h-48">
+                    <DropdownMenuItem onSelect={() => setLanguage('English')}>
+                      English
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('Spanish')}>
+                      Español
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('French')}>
+                      Français
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('German')}>
+                      Deutsch
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('Japanese')}>
+                      日本語
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('Chinese')}>
+                      中文
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('Russian')}>
+                      Русский
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('Arabic')}>
+                      العربية
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={() => setLanguage('Portuguese')}
+                    >
+                      Português
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => setLanguage('Hindi')}>
+                      हिन्दी
+                    </DropdownMenuItem>
+                  </ScrollArea>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuItem onSelect={() => setAboutOpen(true)}>
+                <Info className="mr-2 h-4 w-4" />
+                <span>About</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </header>
+      <AboutDialog open={aboutOpen} onOpenChange={setAboutOpen} />
+    </>
   );
 }
