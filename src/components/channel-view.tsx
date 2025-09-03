@@ -18,6 +18,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { useTranslation } from '@/hooks/use-translation';
 
 function generateRandomString(length: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -32,6 +33,7 @@ export function ChannelView() {
   const [channels, setChannels] = useState<string[]>([]);
   const [activeChannel, setActiveChannel] = useState<string | null>(null);
   const [newChannelName, setNewChannelName] = useState('');
+  const { translate: T } = useTranslation();
 
   const getChannelsFromStorage = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -114,18 +116,18 @@ export function ChannelView() {
       <div className="md:col-span-1">
         <Card className="sticky top-24">
           <CardHeader>
-            <CardTitle>Email Channels</CardTitle>
+            <CardTitle>{T('Email Channels')}</CardTitle>
             <CardDescription>
-              Manage multiple temporary email addresses.
+              {T('Manage multiple temporary email addresses.')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-               <Label htmlFor="new-channel-name" className="text-sm font-medium">Create New Address</Label>
+               <Label htmlFor="new-channel-name" className="text-sm font-medium">{T('Create New Address')}</Label>
                <div className="flex items-center space-x-2">
                  <Input 
                    id="new-channel-name"
-                   placeholder="Optional: type a name"
+                   placeholder={T('Optional: type a name')}
                    value={newChannelName}
                    onChange={(e) => setNewChannelName(e.target.value)}
                    onKeyDown={(e) => e.key === 'Enter' && createNewChannel()}
@@ -174,7 +176,7 @@ export function ChannelView() {
         <Separator />
         <div>
             <h2 className="text-3xl font-bold font-headline text-center mb-6">
-                Your Inbox
+                {T('Your Inbox')}
             </h2>
             <Inbox />
         </div>

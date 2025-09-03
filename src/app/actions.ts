@@ -1,6 +1,7 @@
 'use server';
 
 import { summarizeLongEmail } from '@/ai/flows/summarize-long-emails';
+import { translateText } from '@/ai/flows/translate-text';
 
 export async function handleSummarize(
   emailBody: string
@@ -18,6 +19,25 @@ export async function handleSummarize(
       summary: null,
       error:
         'An error occurred while summarizing the email. Please try again later.',
+    };
+  }
+}
+
+export async function handleTranslate(
+  text: string,
+  targetLanguage: string
+): Promise<{ translation: string | null; error: string | null }> {
+  if (!text) {
+    return { translation: null, error: 'Text is empty.' };
+  }
+  try {
+    const result = await translateText({ text, targetLanguage });
+    return { translation: result.translation, error: null };
+  } catch (e) {
+    console.error(e);
+    return {
+      translation: null,
+      error: `An error occurred while translating the text. Please try again later.`,
     };
   }
 }

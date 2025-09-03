@@ -17,6 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Send, TestTube2 } from 'lucide-react';
+import { useTranslation } from '@/hooks/use-translation';
 
 export function DevPanel() {
   const [sender, setSender] = useState('promo@example.com');
@@ -24,6 +25,7 @@ export function DevPanel() {
   const [body, setBody] = useState('Hello, we have a special deal just for you...');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { translate: T } = useTranslation();
 
   const handleSendTestEmail = async () => {
     setIsLoading(true);
@@ -32,8 +34,8 @@ export function DevPanel() {
     if (!recipient) {
       toast({
         variant: 'destructive',
-        title: 'No recipient set',
-        description: 'Please generate or set an email address first.',
+        title: T('No recipient set'),
+        description: T('Please generate or set an email address first.'),
       });
       setIsLoading(false);
       return;
@@ -48,15 +50,15 @@ export function DevPanel() {
         createdAt: serverTimestamp(),
       });
       toast({
-        title: 'Test Email Sent!',
-        description: `An email to ${recipient} was added to the inbox.`,
+        title: T('Test Email Sent!'),
+        description: `${T('An email to')} ${recipient} ${T('was added to the inbox.')}`,
       });
     } catch (error) {
       console.error('Error sending test email:', error);
       toast({
         variant: 'destructive',
-        title: 'Failed to send test email',
-        description: 'Check the console for more details.',
+        title: T('Failed to send test email'),
+        description: T('Check the console for more details.'),
       });
     } finally {
       setIsLoading(false);
@@ -68,17 +70,16 @@ export function DevPanel() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <TestTube2 className="text-primary" />
-          Developer Panel: Simulate Email
+          {T('Developer Panel: Simulate Email')}
         </CardTitle>
         <CardDescription>
-          Use this form to add a test email to the Firestore database for the
-          currently active address.
+          {T('Use this form to add a test email to the Firestore database for the currently active address.')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="dev-sender">Sender</Label>
+            <Label htmlFor="dev-sender">{T('Sender')}</Label>
             <Input
               id="dev-sender"
               value={sender}
@@ -87,7 +88,7 @@ export function DevPanel() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="dev-subject">Subject</Label>
+            <Label htmlFor="dev-subject">{T('Subject')}</Label>
             <Input
               id="dev-subject"
               value={subject}
@@ -97,7 +98,7 @@ export function DevPanel() {
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="dev-body">Body</Label>
+          <Label htmlFor="dev-body">{T('Body')}</Label>
           <Textarea
             id="dev-body"
             value={body}
@@ -112,7 +113,7 @@ export function DevPanel() {
           ) : (
             <Send className="mr-2 h-4 w-4" />
           )}
-          Send Test Email
+          {T('Send Test Email')}
         </Button>
       </CardContent>
     </Card>

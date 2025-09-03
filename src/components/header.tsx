@@ -23,6 +23,7 @@ import {
   SunMoon,
   Info,
   Languages,
+  Loader2,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Switch } from '@/components/ui/switch';
@@ -30,6 +31,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from './ui/scroll-area';
 import { useState } from 'react';
 import { AboutDialog } from './about-dialog';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface HeaderProps {
   mode: AppMode;
@@ -38,8 +40,10 @@ interface HeaderProps {
 
 export function Header({ mode, setMode }: HeaderProps) {
   const { theme, setTheme } = useTheme();
-  const [language, setLanguage] = useState('English');
   const [aboutOpen, setAboutOpen] = useState(false);
+  const { language, setLanguage, translate, isTranslating } = useTranslation();
+
+  const T = (text: string) => translate(text);
 
   const SingleModeIcon = () => (
     <svg
@@ -93,7 +97,7 @@ export function Header({ mode, setMode }: HeaderProps) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>Mode</DropdownMenuLabel>
+              <DropdownMenuLabel>{T('Mode')}</DropdownMenuLabel>
               <DropdownMenuRadioGroup
                 value={mode}
                 onValueChange={(value) => setMode(value as AppMode)}
@@ -101,23 +105,23 @@ export function Header({ mode, setMode }: HeaderProps) {
                 <DropdownMenuRadioItem value="single">
                   <div className="flex items-center gap-2">
                     <SingleModeIcon />
-                    <span>Single Mode</span>
+                    <span>{T('Single Mode')}</span>
                   </div>
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="channel">
                   <div className="flex items-center gap-2">
                     <ChannelModeIcon />
-                    <span>Channel Mode</span>
+                    <span>{T('Channel Mode')}</span>
                   </div>
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuLabel>Settings</DropdownMenuLabel>
+              <DropdownMenuLabel>{T('Settings')}</DropdownMenuLabel>
               <DropdownMenuItem>
                 <Paintbrush className="mr-2 h-4 w-4" />
-                <span>Modernize Email</span>
+                <span>{T('Modernize Email')}</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onSelect={(e) => e.preventDefault()}
@@ -128,7 +132,7 @@ export function Header({ mode, setMode }: HeaderProps) {
                   className="flex items-center gap-2 cursor-pointer"
                 >
                   <SunMoon className="mr-2 h-4 w-4" />
-                  <span>{theme === 'dark' ? 'Dark' : 'Light'} Theme</span>
+                  <span>{theme === 'dark' ? T('Dark') : T('Light')} {T('Theme')}</span>
                 </Label>
                 <Switch
                   id="theme-switch"
@@ -140,8 +144,8 @@ export function Header({ mode, setMode }: HeaderProps) {
               </DropdownMenuItem>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
-                  <Languages className="mr-2 h-4 w-4" />
-                  <span>Language</span>
+                   {isTranslating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Languages className="mr-2 h-4 w-4" />}
+                  <span>{T('Language')}</span>
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <ScrollArea className="h-48">
@@ -182,7 +186,7 @@ export function Header({ mode, setMode }: HeaderProps) {
               </DropdownMenuSub>
               <DropdownMenuItem onSelect={() => setAboutOpen(true)}>
                 <Info className="mr-2 h-4 w-4" />
-                <span>About</span>
+                <span>{T('About')}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

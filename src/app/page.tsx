@@ -10,11 +10,13 @@ import { ChangeEmailAddress } from '@/components/change-email-address';
 import { AdBanner } from '@/components/ad-banner';
 import { ChannelView } from '@/components/channel-view';
 import { DevPanel } from '@/components/dev-panel';
+import { useTranslation } from '@/hooks/use-translation';
 
 export type AppMode = 'single' | 'channel';
 
 export default function Home() {
   const [mode, setMode] = useState<AppMode>('single');
+  const { translate: T } = useTranslation();
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -24,15 +26,13 @@ export default function Home() {
           <>
             <EmailDisplay />
             <p className="text-center text-muted-foreground max-w-2xl mx-auto mt-6">
-              Forget about spam, advertising mailings, hacking and attacking
-              robots. Keep your real mailbox clean and secure. Temp Mail provides
-              temporary, secure, anonymous, free, disposable email address.
+              {T('Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. Temp Mail provides temporary, secure, anonymous, free, disposable email address.')}
             </p>
             <AdBanner />
             <Separator className="my-8 bg-border/50" />
             <div className="space-y-6">
               <h2 className="text-3xl font-bold font-headline text-center">
-                Your Inbox
+                {T('Your Inbox')}
               </h2>
               <Inbox />
             </div>
@@ -47,7 +47,7 @@ export default function Home() {
         )}
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t border-border mt-auto space-y-4">
-        <p>TopFreeMail &copy; 2024. All Rights Reserved.</p>
+        <p>{T('TopFreeMail © 2024. All Rights Reserved.')}</p>
       </footer>
     </div>
   );

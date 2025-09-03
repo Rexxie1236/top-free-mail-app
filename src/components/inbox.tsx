@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -14,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Wand2, Loader2, Trash2, Inbox as InboxIcon } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, query, where, onSnapshot, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface Email {
   id: string;
@@ -30,6 +32,7 @@ export function Inbox() {
   const [loadingSummaries, setLoadingSummaries] = useState<Record<string, boolean>>({});
   const [loadingEmails, setLoadingEmails] = useState(true);
   const { toast } = useToast();
+  const { translate: T } = useTranslation();
 
   const handleEmailChange = useCallback(() => {
     const storedEmail = typeof window !== 'undefined' ? sessionStorage.getItem('currentEmail') : null;
@@ -74,14 +77,14 @@ export function Inbox() {
       console.error("Error fetching emails: ", error);
       toast({
         variant: 'destructive',
-        title: 'Error fetching emails',
-        description: 'Could not connect to the inbox. Please check your connection and security rules.',
+        title: T('Error fetching emails'),
+        description: T('Could not connect to the inbox. Please check your connection and security rules.'),
       });
       setLoadingEmails(false);
     });
 
     return () => unsubscribe();
-  }, [currentEmail, toast]);
+  }, [currentEmail, toast, T]);
 
   const onSummarize = async (emailId: string, body: string) => {
     setLoadingSummaries((prev) => ({ ...prev, [emailId]: true }));
@@ -89,8 +92,8 @@ export function Inbox() {
     if (result.error) {
       toast({
         variant: 'destructive',
-        title: 'Summarization Failed',
-        description: result.error,
+        title: T('Summarization Failed'),
+        description: T(result.error),
       });
     } else if (result.summary) {
       setSummaries((prev) => ({ ...prev, [emailId]: result.summary }));
@@ -102,15 +105,15 @@ export function Inbox() {
     try {
       await deleteDoc(doc(db, "inbox", emailId));
       toast({
-        title: 'Email Deleted',
-        description: 'The email has been successfully deleted.',
+        title: T('Email Deleted'),
+        description: T('The email has been successfully deleted.'),
       });
     } catch (error) {
       console.error("Error deleting email: ", error);
       toast({
         variant: 'destructive',
-        title: 'Delete Failed',
-        description: 'Could not delete the email. Please try again.',
+        title: T('Delete Failed'),
+        description: T('Could not delete the email. Please try again.'),
       });
     }
   };
@@ -119,7 +122,7 @@ export function Inbox() {
     return (
       <div className="text-center text-muted-foreground py-16 flex flex-col items-center gap-4 border border-dashed rounded-lg">
         <Loader2 className="h-12 w-12 animate-spin" />
-        <h3 className="text-xl font-semibold">Loading your inbox...</h3>
+        <h3 className="text-xl font-semibold">{T('Loading your inbox...')}</h3>
       </div>
     );
   }
@@ -128,8 +131,8 @@ export function Inbox() {
     return (
       <div className="text-center text-muted-foreground py-16 flex flex-col items-center gap-4 border border-dashed rounded-lg">
         <InboxIcon className="h-12 w-12" />
-        <h3 className="text-xl font-semibold">Your inbox is empty.</h3>
-        <p className="text-sm">Emails sent to your temporary address will appear here.</p>
+        <h3 className="text-xl font-semibold">{T('Your inbox is empty.')}</h3>
+        <p className="text-sm">{T('Emails sent to your temporary address will appear here.')}</p>
       </div>
     );
   }
@@ -164,7 +167,7 @@ export function Inbox() {
                     }}
                   >
                     <Trash2 className="h-4 w-4" />
-                    <span className="sr-only">Delete email</span>
+                    <span className="sr-only">{T('Delete email')}</span>
                   </Button>
                 </div>
               </div>
@@ -177,7 +180,7 @@ export function Inbox() {
                   <Alert className="bg-primary/10 border-primary/30">
                     <Wand2 className="h-4 w-4 text-primary" />
                     <AlertTitle className="text-primary font-headline">
-                      AI Summary
+                      {T('AI Summary')}
                     </AlertTitle>
                     <AlertDescription className="text-primary-foreground/80">
                       {summaries[email.id]}
@@ -197,7 +200,7 @@ export function Inbox() {
                     ) : (
                       <Wand2 className="mr-2 h-4 w-4" />
                     )}
-                    Summarize with AI
+                    {T('Summarize with AI')}
                   </Button>
                 )}
               </div>

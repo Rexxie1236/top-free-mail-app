@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -18,6 +19,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { useTranslation } from '@/hooks/use-translation';
 
 function generateRandomString(length: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -35,15 +37,16 @@ export function EmailDisplay() {
   const [copyText, setCopyText] = useState('Copy');
   const [countdown, setCountdown] = useState(REFRESH_INTERVAL);
   const { toast } = useToast();
+  const { translate: T } = useTranslation();
 
   const handleRefreshInbox = useCallback(() => {
     window.dispatchEvent(new Event('refreshInbox'));
     setCountdown(REFRESH_INTERVAL);
     toast({
-      title: 'Inbox Refreshed',
-      description: 'Checked for new emails.',
+      title: T('Inbox Refreshed'),
+      description: T('Checked for new emails.'),
     });
-  }, [toast]);
+  }, [toast, T]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -96,13 +99,13 @@ export function EmailDisplay() {
   const copyToClipboard = () => {
     if (email === 'generating...') return;
     navigator.clipboard.writeText(email);
-    setCopyText('Copied!');
+    setCopyText(T('Copied!'));
     toast({
-      title: 'Copied to clipboard!',
+      title: T('Copied to clipboard!'),
       description: email,
     });
     setTimeout(() => {
-      setCopyText('Copy');
+      setCopyText(T('Copy'));
     }, 2000);
   };
 
@@ -110,7 +113,7 @@ export function EmailDisplay() {
     <Card className="w-full bg-card/50 shadow-lg shadow-primary/10 border-border transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
       <CardHeader>
         <CardTitle className="text-center font-headline text-2xl text-primary">
-          Your Temporary Email Address
+          {T('Your Temporary Email Address')}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-6">
@@ -131,7 +134,7 @@ export function EmailDisplay() {
                     <PopoverTrigger asChild>
                       <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
                         <QrCode />
-                        <span className="sr-only">Show QR Code</span>
+                        <span className="sr-only">{T('Show QR Code')}</span>
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-2 bg-white">
@@ -146,7 +149,7 @@ export function EmailDisplay() {
                   </Popover>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Show QR Code</p>
+                  <p>{T('Show QR Code')}</p>
                 </TooltipContent>
               </Tooltip>
             )}
@@ -159,11 +162,11 @@ export function EmailDisplay() {
                   className="h-12 w-12 rounded-lg"
                 >
                   <Copy />
-                  <span className="sr-only">{copyText}</span>
+                  <span className="sr-only">{T(copyText)}</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{copyText}</p>
+                <p>{T(copyText)}</p>
               </TooltipContent>
             </Tooltip>
             <Tooltip>
@@ -175,11 +178,11 @@ export function EmailDisplay() {
                   className="h-12 w-12 rounded-lg"
                 >
                   <PlusSquare />
-                  <span className="sr-only">New Email</span>
+                  <span className="sr-only">{T('New Email')}</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Generate New Email</p>
+                <p>{T('Generate New Email')}</p>
               </TooltipContent>
             </Tooltip>
              <Tooltip>
@@ -194,7 +197,7 @@ export function EmailDisplay() {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Refresh Inbox</p>
+                <p>{T('Refresh Inbox')}</p>
               </TooltipContent>
             </Tooltip>
           </div>

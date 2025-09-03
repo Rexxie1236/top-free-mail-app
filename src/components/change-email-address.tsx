@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -20,18 +21,20 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from '@/hooks/use-translation';
 
 export function ChangeEmailAddress() {
   const [login, setLogin] = useState('');
   const [domain, setDomain] = useState('topfreemail.dev');
   const { toast } = useToast();
+  const { translate: T } = useTranslation();
 
   const handleSave = () => {
     if (!login) {
       toast({
         variant: 'destructive',
-        title: 'Login cannot be empty',
-        description: 'Please enter a login name for your email address.',
+        title: T('Login cannot be empty'),
+        description: T('Please enter a login name for your email address.'),
       });
       return;
     }
@@ -42,8 +45,8 @@ export function ChangeEmailAddress() {
       sessionStorage.setItem('currentEmail', newEmail);
       window.dispatchEvent(new Event('emailChanged'));
       toast({
-        title: 'Email Address Updated',
-        description: `Your new email address is ${newEmail}`,
+        title: T('Email Address Updated'),
+        description: `${T('Your new email address is')} ${newEmail}`,
       });
     }
   };
@@ -52,22 +55,21 @@ export function ChangeEmailAddress() {
     <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold font-headline">
-          Change E-mail Address
+          {T('Change E-mail Address')}
         </CardTitle>
         <CardDescription className="max-w-2xl mx-auto pt-2">
-          You can change or recover your temporary email address by entering a
-          desired email and selecting a domain.
+          {T('You can change or recover your temporary email address by entering a desired email and selecting a domain.')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid w-full items-center gap-4 max-w-sm mx-auto">
           <div className="flex flex-col space-y-1.5">
             <Label htmlFor="login" className="sr-only">
-              Login
+              {T('Login')}
             </Label>
             <Input
               id="login"
-              placeholder="Login"
+              placeholder={T('Login')}
               className="bg-muted/50 rounded-full h-12 px-6"
               value={login}
               onChange={(e) => setLogin(e.target.value)}
@@ -75,14 +77,14 @@ export function ChangeEmailAddress() {
           </div>
           <div className="flex flex-col space-y-1.5">
             <Label htmlFor="domain" className="sr-only">
-              Domain
+              {T('Domain')}
             </Label>
             <Select onValueChange={setDomain} defaultValue={domain}>
               <SelectTrigger
                 id="domain"
                 className="bg-muted/50 rounded-full h-12 px-6 border-2 border-accent text-muted-foreground"
               >
-                <SelectValue placeholder="Select a domain" />
+                <SelectValue placeholder={T('Select a domain')} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="topfreemail.dev">
@@ -100,7 +102,7 @@ export function ChangeEmailAddress() {
           onClick={handleSave}
           className="w-full max-w-sm mx-auto rounded-lg h-12 text-base"
         >
-          Save Address
+          {T('Save Address')}
         </Button>
       </CardFooter>
     </Card>
