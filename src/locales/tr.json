@@ -54,31 +54,6 @@
     "optionalName": "İsteğe bağlı: bir ad yazın",
     "inboxTitle": "Gelen Kutunuz"
   },
-  "devPanel": {
-    "title": "Geliştirici Paneli: E-postayı Simüle Et",
-    "description": "Şu anda etkin olan adres için Firestore veritabanına bir test e-postası eklemek için bu formu kullanın.",
-    "senderLabel": "Gönderen",
-    "subjectLabel": "Konu",
-    "bodyLabel": "Gövde",
-    "sendButton": "Test E-postası Gönder",
-    "error": {
-      "noRecipient": {
-        "title": "Alıcı ayarlanmadı",
-        "description": "Lütfen önce bir e-posta adresi oluşturun veya ayarlayın."
-      },
-      "sendFailed": {
-        "title": "Test e-postası gönderilemedi",
-        "description": "Daha fazla ayrıntı için konsolu kontrol edin."
-      }
-    },
-    "success": {
-      "title": "Test E-postası Gönderildi!",
-      "description": {
-        "part1": "adresine bir e-posta",
-        "part2": "gelen kutusuna eklendi."
-      }
-    }
-  },
   "emailDisplay": {
     "title": "Geçici E-posta Adresiniz",
     "ariaLabel": "Geçici E-posta Adresi",

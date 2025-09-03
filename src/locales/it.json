@@ -54,31 +54,6 @@
     "optionalName": "Opzionale: digita un nome",
     "inboxTitle": "La tua casella di posta"
   },
-  "devPanel": {
-    "title": "Pannello sviluppatore: simula email",
-    "description": "Usa questo modulo per aggiungere un'email di prova al database Firestore per l'indirizzo attualmente attivo.",
-    "senderLabel": "Mittente",
-    "subjectLabel": "Oggetto",
-    "bodyLabel": "Corpo",
-    "sendButton": "Invia email di prova",
-    "error": {
-      "noRecipient": {
-        "title": "Nessun destinatario impostato",
-        "description": "Per favore, genera o imposta prima un indirizzo email."
-      },
-      "sendFailed": {
-        "title": "Invio email di prova fallito",
-        "description": "Controlla la console per maggiori dettagli."
-      }
-    },
-    "success": {
-      "title": "Email di prova inviata!",
-      "description": {
-        "part1": "Un'email a",
-        "part2": "è stata aggiunta alla casella di posta."
-      }
-    }
-  },
   "emailDisplay": {
     "title": "Il tuo indirizzo email temporaneo",
     "ariaLabel": "Indirizzo email temporaneo",

@@ -1,3 +1,4 @@
+
 {
   "home": {
     "description": "スパム、広告メール、ハッキング、攻撃ボットは忘れてください。実際のメールボックスを清潔で安全に保ちます。Temp Mailは、一時的で安全、匿名の無料の使い捨てメールアドレスを提供します。",
@@ -52,31 +53,6 @@
     "newAddress": "新しいアドレスを作成",
     "optionalName": "オプション：名前を入力",
     "inboxTitle": "受信トレイ"
-  },
-  "devPanel": {
-    "title": "開発者パネル：メールをシミュレート",
-    "description": "このフォームを使用して、現在アクティブなアドレスのFirestoreデータベースにテストメールを追加します。",
-    "senderLabel": "送信者",
-    "subjectLabel": "件名",
-    "bodyLabel": "本文",
-    "sendButton": "テストメールを送信",
-    "error": {
-      "noRecipient": {
-        "title": "受信者が設定されていません",
-        "description": "最初にメールアドレスを生成または設定してください。"
-      },
-      "sendFailed": {
-        "title": "テストメールの送信に失敗しました",
-        "description": "詳細についてはコンソールを確認してください。"
-      }
-    },
-    "success": {
-      "title": "テストメールが送信されました！",
-      "description": {
-        "part1": "へのメールが",
-        "part2": "受信トレイに追加されました。"
-      }
-    }
   },
   "emailDisplay": {
     "title": "あなたの一時的なメールアドレス",

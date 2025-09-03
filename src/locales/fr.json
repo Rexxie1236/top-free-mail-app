@@ -1,3 +1,4 @@
+
 {
   "home": {
     "description": "Oubliez le spam, les courriers publicitaires, le piratage et les robots d'attaque. Gardez votre véritable boîte aux lettres propre et sécurisée. Temp Mail fournit une adresse e-mail temporaire, sécurisée, anonyme, gratuite et jetable.",
@@ -52,31 +53,6 @@
     "newAddress": "Créer une nouvelle adresse",
     "optionalName": "Facultatif : tapez un nom",
     "inboxTitle": "Votre boîte de réception"
-  },
-  "devPanel": {
-    "title": "Panneau de développeur : Simuler un e-mail",
-    "description": "Utilisez ce formulaire pour ajouter un e-mail de test à la base de données Firestore pour l'adresse actuellement active.",
-    "senderLabel": "Expéditeur",
-    "subjectLabel": "Sujet",
-    "bodyLabel": "Corps",
-    "sendButton": "Envoyer l'e-mail de test",
-    "error": {
-      "noRecipient": {
-        "title": "Aucun destinataire défini",
-        "description": "Veuillez d'abord générer ou définir une adresse e-mail."
-      },
-      "sendFailed": {
-        "title": "Échec de l'envoi de l'e-mail de test",
-        "description": "Consultez la console pour plus de détails."
-      }
-    },
-    "success": {
-      "title": "E-mail de test envoyé !",
-      "description": {
-        "part1": "Un e-mail à",
-        "part2": "a été ajouté à la boîte de réception."
-      }
-    }
   },
   "emailDisplay": {
     "title": "Votre adresse e-mail temporaire",

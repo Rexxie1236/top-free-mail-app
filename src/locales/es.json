@@ -1,3 +1,4 @@
+
 {
   "home": {
     "description": "Olvídate del spam, los correos publicitarios, los hackeos y los robots de ataque. Mantén tu buzón real limpio y seguro. Temp Mail proporciona una dirección de correo electrónico temporal, segura, anónima, gratuita y desechable.",
@@ -52,31 +53,6 @@
     "newAddress": "Crear nueva dirección",
     "optionalName": "Opcional: escribe un nombre",
     "inboxTitle": "Tu bandeja de entrada"
-  },
-  "devPanel": {
-    "title": "Panel de desarrollador: Simular correo",
-    "description": "Usa este formulario para añadir un correo de prueba a la base de datos de Firestore para la dirección activa actualmente.",
-    "senderLabel": "Remitente",
-    "subjectLabel": "Asunto",
-    "bodyLabel": "Cuerpo",
-    "sendButton": "Enviar correo de prueba",
-    "error": {
-      "noRecipient": {
-        "title": "No se ha establecido un destinatario",
-        "description": "Por favor, genera o establece una dirección de correo electrónico primero."
-      },
-      "sendFailed": {
-        "title": "No se pudo enviar el correo de prueba",
-        "description": "Comprueba la consola para más detalles."
-      }
-    },
-    "success": {
-      "title": "¡Correo de prueba enviado!",
-      "description": {
-        "part1": "Un correo a",
-        "part2": "se ha añadido a la bandeja de entrada."
-      }
-    }
   },
   "emailDisplay": {
     "title": "Tu dirección de correo temporal",

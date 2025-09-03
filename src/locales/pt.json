@@ -54,31 +54,6 @@
     "optionalName": "Opcional: digite um nome",
     "inboxTitle": "Sua caixa de entrada"
   },
-  "devPanel": {
-    "title": "Painel do desenvolvedor: Simular e-mail",
-    "description": "Use este formulário para adicionar um e-mail de teste ao banco de dados do Firestore para o endereço atualmente ativo.",
-    "senderLabel": "Remetente",
-    "subjectLabel": "Assunto",
-    "bodyLabel": "Corpo",
-    "sendButton": "Enviar e-mail de teste",
-    "error": {
-      "noRecipient": {
-        "title": "Nenhum destinatário definido",
-        "description": "Por favor, gere ou defina um endereço de e-mail primeiro."
-      },
-      "sendFailed": {
-        "title": "Falha ao enviar e-mail de teste",
-        "description": "Verifique o console para mais detalhes."
-      }
-    },
-    "success": {
-      "title": "E-mail de teste enviado!",
-      "description": {
-        "part1": "Um e-mail para",
-        "part2": "foi adicionado à caixa de entrada."
-      }
-    }
-  },
   "emailDisplay": {
     "title": "Seu endereço de e-mail temporário",
     "ariaLabel": "Endereço de e-mail temporário",

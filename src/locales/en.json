@@ -99,31 +99,6 @@
     "optionalName": "Optional: type a name",
     "inboxTitle": "Your Inbox"
   },
-  "devPanel": {
-    "title": "Developer Panel: Simulate Email",
-    "description": "Use this form to add a test email to the Firestore database for the currently active address.",
-    "senderLabel": "Sender",
-    "subjectLabel": "Subject",
-    "bodyLabel": "Body",
-    "sendButton": "Send Test Email",
-    "error": {
-      "noRecipient": {
-        "title": "No recipient set",
-        "description": "Please generate or set an email address first."
-      },
-      "sendFailed": {
-        "title": "Failed to send test email",
-        "description": "Check the console for more details."
-      }
-    },
-    "success": {
-      "title": "Test Email Sent!",
-      "description": {
-        "part1": "An email to",
-        "part2": "was added to the inbox."
-      }
-    }
-  },
   "emailDisplay": {
     "title": "Your Temporary Email Address",
     "ariaLabel": "Temporary Email Address",

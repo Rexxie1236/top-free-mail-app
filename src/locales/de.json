@@ -1,3 +1,4 @@
+
 {
   "home": {
     "description": "Vergessen Sie Spam, Werbe-Mailings, Hacking und angreifende Roboter. Halten Sie Ihr echtes Postfach sauber und sicher. Temp Mail bietet eine temporäre, sichere, anonyme, kostenlose und wegwerfbare E-Mail-Adresse.",
@@ -52,31 +53,6 @@
     "newAddress": "Neue Adresse erstellen",
     "optionalName": "Optional: Geben Sie einen Namen ein",
     "inboxTitle": "Ihr Posteingang"
-  },
-  "devPanel": {
-    "title": "Entwickler-Panel: E-Mail simulieren",
-    "description": "Verwenden Sie dieses Formular, um eine Test-E-Mail zur Firestore-Datenbank für die aktuell aktive Adresse hinzuzufügen.",
-    "senderLabel": "Absender",
-    "subjectLabel": "Betreff",
-    "bodyLabel": "Text",
-    "sendButton": "Test-E-Mail senden",
-    "error": {
-      "noRecipient": {
-        "title": "Kein Empfänger festgelegt",
-        "description": "Bitte generieren oder legen Sie zuerst eine E-Mail-Adresse fest."
-      },
-      "sendFailed": {
-        "title": "Test-E-Mail konnte nicht gesendet werden",
-        "description": "Überprüfen Sie die Konsole für weitere Details."
-      }
-    },
-    "success": {
-      "title": "Test-E-Mail gesendet!",
-      "description": {
-        "part1": "Eine E-Mail an",
-        "part2": "wurde zum Posteingang hinzugefügt."
-      }
-    }
   },
   "emailDisplay": {
     "title": "Ihre temporäre E-Mail-Adresse",
