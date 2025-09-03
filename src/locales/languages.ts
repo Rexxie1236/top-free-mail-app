@@ -4,4 +4,6 @@ export const languages: { [key: string]: string } = {
   fr: 'Français',
   de: 'Deutsch',
   ja: '日本語',
+  it: 'Italiano',
+  pt: 'Português',
 };

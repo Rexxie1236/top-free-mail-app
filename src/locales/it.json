@@ -1,0 +1,131 @@
+
+{
+  "home": {
+    "description": "Dimentica spam, mail pubblicitarie, hacking e robot d'attacco. Mantieni la tua vera casella di posta pulita e sicura. Temp Mail fornisce un indirizzo email temporaneo, sicuro, anonimo, gratuito e usa e getta.",
+    "inboxTitle": "La tua casella di posta",
+    "footer": "TopFreeMail © 2024. Tutti i diritti riservati."
+  },
+  "header": {
+    "mode": "Modalità",
+    "singleMode": "Modalità singola",
+    "channelMode": "Modalità canale",
+    "settings": "Impostazioni",
+    "modernize": "Modernizza email",
+    "lightTheme": "Tema chiaro",
+    "darkTheme": "Tema scuro",
+    "language": "Lingua",
+    "about": "Informazioni"
+  },
+  "about": {
+    "title": "Informazioni su TopFreeMail",
+    "description": "TopFreeMail è la tua soluzione per mantenere una casella di posta principale pulita e sicura.",
+    "protection": "Forniamo indirizzi email temporanei, sicuri, anonimi e gratuiti per proteggerti da spam, mail pubblicitarie e minacce online.",
+    "singleMode": "Modalità singola",
+    "singleModeDesc": "Genera rapidamente un'email temporanea per un uso singolo.",
+    "channelMode": "Modalità canale",
+    "channelModeDesc": "Gestisci senza sforzo più indirizzi email temporanei contemporaneamente per servizi diversi.",
+    "aiPowered": "Potenziato dall'IA",
+    "aiPoweredDesc": "Utilizza l'intelligenza artificiale per riassumere lunghe email, rendendo la tua casella di posta più intelligente ed efficiente.",
+    "close": "Chiudi"
+  },
+  "changeEmail": {
+    "title": "Cambia indirizzo e-mail",
+    "description": "Puoi cambiare o recuperare il tuo indirizzo email temporaneo inserendo un'email desiderata e selezionando un dominio.",
+    "loginLabel": "Accesso",
+    "loginPlaceholder": "Accesso",
+    "domainLabel": "Dominio",
+    "domainPlaceholder": "Seleziona un dominio",
+    "saveButton": "Salva indirizzo",
+    "error": {
+      "emptyLogin": {
+        "title": "L'accesso non può essere vuoto",
+        "description": "Inserisci un nome di accesso per il tuo indirizzo email."
+      }
+    },
+    "success": {
+      "title": "Indirizzo email aggiornato",
+      "description": "Il tuo nuovo indirizzo email è"
+    }
+  },
+  "channel": {
+    "title": "Canali email",
+    "description": "Gestisci più indirizzi email temporanei.",
+    "newAddress": "Crea nuovo indirizzo",
+    "optionalName": "Opzionale: digita un nome",
+    "inboxTitle": "La tua casella di posta"
+  },
+  "devPanel": {
+    "title": "Pannello sviluppatore: simula email",
+    "description": "Usa questo modulo per aggiungere un'email di prova al database Firestore per l'indirizzo attualmente attivo.",
+    "senderLabel": "Mittente",
+    "subjectLabel": "Oggetto",
+    "bodyLabel": "Corpo",
+    "sendButton": "Invia email di prova",
+    "error": {
+      "noRecipient": {
+        "title": "Nessun destinatario impostato",
+        "description": "Per favore, genera o imposta prima un indirizzo email."
+      },
+      "sendFailed": {
+        "title": "Invio email di prova fallito",
+        "description": "Controlla la console per maggiori dettagli."
+      }
+    },
+    "success": {
+      "title": "Email di prova inviata!",
+      "description": {
+        "part1": "Un'email a",
+        "part2": "è stata aggiunta alla casella di posta."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Il tuo indirizzo email temporaneo",
+    "ariaLabel": "Indirizzo email temporaneo",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "tooltip": {
+      "qr": "Mostra codice QR",
+      "new": "Genera nuova email",
+      "refresh": "Aggiorna casella di posta"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Casella di posta aggiornata",
+        "description": "Verificata la presenza di nuove email."
+      },
+      "copied": {
+        "title": "Copiato negli appunti!"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Caricamento della tua casella di posta...",
+    "empty": {
+      "title": "La tua casella di posta è vuota.",
+      "description": "Le email inviate al tuo indirizzo temporaneo appariranno qui."
+    },
+    "deleteAriaLabel": "Elimina email",
+    "summaryTitle": "Riassunto IA",
+    "summarizeButton": "Riassumi con IA",
+    "error": {
+      "fetch": {
+        "title": "Errore nel recupero delle email",
+        "description": "Impossibile connettersi alla casella di posta. Controlla la tua connessione e le regole di sicurezza."
+      },
+      "summarize": {
+        "title": "Riassunto fallito"
+      },
+      "delete": {
+        "title": "Eliminazione fallita",
+        "description": "Impossibile eliminare l'email. Per favore, riprova."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "Email eliminata",
+        "description": "L'email è stata eliminata con successo."
+      }
+    }
+  }
+}

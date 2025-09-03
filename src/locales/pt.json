@@ -1,0 +1,131 @@
+
+{
+  "home": {
+    "description": "Esqueça o spam, mailings de publicidade, hacking e robôs de ataque. Mantenha sua caixa de correio real limpa e segura. O Temp Mail fornece um endereço de e-mail temporário, seguro, anônimo, gratuito e descartável.",
+    "inboxTitle": "Sua caixa de entrada",
+    "footer": "TopFreeMail © 2024. Todos os direitos reservados."
+  },
+  "header": {
+    "mode": "Modo",
+    "singleMode": "Modo único",
+    "channelMode": "Modo de canal",
+    "settings": "Configurações",
+    "modernize": "Modernizar e-mail",
+    "lightTheme": "Tema claro",
+    "darkTheme": "Tema escuro",
+    "language": "Idioma",
+    "about": "Sobre"
+  },
+  "about": {
+    "title": "Sobre o TopFreeMail",
+    "description": "O TopFreeMail é a sua solução ideal para manter uma caixa de entrada principal limpa e segura.",
+    "protection": "Fornecemos endereços de e-mail descartáveis, temporários, seguros, anônimos e gratuitos para protegê-lo de spam, mailings de publicidade e ameaças online.",
+    "singleMode": "Modo único",
+    "singleModeDesc": "Gere rapidamente um e-mail temporário para uso único.",
+    "channelMode": "Modo de canal",
+    "channelModeDesc": "Gerencie sem esforço vários endereços de e-mail temporários de uma vez para diferentes serviços.",
+    "aiPowered": "Potencializado por IA",
+    "aiPoweredDesc": "Utilize a inteligência artificial para resumir e-mails longos, tornando sua caixa de entrada mais inteligente e eficiente.",
+    "close": "Fechar"
+  },
+  "changeEmail": {
+    "title": "Alterar endereço de e-mail",
+    "description": "Você pode alterar ou recuperar seu endereço de e-mail temporário inserindo um e-mail desejado e selecionando um domínio.",
+    "loginLabel": "Login",
+    "loginPlaceholder": "Login",
+    "domainLabel": "Domínio",
+    "domainPlaceholder": "Selecione um domínio",
+    "saveButton": "Salvar endereço",
+    "error": {
+      "emptyLogin": {
+        "title": "O login не pode estar vazio",
+        "description": "Por favor, insira um nome de login para o seu endereço de e-mail."
+      }
+    },
+    "success": {
+      "title": "Endereço de e-mail atualizado",
+      "description": "Seu novo endereço de e-mail é"
+    }
+  },
+  "channel": {
+    "title": "Canais de e-mail",
+    "description": "Gerencie vários endereços de e-mail temporários.",
+    "newAddress": "Criar novo endereço",
+    "optionalName": "Opcional: digite um nome",
+    "inboxTitle": "Sua caixa de entrada"
+  },
+  "devPanel": {
+    "title": "Painel do desenvolvedor: Simular e-mail",
+    "description": "Use este formulário para adicionar um e-mail de teste ao banco de dados do Firestore para o endereço atualmente ativo.",
+    "senderLabel": "Remetente",
+    "subjectLabel": "Assunto",
+    "bodyLabel": "Corpo",
+    "sendButton": "Enviar e-mail de teste",
+    "error": {
+      "noRecipient": {
+        "title": "Nenhum destinatário definido",
+        "description": "Por favor, gere ou defina um endereço de e-mail primeiro."
+      },
+      "sendFailed": {
+        "title": "Falha ao enviar e-mail de teste",
+        "description": "Verifique o console para mais detalhes."
+      }
+    },
+    "success": {
+      "title": "E-mail de teste enviado!",
+      "description": {
+        "part1": "Um e-mail para",
+        "part2": "foi adicionado à caixa de entrada."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Seu endereço de e-mail temporário",
+    "ariaLabel": "Endereço de e-mail temporário",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "tooltip": {
+      "qr": "Mostrar código QR",
+      "new": "Gerar novo e-mail",
+      "refresh": "Atualizar caixa de entrada"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Caixa de entrada atualizada",
+        "description": "Verificado se há novos e-mails."
+      },
+      "copied": {
+        "title": "Copiado para a área de transferência!"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Carregando sua caixa de entrada...",
+    "empty": {
+      "title": "Sua caixa de entrada está vazia.",
+      "description": "E-mails enviados para o seu endereço temporário aparecerão aqui."
+    },
+    "deleteAriaLabel": "Excluir e-mail",
+    "summaryTitle": "Resumo da IA",
+    "summarizeButton": "Resumir com IA",
+    "error": {
+      "fetch": {
+        "title": "Erro ao buscar e-mails",
+        "description": "Não foi possível conectar-se à caixa de entrada. Verifique sua conexão e regras de segurança."
+      },
+      "summarize": {
+        "title": "Falha no resumo"
+      },
+      "delete": {
+        "title": "Falha ao excluir",
+        "description": "Não foi possível excluir o e-mail. Por favor, tente novamente."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "E-mail excluído",
+        "description": "O e-mail foi excluído com sucesso."
+      }
+    }
+  }
+}

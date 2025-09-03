@@ -10,6 +10,7 @@ import {
   useMemo,
   useEffect,
 } from 'react';
+import { languages } from '@/locales/languages';
 
 // Define the structure for your translations
 interface Translations {
@@ -34,6 +35,16 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<string>('en');
   const [translations, setTranslations] = useState<Translations>({});
 
+  useEffect(() => {
+    const detectedLanguage =
+      navigator.language.split('-')[0] || window.navigator.language;
+    if (languages[detectedLanguage]) {
+      setLanguage(detectedLanguage);
+    } else {
+      setLanguage('en');
+    }
+  }, []);
+
   // Load translations for the current language
   useEffect(() => {
     const loadTranslations = async () => {
@@ -55,12 +66,15 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    loadTranslations();
+    if (language) {
+      loadTranslations();
+    }
   }, [language]);
 
   // Function to get a nested translation string
   const T = useCallback(
     (key: string): string => {
+      if (!translations) return key;
       const keys = key.split('.');
       let result: any = translations;
       for (const k of keys) {
