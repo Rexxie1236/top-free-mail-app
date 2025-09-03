@@ -11,12 +11,17 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { MoreVertical, Paintbrush, SunMoon, Info } from 'lucide-react';
+import { MoreVertical, Paintbrush, SunMoon, Info, Languages } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { ScrollArea } from './ui/scroll-area';
+import { useState } from 'react';
 
 interface HeaderProps {
   mode: AppMode;
@@ -25,6 +30,7 @@ interface HeaderProps {
 
 export function Header({ mode, setMode }: HeaderProps) {
   const { theme, setTheme } = useTheme();
+  const [language, setLanguage] = useState('English');
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -125,6 +131,26 @@ export function Header({ mode, setMode }: HeaderProps) {
                 onCheckedChange={toggleTheme}
               />
             </DropdownMenuItem>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <Languages className="mr-2 h-4 w-4" />
+                <span>Language</span>
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent>
+                <ScrollArea className="h-48">
+                  <DropdownMenuItem onSelect={() => setLanguage('English')}>English</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Spanish')}>Español</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('French')}>Français</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('German')}>Deutsch</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Japanese')}>日本語</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Chinese')}>中文</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Russian')}>Русский</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Arabic')}>العربية</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Portuguese')}>Português</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setLanguage('Hindi')}>हिन्दी</DropdownMenuItem>
+                </ScrollArea>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
             <DropdownMenuItem>
               <Info className="mr-2 h-4 w-4" />
               <span>About</span>
