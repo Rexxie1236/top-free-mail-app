@@ -62,7 +62,7 @@ export default function SignupPage() {
       );
       router.push('/');
     } catch (error: any) {
-       toast({
+      toast({
         variant: 'destructive',
         title: T('auth.error.title'),
         description: error.message,
@@ -76,7 +76,7 @@ export default function SignupPage() {
   return (
     <Card className="mx-auto max-w-sm w-full">
       <CardHeader>
-        <CardTitle className="text-2xl">{T('auth.signupTitle')}</CardTitle>
+        <CardTitle className="text-xl">{T('auth.signupTitle')}</CardTitle>
         <CardDescription>{T('auth.signupDescription')}</CardDescription>
       </CardHeader>
       <CardContent>
