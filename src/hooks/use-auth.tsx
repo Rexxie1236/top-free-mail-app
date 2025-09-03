@@ -19,6 +19,7 @@ import {
   updateProfile,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth, db } from '@/lib/firebase';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
@@ -38,6 +39,7 @@ interface AuthContextType {
   signUpWithEmail: (data: SignUpData) => Promise<{ error: any | null }>;
   signInWithEmail: (email: string, password: string) => Promise<any | null>;
   signInWithGoogle: () => Promise<any | null>;
+  sendPasswordReset: (email: string) => Promise<any | null>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -121,6 +123,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const sendPasswordReset = useCallback(async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return null;
+    } catch (error) {
+      console.error('Password Reset Error:', error);
+      return error;
+    }
+  }, []);
+
 
   const signOut = async () => {
     await firebaseSignOut(auth);
@@ -135,8 +147,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signUpWithEmail,
       signInWithEmail,
       signInWithGoogle,
+      sendPasswordReset,
     }),
-    [user, loading, signUpWithEmail, signInWithEmail, signInWithGoogle]
+    [user, loading, signUpWithEmail, signInWithEmail, signInWithGoogle, sendPasswordReset]
   );
 
   return (

@@ -38,6 +38,15 @@
     "lastNameLabel": "Last Name",
     "phoneLabel": "Phone Number",
     "confirmPasswordLabel": "Confirm Password",
+    "forgotPassword": {
+      "link": "Forgot password?",
+      "title": "Reset Your Password",
+      "description": "Enter your email and we'll send you a link to get back into your account.",
+      "button": "Send Password Reset Link",
+      "emailSentTitle": "Check your email",
+      "emailSentDescription": "We've sent a password reset link to your email address.",
+      "backToLogin": "Back to Log In"
+    },
     "error": {
       "title": "Authentication Error",
       "invalidCredentials": "The email or password you entered is incorrect. Please try again."
