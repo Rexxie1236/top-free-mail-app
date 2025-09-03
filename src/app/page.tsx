@@ -24,6 +24,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
+    // If user tries to access channel mode without being logged in, redirect.
     if (mode === 'channel' && !loading && !user) {
       router.push('/login');
     }
@@ -47,7 +48,8 @@ export default function Home() {
             </div>
             <AdBanner />
             <Separator className="my-12 md:my-16 bg-border/50" />
-            <ChangeEmailAddress />
+            {/* The ChangeEmailAddress component is only for logged-in users to add to their channels */}
+            {user && <ChangeEmailAddress />}
           </>
        )
     }

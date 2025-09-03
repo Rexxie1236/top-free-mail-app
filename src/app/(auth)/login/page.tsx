@@ -38,9 +38,6 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setIsLoading(true);
     try {
-      if (!auth) {
-        throw new Error("Auth service is not initialized.");
-      }
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       router.push('/');

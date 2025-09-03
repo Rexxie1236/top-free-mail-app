@@ -59,6 +59,10 @@ export function ChangeEmailAddress() {
     });
     setLogin('');
   };
+  
+  if (!user) {
+    return null; // Don't render this component if the user is not logged in.
+  }
 
   return (
     <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
