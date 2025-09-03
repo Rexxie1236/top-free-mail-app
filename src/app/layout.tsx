@@ -57,10 +57,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthProvider>
-      <TranslationProvider>
+    <TranslationProvider>
+      <AuthProvider>
         <AppLayout>{children}</AppLayout>
-      </TranslationProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </TranslationProvider>
   );
 }

@@ -45,18 +45,19 @@ export function ChangeEmailAddress() {
     if (!user) return; // Should not happen if component is rendered
 
     const newEmail = `${login}@${domain}`;
+    
+    const userDocRef = doc(db, 'users', user.uid);
+    // This will add the email to the user's list of channels in Firestore
+    await updateDoc(userDocRef, { channels: arrayUnion(newEmail) });
+    
+    // Dispatch a custom event to notify the ChannelView to update
+    window.dispatchEvent(new Event('channelsUpdated'));
 
-    if (typeof window !== 'undefined') {
-      const userDocRef = doc(db, 'users', user.uid);
-      await updateDoc(userDocRef, { channels: arrayUnion(newEmail) });
-      
-      sessionStorage.setItem('currentEmail', newEmail);
-      window.dispatchEvent(new Event('emailChanged'));
-      toast({
-        title: T('changeEmail.success.title'),
-        description: `${T('changeEmail.success.description')} ${newEmail}`,
-      });
-    }
+    toast({
+      title: T('changeEmail.success.title'),
+      description: `${T('changeEmail.success.description')} ${newEmail}`,
+    });
+    setLogin('');
   };
 
   return (

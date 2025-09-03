@@ -21,7 +21,7 @@ import { Label } from './ui/label';
 import { useTranslation } from '@/hooks/use-translation';
 import { useAuth } from '@/hooks/use-auth';
 import { db } from '@/lib/firebase';
-import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 
 function generateRandomString(length: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -56,34 +56,7 @@ export function ChannelView() {
     return null;
   }, []);
 
-
-  useEffect(() => {
-    const init = async () => {
-      if(!user) return;
-
-      const storedChannels = await getChannelsFromDb();
-      const active = getActiveChannelFromStorage();
-      
-      if (storedChannels.length > 0) {
-        setChannels(storedChannels);
-         if (active && storedChannels.includes(active)) {
-          setActiveChannel(active);
-        } else {
-          const newActive = storedChannels[0];
-          setActiveChannel(newActive);
-          if (typeof window !== 'undefined') {
-            sessionStorage.setItem('currentEmail', newActive);
-          }
-        }
-      } else {
-        createNewChannel();
-      }
-    }
-    init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, getChannelsFromDb, getActiveChannelFromStorage]);
-
-  const createNewChannel = async () => {
+  const createNewChannel = useCallback(async (isInitial = false) => {
     if (!user) return;
     const namePart = newChannelName.trim() === '' ? generateRandomString(10) : newChannelName.trim().replace(/\s+/g, '.');
     const newEmail = `${namePart}@topfreemail.dev`;
@@ -91,14 +64,47 @@ export function ChannelView() {
     const userDocRef = doc(db, 'users', user.uid);
     await updateDoc(userDocRef, { channels: arrayUnion(newEmail) });
 
-    const newChannels = [...channels, newEmail];
-    setChannels(newChannels);
-    switchActiveChannel(newEmail);
+    setChannels(prev => [...prev, newEmail]);
+
+    if (isInitial || !activeChannel) {
+        switchActiveChannel(newEmail);
+    }
+    
     setNewChannelName('');
-  };
+  }, [user, newChannelName, activeChannel]);
+
+
+  useEffect(() => {
+    const init = async () => {
+      if(!user) return;
+
+      const dbChannels = await getChannelsFromDb();
+      
+      if (dbChannels.length > 0) {
+        setChannels(dbChannels);
+        const active = getActiveChannelFromStorage();
+         if (active && dbChannels.includes(active)) {
+          setActiveChannel(active);
+        } else {
+          const newActive = dbChannels[0];
+          switchActiveChannel(newActive);
+        }
+      } else {
+        // Create a new channel if none exist
+        await createNewChannel(true);
+      }
+    }
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const deleteChannel = async (channelToDelete: string) => {
     if (!user) return;
+    if (channels.length <= 1) {
+      // Maybe show a toast that you can't delete the last channel
+      return;
+    }
+
     const userDocRef = doc(db, 'users', user.uid);
     await updateDoc(userDocRef, { channels: arrayRemove(channelToDelete) });
 
@@ -106,12 +112,8 @@ export function ChannelView() {
     setChannels(newChannels);
 
     if (activeChannel === channelToDelete) {
-      if (newChannels.length > 0) {
-        switchActiveChannel(newChannels[0]);
-      } else {
-        // If the last channel is deleted, create a new one.
-        await createNewChannel();
-      }
+      const newActive = newChannels[0];
+      switchActiveChannel(newActive);
     }
   };
 
@@ -144,7 +146,7 @@ export function ChannelView() {
                    onChange={(e) => setNewChannelName(e.target.value)}
                    onKeyDown={(e) => e.key === 'Enter' && createNewChannel()}
                  />
-                <Button onClick={createNewChannel} size="icon" className="shrink-0">
+                <Button onClick={() => createNewChannel()} size="icon" className="shrink-0">
                   <Plus className="h-4 w-4" />
                 </Button>
                </div>
