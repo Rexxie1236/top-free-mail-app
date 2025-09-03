@@ -1,22 +1,29 @@
+
+'use client';
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
-import { TranslationProvider } from '@/hooks/use-translation';
+import { TranslationProvider, useTranslation } from '@/hooks/use-translation';
 
-export const metadata: Metadata = {
-  title: 'TopFreeMail',
-  description: 'Your secure temporary email service.',
-};
+// export const metadata: Metadata = {
+//   title: 'TopFreeMail',
+//   description: 'Your secure temporary email service.',
+// };
 
-export default function RootLayout({
+function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { direction } = useTranslation();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning dir={direction}>
       <head>
+        <title>TopFreeMail - Your secure temporary email service.</title>
+        <meta name="description" content="Your secure temporary email service." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -35,10 +42,22 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TranslationProvider>{children}</TranslationProvider>
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>
     </html>
+  );
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <TranslationProvider>
+      <AppLayout>{children}</AppLayout>
+    </TranslationProvider>
   );
 }

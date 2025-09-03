@@ -37,7 +37,7 @@ export function AboutDialog({ open, onOpenChange }: AboutDialogProps) {
           <p>
             {T('about.protection')}
           </p>
-          <ul className="list-disc list-inside space-y-2">
+          <ul className="list-disc ltr:list-inside rtl:list-inside rtl:text-right space-y-2">
             <li><span className="font-semibold text-foreground">{T('about.singleMode')}:</span> {T('about.singleModeDesc')}</li>
             <li><span className="font-semibold text-foreground">{T('about.channelMode')}:</span> {T('about.channelModeDesc')}</li>
             <li><span className="font-semibold text-foreground">{T('about.aiPowered')}:</span> {T('about.aiPoweredDesc')}</li>

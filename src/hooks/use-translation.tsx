@@ -22,6 +22,7 @@ interface TranslationContextType {
   language: string;
   setLanguage: (language: string) => void;
   T: (key: string) => string; // T for "translate"
+  direction: 'ltr' | 'rtl';
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(
@@ -32,8 +33,9 @@ const TranslationContext = createContext<TranslationContextType | undefined>(
 const translationsCache: { [key: string]: Translations } = {};
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<string>('en'); // Default to English
+  const [language, setLanguageState] = useState<string>('en');
   const [translations, setTranslations] = useState<Translations>({});
+  const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
 
   const setLanguage = (lang: string) => {
     if (languages[lang]) {
@@ -48,14 +50,20 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     const savedLanguage = localStorage.getItem('language');
     const browserLanguage = navigator.language.split('-')[0];
 
+    let currentLang = 'en';
     if (savedLanguage && languages[savedLanguage]) {
-      setLanguageState(savedLanguage);
+      currentLang = savedLanguage;
     } else if (languages[browserLanguage]) {
-      setLanguageState(browserLanguage);
-      localStorage.setItem('language', browserLanguage);
-    } else {
-      setLanguageState('en');
-      localStorage.setItem('language', 'en');
+      currentLang = browserLanguage;
+    }
+    
+    setLanguageState(currentLang);
+    if(languages[currentLang]) {
+      setDirection(languages[currentLang].direction);
+    }
+    
+    if (typeof window !== 'undefined' && !savedLanguage) {
+      localStorage.setItem('language', currentLang);
     }
   }, []);
 
@@ -71,6 +79,9 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
         const module = await import(`@/locales/${language}.json`);
         translationsCache[language] = module.default;
         setTranslations(module.default);
+        if(languages[language]) {
+           setDirection(languages[language].direction);
+        }
       } catch (error) {
         console.error(`Could not load translations for ${language}`, error);
         // Fallback to English if the selected language file fails to load
@@ -108,8 +119,9 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
       language,
       setLanguage,
       T,
+      direction,
     }),
-    [language, T]
+    [language, T, direction]
   );
 
   return (

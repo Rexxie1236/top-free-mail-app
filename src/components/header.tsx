@@ -147,9 +147,9 @@ export function Header({ mode, setMode }: HeaderProps) {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <ScrollArea className="h-48">
-                    {Object.entries(languages).map(([code, name]) => (
+                    {Object.entries(languages).map(([code, lang]) => (
                        <DropdownMenuItem key={code} onSelect={() => setLanguage(code)}>
-                        {name}
+                        {lang.name}
                       </DropdownMenuItem>
                     ))}
                   </ScrollArea>

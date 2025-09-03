@@ -139,7 +139,7 @@ export function ChannelView() {
             </div>
             <Separator />
             <ScrollArea className="h-96">
-              <div className="space-y-2 pr-4">
+              <div className="space-y-2 ltr:pr-4 rtl:pl-4">
                 {channels.map((channel) => (
                   <div
                     key={channel}

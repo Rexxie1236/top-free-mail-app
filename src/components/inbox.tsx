@@ -146,7 +146,7 @@ export function Inbox() {
             key={email.id}
             className="border rounded-lg bg-card/50 data-[state=open]:bg-muted/30 transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]"
           >
-            <AccordionTrigger className="hover:no-underline px-4 py-3 text-left w-full">
+            <AccordionTrigger className="hover:no-underline px-4 py-3 text-left w-full ltr:text-left rtl:text-right">
               <div className="flex justify-between items-center w-full gap-4">
                 <div className="flex-1 grid grid-cols-3 gap-4 items-center">
                    <span className="font-medium text-foreground truncate col-span-1">
@@ -174,11 +174,11 @@ export function Inbox() {
             </AccordionTrigger>
             <AccordionContent className="p-4 pt-0">
               <div className="border-t pt-4">
-                <p className="whitespace-pre-wrap text-foreground/80 mb-6">{email.body}</p>
+                <p className="whitespace-pre-wrap text-foreground/80 mb-6 ltr:text-left rtl:text-right">{email.body}</p>
 
                 {summaries[email.id] && (
-                  <Alert className="bg-primary/10 border-primary/30">
-                    <Wand2 className="h-4 w-4 text-primary" />
+                  <Alert className="bg-primary/10 border-primary/30 ltr:text-left rtl:text-right">
+                    <Wand2 className="h-4 w-4 text-primary ltr:mr-2 rtl:ml-2" />
                     <AlertTitle className="text-primary font-headline">
                       {T('inbox.summaryTitle')}
                     </AlertTitle>
@@ -196,9 +196,9 @@ export function Inbox() {
                     className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
                   >
                     {loadingSummaries[email.id] ? (
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      <Loader2 className="ltr:mr-2 rtl:ml-2 h-4 w-4 animate-spin" />
                     ) : (
-                      <Wand2 className="mr-2 h-4 w-4" />
+                      <Wand2 className="ltr:mr-2 rtl:ml-2 h-4 w-4" />
                     )}
                     {T('inbox.summarizeButton')}
                   </Button>
