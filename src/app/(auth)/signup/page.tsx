@@ -86,7 +86,7 @@ export default function SignupPage() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-2">
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
