@@ -1,0 +1,130 @@
+{
+  "home": {
+    "description": "Olvídate del spam, los correos publicitarios, los hackeos y los robots de ataque. Mantén tu buzón real limpio y seguro. Temp Mail proporciona una dirección de correo electrónico temporal, segura, anónima, gratuita y desechable.",
+    "inboxTitle": "Tu bandeja de entrada",
+    "footer": "TopFreeMail © 2024. Todos los derechos reservados."
+  },
+  "header": {
+    "mode": "Modo",
+    "singleMode": "Modo individual",
+    "channelMode": "Modo de canal",
+    "settings": "Ajustes",
+    "modernize": "Modernizar correo",
+    "lightTheme": "Tema claro",
+    "darkTheme": "Tema oscuro",
+    "language": "Idioma",
+    "about": "Sobre"
+  },
+  "about": {
+    "title": "Sobre TopFreeMail",
+    "description": "TopFreeMail es tu solución ideal para mantener una bandeja de entrada principal limpia y segura.",
+    "protection": "Ofrecemos direcciones de correo electrónico desechables, temporales, seguras, anónimas y gratuitas para protegerte del spam, los correos publicitarios y las amenazas en línea.",
+    "singleMode": "Modo individual",
+    "singleModeDesc": "Genera rápidamente un correo electrónico temporal para un solo uso.",
+    "channelMode": "Modo de canal",
+    "channelModeDesc": "Gestiona sin esfuerzo varias direcciones de correo electrónico temporales a la vez para diferentes servicios.",
+    "aiPowered": "Impulsado por IA",
+    "aiPoweredDesc": "Utiliza la inteligencia artificial para resumir correos electrónicos largos, haciendo tu bandeja de entrada más inteligente y eficiente.",
+    "close": "Cerrar"
+  },
+  "changeEmail": {
+    "title": "Cambiar dirección de correo electrónico",
+    "description": "Puedes cambiar o recuperar tu dirección de correo electrónico temporal introduciendo el correo deseado y seleccionando un dominio.",
+    "loginLabel": "Usuario",
+    "loginPlaceholder": "Usuario",
+    "domainLabel": "Dominio",
+    "domainPlaceholder": "Selecciona un dominio",
+    "saveButton": "Guardar dirección",
+    "error": {
+      "emptyLogin": {
+        "title": "El usuario no puede estar vacío",
+        "description": "Por favor, introduce un nombre de usuario para tu dirección de correo electrónico."
+      }
+    },
+    "success": {
+      "title": "Dirección de correo electrónico actualizada",
+      "description": "Tu nueva dirección de correo electrónico es"
+    }
+  },
+  "channel": {
+    "title": "Canales de correo",
+    "description": "Gestiona varias direcciones de correo electrónico temporales.",
+    "newAddress": "Crear nueva dirección",
+    "optionalName": "Opcional: escribe un nombre",
+    "inboxTitle": "Tu bandeja de entrada"
+  },
+  "devPanel": {
+    "title": "Panel de desarrollador: Simular correo",
+    "description": "Usa este formulario para añadir un correo de prueba a la base de datos de Firestore para la dirección activa actualmente.",
+    "senderLabel": "Remitente",
+    "subjectLabel": "Asunto",
+    "bodyLabel": "Cuerpo",
+    "sendButton": "Enviar correo de prueba",
+    "error": {
+      "noRecipient": {
+        "title": "No se ha establecido un destinatario",
+        "description": "Por favor, genera o establece una dirección de correo electrónico primero."
+      },
+      "sendFailed": {
+        "title": "No se pudo enviar el correo de prueba",
+        "description": "Comprueba la consola para más detalles."
+      }
+    },
+    "success": {
+      "title": "¡Correo de prueba enviado!",
+      "description": {
+        "part1": "Un correo a",
+        "part2": "se ha añadido a la bandeja de entrada."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Tu dirección de correo temporal",
+    "ariaLabel": "Dirección de correo temporal",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "tooltip": {
+      "qr": "Mostrar código QR",
+      "new": "Generar nuevo correo",
+      "refresh": "Actualizar bandeja de entrada"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Bandeja de entrada actualizada",
+        "description": "Se han buscado nuevos correos."
+      },
+      "copied": {
+        "title": "¡Copiado al portapapeles!"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Cargando tu bandeja de entrada...",
+    "empty": {
+      "title": "Tu bandeja de entrada está vacía.",
+      "description": "Los correos enviados a tu dirección temporal aparecerán aquí."
+    },
+    "deleteAriaLabel": "Eliminar correo",
+    "summaryTitle": "Resumen de IA",
+    "summarizeButton": "Resumir con IA",
+    "error": {
+      "fetch": {
+        "title": "Error al obtener los correos",
+        "description": "No se pudo conectar a la bandeja de entrada. Comprueba tu conexión y las reglas de seguridad."
+      },
+      "summarize": {
+        "title": "Falló la sumarización"
+      },
+      "delete": {
+        "title": "Falló la eliminación",
+        "description": "No se pudo eliminar el correo. Por favor, inténtalo de nuevo."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "Correo eliminado",
+        "description": "El correo ha sido eliminado con éxito."
+      }
+    }
+  }
+}

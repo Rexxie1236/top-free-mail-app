@@ -32,7 +32,7 @@ export function Inbox() {
   const [loadingSummaries, setLoadingSummaries] = useState<Record<string, boolean>>({});
   const [loadingEmails, setLoadingEmails] = useState(true);
   const { toast } = useToast();
-  const { translate: T } = useTranslation();
+  const { T } = useTranslation();
 
   const handleEmailChange = useCallback(() => {
     const storedEmail = typeof window !== 'undefined' ? sessionStorage.getItem('currentEmail') : null;
@@ -77,8 +77,8 @@ export function Inbox() {
       console.error("Error fetching emails: ", error);
       toast({
         variant: 'destructive',
-        title: T('Error fetching emails'),
-        description: T('Could not connect to the inbox. Please check your connection and security rules.'),
+        title: T('inbox.error.fetch.title'),
+        description: T('inbox.error.fetch.description'),
       });
       setLoadingEmails(false);
     });
@@ -92,8 +92,8 @@ export function Inbox() {
     if (result.error) {
       toast({
         variant: 'destructive',
-        title: T('Summarization Failed'),
-        description: T(result.error),
+        title: T('inbox.error.summarize.title'),
+        description: result.error,
       });
     } else if (result.summary) {
       setSummaries((prev) => ({ ...prev, [emailId]: result.summary }));
@@ -105,15 +105,15 @@ export function Inbox() {
     try {
       await deleteDoc(doc(db, "inbox", emailId));
       toast({
-        title: T('Email Deleted'),
-        description: T('The email has been successfully deleted.'),
+        title: T('inbox.success.delete.title'),
+        description: T('inbox.success.delete.description'),
       });
     } catch (error) {
       console.error("Error deleting email: ", error);
       toast({
         variant: 'destructive',
-        title: T('Delete Failed'),
-        description: T('Could not delete the email. Please try again.'),
+        title: T('inbox.error.delete.title'),
+        description: T('inbox.error.delete.description'),
       });
     }
   };
@@ -122,7 +122,7 @@ export function Inbox() {
     return (
       <div className="text-center text-muted-foreground py-16 flex flex-col items-center gap-4 border border-dashed rounded-lg">
         <Loader2 className="h-12 w-12 animate-spin" />
-        <h3 className="text-xl font-semibold">{T('Loading your inbox...')}</h3>
+        <h3 className="text-xl font-semibold">{T('inbox.loading')}</h3>
       </div>
     );
   }
@@ -131,8 +131,8 @@ export function Inbox() {
     return (
       <div className="text-center text-muted-foreground py-16 flex flex-col items-center gap-4 border border-dashed rounded-lg">
         <InboxIcon className="h-12 w-12" />
-        <h3 className="text-xl font-semibold">{T('Your inbox is empty.')}</h3>
-        <p className="text-sm">{T('Emails sent to your temporary address will appear here.')}</p>
+        <h3 className="text-xl font-semibold">{T('inbox.empty.title')}</h3>
+        <p className="text-sm">{T('inbox.empty.description')}</p>
       </div>
     );
   }
@@ -167,7 +167,7 @@ export function Inbox() {
                     }}
                   >
                     <Trash2 className="h-4 w-4" />
-                    <span className="sr-only">{T('Delete email')}</span>
+                    <span className="sr-only">{T('inbox.deleteAriaLabel')}</span>
                   </Button>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export function Inbox() {
                   <Alert className="bg-primary/10 border-primary/30">
                     <Wand2 className="h-4 w-4 text-primary" />
                     <AlertTitle className="text-primary font-headline">
-                      {T('AI Summary')}
+                      {T('inbox.summaryTitle')}
                     </AlertTitle>
                     <AlertDescription className="text-primary-foreground/80">
                       {summaries[email.id]}
@@ -200,7 +200,7 @@ export function Inbox() {
                     ) : (
                       <Wand2 className="mr-2 h-4 w-4" />
                     )}
-                    {T('Summarize with AI')}
+                    {T('inbox.summarizeButton')}
                   </Button>
                 )}
               </div>

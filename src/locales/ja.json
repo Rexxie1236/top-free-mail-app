@@ -1,0 +1,130 @@
+{
+  "home": {
+    "description": "スパム、広告メール、ハッキング、攻撃ボットは忘れてください。実際のメールボックスを清潔で安全に保ちます。Temp Mailは、一時的で安全、匿名の無料の使い捨てメールアドレスを提供します。",
+    "inboxTitle": "受信トレイ",
+    "footer": "TopFreeMail © 2024. All Rights Reserved."
+  },
+  "header": {
+    "mode": "モード",
+    "singleMode": "シングルモード",
+    "channelMode": "チャンネルモード",
+    "settings": "設定",
+    "modernize": "メールを近代化",
+    "lightTheme": "ライトテーマ",
+    "darkTheme": "ダークテーマ",
+    "language": "言語",
+    "about": "概要"
+  },
+  "about": {
+    "title": "TopFreeMailについて",
+    "description": "TopFreeMailは、メインの受信トレイを清潔で安全に保つための頼れるソリューションです。",
+    "protection": "スパム、広告メール、オンラインの脅威からあなたを守るために、一時的で安全、匿名の無料の使い捨てメールアドレスを提供します。",
+    "singleMode": "シングルモード",
+    "singleModeDesc": "1回限りの使用のために一時的なメールをすばやく生成します。",
+    "channelMode": "チャンネルモード",
+    "channelModeDesc": "さまざまなサービスのために複数の一時的なメールアドレスを一度に簡単に管理します。",
+    "aiPowered": "AI搭載",
+    "aiPoweredDesc": "人工知能を利用して長いメールを要約し、受信トレイをよりスマートで効率的にします。",
+    "close": "閉じる"
+  },
+  "changeEmail": {
+    "title": "メールアドレスの変更",
+    "description": "希望のメールアドレスを入力し、ドメインを選択することで、一時的なメールアドレスを変更または回復できます。",
+    "loginLabel": "ログイン",
+    "loginPlaceholder": "ログイン",
+    "domainLabel": "ドメイン",
+    "domainPlaceholder": "ドメインを選択",
+    "saveButton": "アドレスを保存",
+    "error": {
+      "emptyLogin": {
+        "title": "ログインは空にできません",
+        "description": "メールアドレスのログイン名を入力してください。"
+      }
+    },
+    "success": {
+      "title": "メールアドレスが更新されました",
+      "description": "新しいメールアドレスは"
+    }
+  },
+  "channel": {
+    "title": "メールチャンネル",
+    "description": "複数の一時的なメールアドレスを管理します。",
+    "newAddress": "新しいアドレスを作成",
+    "optionalName": "オプション：名前を入力",
+    "inboxTitle": "受信トレイ"
+  },
+  "devPanel": {
+    "title": "開発者パネル：メールをシミュレート",
+    "description": "このフォームを使用して、現在アクティブなアドレスのFirestoreデータベースにテストメールを追加します。",
+    "senderLabel": "送信者",
+    "subjectLabel": "件名",
+    "bodyLabel": "本文",
+    "sendButton": "テストメールを送信",
+    "error": {
+      "noRecipient": {
+        "title": "受信者が設定されていません",
+        "description": "最初にメールアドレスを生成または設定してください。"
+      },
+      "sendFailed": {
+        "title": "テストメールの送信に失敗しました",
+        "description": "詳細についてはコンソールを確認してください。"
+      }
+    },
+    "success": {
+      "title": "テストメールが送信されました！",
+      "description": {
+        "part1": "へのメールが",
+        "part2": "受信トレイに追加されました。"
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "あなたの一時的なメールアドレス",
+    "ariaLabel": "一時的なメールアドレス",
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "tooltip": {
+      "qr": "QRコードを表示",
+      "new": "新しいメールを生成",
+      "refresh": "受信トレイを更新"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "受信トレイが更新されました",
+        "description": "新しいメールを確認しました。"
+      },
+      "copied": {
+        "title": "クリップボードにコピーしました！"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "受信トレイを読み込んでいます...",
+    "empty": {
+      "title": "受信トレイは空です。",
+      "description": "一時的なアドレスに送信されたメールはここに表示されます。"
+    },
+    "deleteAriaLabel": "メールを削除",
+    "summaryTitle": "AIサマリー",
+    "summarizeButton": "AIで要約",
+    "error": {
+      "fetch": {
+        "title": "メールの取得中にエラーが発生しました",
+        "description": "受信トレイに接続できませんでした。接続とセキュリティルールを確認してください。"
+      },
+      "summarize": {
+        "title": "要約に失敗しました"
+      },
+      "delete": {
+        "title": "削除に失敗しました",
+        "description": "メールを削除できませんでした。もう一度お試しください。"
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "メールが削除されました",
+        "description": "メールは正常に削除されました。"
+      }
+    }
+  }
+}

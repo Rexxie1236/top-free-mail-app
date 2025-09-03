@@ -1,0 +1,130 @@
+{
+  "home": {
+    "description": "Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. Temp Mail provides temporary, secure, anonymous, free, disposable email address.",
+    "inboxTitle": "Your Inbox",
+    "footer": "TopFreeMail © 2024. All Rights Reserved."
+  },
+  "header": {
+    "mode": "Mode",
+    "singleMode": "Single Mode",
+    "channelMode": "Channel Mode",
+    "settings": "Settings",
+    "modernize": "Modernize Email",
+    "lightTheme": "Light Theme",
+    "darkTheme": "Dark Theme",
+    "language": "Language",
+    "about": "About"
+  },
+  "about": {
+    "title": "About TopFreeMail",
+    "description": "TopFreeMail is your go-to solution for maintaining a clean and secure primary inbox.",
+    "protection": "We provide temporary, secure, anonymous, and free disposable email addresses to protect you from spam, advertising mailings, and online threats.",
+    "singleMode": "Single Mode",
+    "singleModeDesc": "Quickly generate a temporary email for one-time use.",
+    "channelMode": "Channel Mode",
+    "channelModeDesc": "Effortlessly manage multiple temporary email addresses at once for different services.",
+    "aiPowered": "AI-Powered",
+    "aiPoweredDesc": "Utilize artificial intelligence to summarize long emails, making your inbox smarter and more efficient.",
+    "close": "Close"
+  },
+  "changeEmail": {
+    "title": "Change E-mail Address",
+    "description": "You can change or recover your temporary email address by entering a desired email and selecting a domain.",
+    "loginLabel": "Login",
+    "loginPlaceholder": "Login",
+    "domainLabel": "Domain",
+    "domainPlaceholder": "Select a domain",
+    "saveButton": "Save Address",
+    "error": {
+      "emptyLogin": {
+        "title": "Login cannot be empty",
+        "description": "Please enter a login name for your email address."
+      }
+    },
+    "success": {
+      "title": "Email Address Updated",
+      "description": "Your new email address is"
+    }
+  },
+  "channel": {
+    "title": "Email Channels",
+    "description": "Manage multiple temporary email addresses.",
+    "newAddress": "Create New Address",
+    "optionalName": "Optional: type a name",
+    "inboxTitle": "Your Inbox"
+  },
+  "devPanel": {
+    "title": "Developer Panel: Simulate Email",
+    "description": "Use this form to add a test email to the Firestore database for the currently active address.",
+    "senderLabel": "Sender",
+    "subjectLabel": "Subject",
+    "bodyLabel": "Body",
+    "sendButton": "Send Test Email",
+    "error": {
+      "noRecipient": {
+        "title": "No recipient set",
+        "description": "Please generate or set an email address first."
+      },
+      "sendFailed": {
+        "title": "Failed to send test email",
+        "description": "Check the console for more details."
+      }
+    },
+    "success": {
+      "title": "Test Email Sent!",
+      "description": {
+        "part1": "An email to",
+        "part2": "was added to the inbox."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Your Temporary Email Address",
+    "ariaLabel": "Temporary Email Address",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "tooltip": {
+      "qr": "Show QR Code",
+      "new": "Generate New Email",
+      "refresh": "Refresh Inbox"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Inbox Refreshed",
+        "description": "Checked for new emails."
+      },
+      "copied": {
+        "title": "Copied to clipboard!"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Loading your inbox...",
+    "empty": {
+      "title": "Your inbox is empty.",
+      "description": "Emails sent to your temporary address will appear here."
+    },
+    "deleteAriaLabel": "Delete email",
+    "summaryTitle": "AI Summary",
+    "summarizeButton": "Summarize with AI",
+    "error": {
+      "fetch": {
+        "title": "Error fetching emails",
+        "description": "Could not connect to the inbox. Please check your connection and security rules."
+      },
+      "summarize": {
+        "title": "Summarization Failed"
+      },
+      "delete": {
+        "title": "Delete Failed",
+        "description": "Could not delete the email. Please try again."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "Email Deleted",
+        "description": "The email has been successfully deleted."
+      }
+    }
+  }
+}

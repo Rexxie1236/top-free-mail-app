@@ -1,0 +1,130 @@
+{
+  "home": {
+    "description": "Oubliez le spam, les courriers publicitaires, le piratage et les robots d'attaque. Gardez votre véritable boîte aux lettres propre et sécurisée. Temp Mail fournit une adresse e-mail temporaire, sécurisée, anonyme, gratuite et jetable.",
+    "inboxTitle": "Votre boîte de réception",
+    "footer": "TopFreeMail © 2024. Tous droits réservés."
+  },
+  "header": {
+    "mode": "Mode",
+    "singleMode": "Mode unique",
+    "channelMode": "Mode canal",
+    "settings": "Paramètres",
+    "modernize": "Moderniser l'e-mail",
+    "lightTheme": "Thème clair",
+    "darkTheme": "Thème sombre",
+    "language": "Langue",
+    "about": "À propos"
+  },
+  "about": {
+    "title": "À propos de TopFreeMail",
+    "description": "TopFreeMail est votre solution de choix pour maintenir une boîte de réception principale propre et sécurisée.",
+    "protection": "Nous fournissons des adresses e-mail jetables, temporaires, sécurisées, anonymes et gratuites pour vous protéger du spam, des publipostages et des menaces en ligne.",
+    "singleMode": "Mode unique",
+    "singleModeDesc": "Générez rapidement un e-mail temporaire pour un usage unique.",
+    "channelMode": "Mode canal",
+    "channelModeDesc": "Gérez sans effort plusieurs adresses e-mail temporaires à la fois pour différents services.",
+    "aiPowered": "Propulsé par l'IA",
+    "aiPoweredDesc": "Utilisez l'intelligence artificielle pour résumer les longs e-mails, rendant votre boîte de réception plus intelligente et plus efficace.",
+    "close": "Fermer"
+  },
+  "changeEmail": {
+    "title": "Changer d'adresse e-mail",
+    "description": "Vous pouvez modifier ou récupérer votre adresse e-mail temporaire en saisissant l'e-mail souhaité et en sélectionnant un domaine.",
+    "loginLabel": "Identifiant",
+    "loginPlaceholder": "Identifiant",
+    "domainLabel": "Domaine",
+    "domainPlaceholder": "Sélectionnez un domaine",
+    "saveButton": "Enregistrer l'adresse",
+    "error": {
+      "emptyLogin": {
+        "title": "L'identifiant ne peut pas être vide",
+        "description": "Veuillez saisir un nom d'identifiant pour votre adresse e-mail."
+      }
+    },
+    "success": {
+      "title": "Adresse e-mail mise à jour",
+      "description": "Votre nouvelle adresse e-mail est"
+    }
+  },
+  "channel": {
+    "title": "Canaux d'e-mail",
+    "description": "Gérez plusieurs adresses e-mail temporaires.",
+    "newAddress": "Créer une nouvelle adresse",
+    "optionalName": "Facultatif : tapez un nom",
+    "inboxTitle": "Votre boîte de réception"
+  },
+  "devPanel": {
+    "title": "Panneau de développeur : Simuler un e-mail",
+    "description": "Utilisez ce formulaire pour ajouter un e-mail de test à la base de données Firestore pour l'adresse actuellement active.",
+    "senderLabel": "Expéditeur",
+    "subjectLabel": "Sujet",
+    "bodyLabel": "Corps",
+    "sendButton": "Envoyer l'e-mail de test",
+    "error": {
+      "noRecipient": {
+        "title": "Aucun destinataire défini",
+        "description": "Veuillez d'abord générer ou définir une adresse e-mail."
+      },
+      "sendFailed": {
+        "title": "Échec de l'envoi de l'e-mail de test",
+        "description": "Consultez la console pour plus de détails."
+      }
+    },
+    "success": {
+      "title": "E-mail de test envoyé !",
+      "description": {
+        "part1": "Un e-mail à",
+        "part2": "a été ajouté à la boîte de réception."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Votre adresse e-mail temporaire",
+    "ariaLabel": "Adresse e-mail temporaire",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "tooltip": {
+      "qr": "Afficher le code QR",
+      "new": "Générer un nouvel e-mail",
+      "refresh": "Actualiser la boîte de réception"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Boîte de réception actualisée",
+        "description": "Recherche de nouveaux e-mails effectuée."
+      },
+      "copied": {
+        "title": "Copié dans le presse-papiers !"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Chargement de votre boîte de réception...",
+    "empty": {
+      "title": "Votre boîte de réception est vide.",
+      "description": "Les e-mails envoyés à votre adresse temporaire apparaîtront ici."
+    },
+    "deleteAriaLabel": "Supprimer l'e-mail",
+    "summaryTitle": "Résumé IA",
+    "summarizeButton": "Résumer avec l'IA",
+    "error": {
+      "fetch": {
+        "title": "Erreur lors de la récupération des e-mails",
+        "description": "Impossible de se connecter à la boîte de réception. Veuillez vérifier votre connexion et vos règles de sécurité."
+      },
+      "summarize": {
+        "title": "Échec du résumé"
+      },
+      "delete": {
+        "title": "Échec de la suppression",
+        "description": "Impossible de supprimer l'e-mail. Veuillez réessayer."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "E-mail supprimé",
+        "description": "L'e-mail a été supprimé avec succès."
+      }
+    }
+  }
+}

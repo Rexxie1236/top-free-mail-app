@@ -27,14 +27,14 @@ export function ChangeEmailAddress() {
   const [login, setLogin] = useState('');
   const [domain, setDomain] = useState('topfreemail.dev');
   const { toast } = useToast();
-  const { translate: T } = useTranslation();
+  const { T } = useTranslation();
 
   const handleSave = () => {
     if (!login) {
       toast({
         variant: 'destructive',
-        title: T('Login cannot be empty'),
-        description: T('Please enter a login name for your email address.'),
+        title: T('changeEmail.error.emptyLogin.title'),
+        description: T('changeEmail.error.emptyLogin.description'),
       });
       return;
     }
@@ -45,8 +45,8 @@ export function ChangeEmailAddress() {
       sessionStorage.setItem('currentEmail', newEmail);
       window.dispatchEvent(new Event('emailChanged'));
       toast({
-        title: T('Email Address Updated'),
-        description: `${T('Your new email address is')} ${newEmail}`,
+        title: T('changeEmail.success.title'),
+        description: `${T('changeEmail.success.description')} ${newEmail}`,
       });
     }
   };
@@ -55,21 +55,21 @@ export function ChangeEmailAddress() {
     <Card className="w-full max-w-4xl mx-auto bg-card/50 shadow-lg shadow-primary/10 border-border transition-all duration-300 hover:shadow-primary/20 hover:scale-[1.01]">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold font-headline">
-          {T('Change E-mail Address')}
+          {T('changeEmail.title')}
         </CardTitle>
         <CardDescription className="max-w-2xl mx-auto pt-2">
-          {T('You can change or recover your temporary email address by entering a desired email and selecting a domain.')}
+          {T('changeEmail.description')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid w-full items-center gap-4 max-w-sm mx-auto">
           <div className="flex flex-col space-y-1.5">
             <Label htmlFor="login" className="sr-only">
-              {T('Login')}
+              {T('changeEmail.loginLabel')}
             </Label>
             <Input
               id="login"
-              placeholder={T('Login')}
+              placeholder={T('changeEmail.loginPlaceholder')}
               className="bg-muted/50 rounded-full h-12 px-6"
               value={login}
               onChange={(e) => setLogin(e.target.value)}
@@ -77,14 +77,14 @@ export function ChangeEmailAddress() {
           </div>
           <div className="flex flex-col space-y-1.5">
             <Label htmlFor="domain" className="sr-only">
-              {T('Domain')}
+              {T('changeEmail.domainLabel')}
             </Label>
             <Select onValueChange={setDomain} defaultValue={domain}>
               <SelectTrigger
                 id="domain"
                 className="bg-muted/50 rounded-full h-12 px-6 border-2 border-accent text-muted-foreground"
               >
-                <SelectValue placeholder={T('Select a domain')} />
+                <SelectValue placeholder={T('changeEmail.domainPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="topfreemail.dev">
@@ -102,7 +102,7 @@ export function ChangeEmailAddress() {
           onClick={handleSave}
           className="w-full max-w-sm mx-auto rounded-lg h-12 text-base"
         >
-          {T('Save Address')}
+          {T('changeEmail.saveButton')}
         </Button>
       </CardFooter>
     </Card>

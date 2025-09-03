@@ -23,7 +23,6 @@ import {
   SunMoon,
   Info,
   Languages,
-  Loader2,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Switch } from '@/components/ui/switch';
@@ -32,6 +31,7 @@ import { ScrollArea } from './ui/scroll-area';
 import { useState } from 'react';
 import { AboutDialog } from './about-dialog';
 import { useTranslation } from '@/hooks/use-translation';
+import { languages } from '@/locales/languages';
 
 interface HeaderProps {
   mode: AppMode;
@@ -41,9 +41,7 @@ interface HeaderProps {
 export function Header({ mode, setMode }: HeaderProps) {
   const { theme, setTheme } = useTheme();
   const [aboutOpen, setAboutOpen] = useState(false);
-  const { language, setLanguage, translate, isTranslating } = useTranslation();
-
-  const T = (text: string) => translate(text);
+  const { T, setLanguage } = useTranslation();
 
   const SingleModeIcon = () => (
     <svg
@@ -97,7 +95,7 @@ export function Header({ mode, setMode }: HeaderProps) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>{T('Mode')}</DropdownMenuLabel>
+              <DropdownMenuLabel>{T('header.mode')}</DropdownMenuLabel>
               <DropdownMenuRadioGroup
                 value={mode}
                 onValueChange={(value) => setMode(value as AppMode)}
@@ -105,23 +103,23 @@ export function Header({ mode, setMode }: HeaderProps) {
                 <DropdownMenuRadioItem value="single">
                   <div className="flex items-center gap-2">
                     <SingleModeIcon />
-                    <span>{T('Single Mode')}</span>
+                    <span>{T('header.singleMode')}</span>
                   </div>
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="channel">
                   <div className="flex items-center gap-2">
                     <ChannelModeIcon />
-                    <span>{T('Channel Mode')}</span>
+                    <span>{T('header.channelMode')}</span>
                   </div>
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuLabel>{T('Settings')}</DropdownMenuLabel>
+              <DropdownMenuLabel>{T('header.settings')}</DropdownMenuLabel>
               <DropdownMenuItem>
                 <Paintbrush className="mr-2 h-4 w-4" />
-                <span>{T('Modernize Email')}</span>
+                <span>{T('header.modernize')}</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onSelect={(e) => e.preventDefault()}
@@ -132,7 +130,7 @@ export function Header({ mode, setMode }: HeaderProps) {
                   className="flex items-center gap-2 cursor-pointer"
                 >
                   <SunMoon className="mr-2 h-4 w-4" />
-                  <span>{theme === 'dark' ? T('Dark') : T('Light')} {T('Theme')}</span>
+                  <span>{theme === 'dark' ? T('header.darkTheme') : T('header.lightTheme')}</span>
                 </Label>
                 <Switch
                   id="theme-switch"
@@ -144,49 +142,22 @@ export function Header({ mode, setMode }: HeaderProps) {
               </DropdownMenuItem>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
-                   {isTranslating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Languages className="mr-2 h-4 w-4" />}
-                  <span>{T('Language')}</span>
+                  <Languages className="mr-2 h-4 w-4" />
+                  <span>{T('header.language')}</span>
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <ScrollArea className="h-48">
-                    <DropdownMenuItem onSelect={() => setLanguage('English')}>
-                      English
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('Spanish')}>
-                      Español
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('French')}>
-                      Français
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('German')}>
-                      Deutsch
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('Japanese')}>
-                      日本語
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('Chinese')}>
-                      中文
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('Russian')}>
-                      Русский
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('Arabic')}>
-                      العربية
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onSelect={() => setLanguage('Portuguese')}
-                    >
-                      Português
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => setLanguage('Hindi')}>
-                      हिन्दी
-                    </DropdownMenuItem>
+                    {Object.entries(languages).map(([code, name]) => (
+                       <DropdownMenuItem key={code} onSelect={() => setLanguage(code)}>
+                        {name}
+                      </DropdownMenuItem>
+                    ))}
                   </ScrollArea>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
               <DropdownMenuItem onSelect={() => setAboutOpen(true)}>
                 <Info className="mr-2 h-4 w-4" />
-                <span>{T('About')}</span>
+                <span>{T('header.about')}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

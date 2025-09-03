@@ -25,7 +25,7 @@ export function DevPanel() {
   const [body, setBody] = useState('Hello, we have a special deal just for you...');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { translate: T } = useTranslation();
+  const { T } = useTranslation();
 
   const handleSendTestEmail = async () => {
     setIsLoading(true);
@@ -34,8 +34,8 @@ export function DevPanel() {
     if (!recipient) {
       toast({
         variant: 'destructive',
-        title: T('No recipient set'),
-        description: T('Please generate or set an email address first.'),
+        title: T('devPanel.error.noRecipient.title'),
+        description: T('devPanel.error.noRecipient.description'),
       });
       setIsLoading(false);
       return;
@@ -50,15 +50,15 @@ export function DevPanel() {
         createdAt: serverTimestamp(),
       });
       toast({
-        title: T('Test Email Sent!'),
-        description: `${T('An email to')} ${recipient} ${T('was added to the inbox.')}`,
+        title: T('devPanel.success.title'),
+        description: `${T('devPanel.success.description.part1')} ${recipient} ${T('devPanel.success.description.part2')}`,
       });
     } catch (error) {
       console.error('Error sending test email:', error);
       toast({
         variant: 'destructive',
-        title: T('Failed to send test email'),
-        description: T('Check the console for more details.'),
+        title: T('devPanel.error.sendFailed.title'),
+        description: T('devPanel.error.sendFailed.description'),
       });
     } finally {
       setIsLoading(false);
@@ -70,16 +70,16 @@ export function DevPanel() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <TestTube2 className="text-primary" />
-          {T('Developer Panel: Simulate Email')}
+          {T('devPanel.title')}
         </CardTitle>
         <CardDescription>
-          {T('Use this form to add a test email to the Firestore database for the currently active address.')}
+          {T('devPanel.description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="dev-sender">{T('Sender')}</Label>
+            <Label htmlFor="dev-sender">{T('devPanel.senderLabel')}</Label>
             <Input
               id="dev-sender"
               value={sender}
@@ -88,7 +88,7 @@ export function DevPanel() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="dev-subject">{T('Subject')}</Label>
+            <Label htmlFor="dev-subject">{T('devPanel.subjectLabel')}</Label>
             <Input
               id="dev-subject"
               value={subject}
@@ -98,7 +98,7 @@ export function DevPanel() {
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="dev-body">{T('Body')}</Label>
+          <Label htmlFor="dev-body">{T('devPanel.bodyLabel')}</Label>
           <Textarea
             id="dev-body"
             value={body}
@@ -113,7 +113,7 @@ export function DevPanel() {
           ) : (
             <Send className="mr-2 h-4 w-4" />
           )}
-          {T('Send Test Email')}
+          {T('devPanel.sendButton')}
         </Button>
       </CardContent>
     </Card>

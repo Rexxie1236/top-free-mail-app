@@ -1,0 +1,130 @@
+{
+  "home": {
+    "description": "Vergessen Sie Spam, Werbe-Mailings, Hacking und angreifende Roboter. Halten Sie Ihr echtes Postfach sauber und sicher. Temp Mail bietet eine temporäre, sichere, anonyme, kostenlose und wegwerfbare E-Mail-Adresse.",
+    "inboxTitle": "Ihr Posteingang",
+    "footer": "TopFreeMail © 2024. Alle Rechte vorbehalten."
+  },
+  "header": {
+    "mode": "Modus",
+    "singleMode": "Einzelmodus",
+    "channelMode": "Kanalmodus",
+    "settings": "Einstellungen",
+    "modernize": "E-Mail modernisieren",
+    "lightTheme": "Helles Thema",
+    "darkTheme": "Dunkles Thema",
+    "language": "Sprache",
+    "about": "Über"
+  },
+  "about": {
+    "title": "Über TopFreeMail",
+    "description": "TopFreeMail ist Ihre Lösung, um ein sauberes und sicheres primäres Postfach zu pflegen.",
+    "protection": "Wir bieten temporäre, sichere, anonyme und kostenlose Einweg-E-Mail-Adressen, um Sie vor Spam, Werbe-Mailings und Online-Bedrohungen zu schützen.",
+    "singleMode": "Einzelmodus",
+    "singleModeDesc": "Generieren Sie schnell eine temporäre E-Mail für den einmaligen Gebrauch.",
+    "channelMode": "Kanalmodus",
+    "channelModeDesc": "Verwalten Sie mühelos mehrere temporäre E-Mail-Adressen gleichzeitig für verschiedene Dienste.",
+    "aiPowered": "KI-gestützt",
+    "aiPoweredDesc": "Nutzen Sie künstliche Intelligenz, um lange E-Mails zusammenzufassen und Ihr Postfach intelligenter und effizienter zu machen.",
+    "close": "Schließen"
+  },
+  "changeEmail": {
+    "title": "E-Mail-Adresse ändern",
+    "description": "Sie können Ihre temporäre E-Mail-Adresse ändern oder wiederherstellen, indem Sie eine gewünschte E-Mail eingeben und eine Domain auswählen.",
+    "loginLabel": "Anmeldung",
+    "loginPlaceholder": "Anmeldung",
+    "domainLabel": "Domäne",
+    "domainPlaceholder": "Wählen Sie eine Domäne",
+    "saveButton": "Adresse speichern",
+    "error": {
+      "emptyLogin": {
+        "title": "Anmeldung darf nicht leer sein",
+        "description": "Bitte geben Sie einen Anmeldenamen für Ihre E-Mail-Adresse ein."
+      }
+    },
+    "success": {
+      "title": "E-Mail-Adresse aktualisiert",
+      "description": "Ihre neue E-Mail-Adresse lautet"
+    }
+  },
+  "channel": {
+    "title": "E-Mail-Kanäle",
+    "description": "Verwalten Sie mehrere temporäre E-Mail-Adressen.",
+    "newAddress": "Neue Adresse erstellen",
+    "optionalName": "Optional: Geben Sie einen Namen ein",
+    "inboxTitle": "Ihr Posteingang"
+  },
+  "devPanel": {
+    "title": "Entwickler-Panel: E-Mail simulieren",
+    "description": "Verwenden Sie dieses Formular, um eine Test-E-Mail zur Firestore-Datenbank für die aktuell aktive Adresse hinzuzufügen.",
+    "senderLabel": "Absender",
+    "subjectLabel": "Betreff",
+    "bodyLabel": "Text",
+    "sendButton": "Test-E-Mail senden",
+    "error": {
+      "noRecipient": {
+        "title": "Kein Empfänger festgelegt",
+        "description": "Bitte generieren oder legen Sie zuerst eine E-Mail-Adresse fest."
+      },
+      "sendFailed": {
+        "title": "Test-E-Mail konnte nicht gesendet werden",
+        "description": "Überprüfen Sie die Konsole für weitere Details."
+      }
+    },
+    "success": {
+      "title": "Test-E-Mail gesendet!",
+      "description": {
+        "part1": "Eine E-Mail an",
+        "part2": "wurde zum Posteingang hinzugefügt."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Ihre temporäre E-Mail-Adresse",
+    "ariaLabel": "Temporäre E-Mail-Adresse",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "tooltip": {
+      "qr": "QR-Code anzeigen",
+      "new": "Neue E-Mail generieren",
+      "refresh": "Posteingang aktualisieren"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Posteingang aktualisiert",
+        "description": "Nach neuen E-Mails gesucht."
+      },
+      "copied": {
+        "title": "In die Zwischenablage kopiert!"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Ihr Posteingang wird geladen...",
+    "empty": {
+      "title": "Ihr Posteingang ist leer.",
+      "description": "An Ihre temporäre Adresse gesendete E-Mails werden hier angezeigt."
+    },
+    "deleteAriaLabel": "E-Mail löschen",
+    "summaryTitle": "KI-Zusammenfassung",
+    "summarizeButton": "Mit KI zusammenfassen",
+    "error": {
+      "fetch": {
+        "title": "Fehler beim Abrufen von E-Mails",
+        "description": "Konnte keine Verbindung zum Posteingang herstellen. Bitte überprüfen Sie Ihre Verbindung und Sicherheitsregeln."
+      },
+      "summarize": {
+        "title": "Zusammenfassung fehlgeschlagen"
+      },
+      "delete": {
+        "title": "Löschen fehlgeschlagen",
+        "description": "Die E-Mail konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "E-Mail gelöscht",
+        "description": "Die E-Mail wurde erfolgreich gelöscht."
+      }
+    }
+  }
+}

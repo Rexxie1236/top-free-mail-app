@@ -10,100 +10,78 @@ import {
   useMemo,
   useEffect,
 } from 'react';
-import { handleTranslate } from '@/app/actions';
-import { useToast } from './use-toast';
 
-// A simple in-memory cache to hold translations.
-const translationCache: Record<string, string> = {};
+// Define the structure for your translations
+interface Translations {
+  [key: string]: string | Translations;
+}
 
+// Context for managing translation state
 interface TranslationContextType {
   language: string;
   setLanguage: (language: string) => void;
-  translate: (text: string) => string;
-  isTranslating: boolean;
+  T: (key: string) => string; // T for "translate"
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(
   undefined
 );
 
+// In-memory cache for loaded translation files
+const translationsCache: { [key: string]: Translations } = {};
+
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [language, setInternalLanguage] = useState('English');
-  // This state will trigger re-renders when new translations are available.
-  const [, setForceRender] = useState({});
-  const [isTranslating, setIsTranslating] = useState(false);
-  const { toast } = useToast();
+  const [language, setLanguage] = useState<string>('en');
+  const [translations, setTranslations] = useState<Translations>({});
 
-  const setLanguage = useCallback((lang: string) => {
-    setIsTranslating(true);
-    setInternalLanguage(lang);
-    // When language changes, we don't need to do anything else here.
-    // The `translate` function will handle fetching what's needed.
-  }, []);
-
-  const translate = useCallback(
-    (text: string): string => {
-      // If we are in English, just return the text.
-      if (language === 'English' || !text) {
-        if (isTranslating) setIsTranslating(false);
-        return text;
+  // Load translations for the current language
+  useEffect(() => {
+    const loadTranslations = async () => {
+      if (translationsCache[language]) {
+        setTranslations(translationsCache[language]);
+        return;
       }
 
-      const cacheKey = `${language}:${text}`;
-
-      // If the translation is already in our cache, return it.
-      if (translationCache[cacheKey]) {
-        if (isTranslating) setIsTranslating(false);
-        return translationCache[cacheKey];
-      }
-      
-      // If it's not in the cache, we need to fetch it.
-      // We will return the original text for now, and the UI will update
-      // automatically when the translation is loaded.
-      
-      // Use an immediately-invoked async function to fetch the translation.
-      (async () => {
-        try {
-          const result = await handleTranslate(text, language);
-          if (result.translation) {
-            translationCache[cacheKey] = result.translation;
-            // Force a re-render to show the new translation.
-            setForceRender({}); 
-          } else if (result.error) {
-            // Only show toast on actual error, not just if translation is missing.
-             toast({
-                variant: 'destructive',
-                title: 'Translation Failed',
-                description: result.error,
-              });
-          }
-        } catch (e) {
-           toast({
-              variant: 'destructive',
-              title: 'Translation Error',
-              description: 'An unexpected error occurred.',
-            });
-        } finally {
-            // We can turn off the global spinner. Even if some translations are pending,
-            // the UI is responsive.
-            setIsTranslating(false);
+      try {
+        const module = await import(`@/locales/${language}.json`);
+        translationsCache[language] = module.default;
+        setTranslations(module.default);
+      } catch (error) {
+        console.error(`Could not load translations for ${language}`, error);
+        // Fallback to English if the selected language file fails to load
+        if (language !== 'en') {
+          setLanguage('en');
         }
-      })();
+      }
+    };
 
-      // Return the original text while we wait for the translation.
-      return text;
+    loadTranslations();
+  }, [language]);
+
+  // Function to get a nested translation string
+  const T = useCallback(
+    (key: string): string => {
+      const keys = key.split('.');
+      let result: any = translations;
+      for (const k of keys) {
+        result = result?.[k];
+        if (result === undefined) {
+          // Return the key itself as a fallback
+          return key;
+        }
+      }
+      return typeof result === 'string' ? result : key;
     },
-    [language, toast, isTranslating]
+    [translations]
   );
-  
+
   const contextValue = useMemo(
     () => ({
       language,
       setLanguage,
-      translate,
-      isTranslating,
+      T,
     }),
-    [language, setLanguage, translate, isTranslating]
+    [language, T]
   );
 
   return (
@@ -113,6 +91,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// Custom hook to use the translation context
 export function useTranslation() {
   const context = useContext(TranslationContext);
   if (context === undefined) {

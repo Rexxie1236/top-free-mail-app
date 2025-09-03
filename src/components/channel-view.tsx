@@ -33,7 +33,7 @@ export function ChannelView() {
   const [channels, setChannels] = useState<string[]>([]);
   const [activeChannel, setActiveChannel] = useState<string | null>(null);
   const [newChannelName, setNewChannelName] = useState('');
-  const { translate: T } = useTranslation();
+  const { T } = useTranslation();
 
   const getChannelsFromStorage = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -116,18 +116,18 @@ export function ChannelView() {
       <div className="md:col-span-1">
         <Card className="sticky top-24">
           <CardHeader>
-            <CardTitle>{T('Email Channels')}</CardTitle>
+            <CardTitle>{T('channel.title')}</CardTitle>
             <CardDescription>
-              {T('Manage multiple temporary email addresses.')}
+              {T('channel.description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-               <Label htmlFor="new-channel-name" className="text-sm font-medium">{T('Create New Address')}</Label>
+               <Label htmlFor="new-channel-name" className="text-sm font-medium">{T('channel.newAddress')}</Label>
                <div className="flex items-center space-x-2">
                  <Input 
                    id="new-channel-name"
-                   placeholder={T('Optional: type a name')}
+                   placeholder={T('channel.optionalName')}
                    value={newChannelName}
                    onChange={(e) => setNewChannelName(e.target.value)}
                    onKeyDown={(e) => e.key === 'Enter' && createNewChannel()}
@@ -176,7 +176,7 @@ export function ChannelView() {
         <Separator />
         <div>
             <h2 className="text-3xl font-bold font-headline text-center mb-6">
-                {T('Your Inbox')}
+                {T('channel.inboxTitle')}
             </h2>
             <Inbox />
         </div>
