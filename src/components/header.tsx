@@ -127,7 +127,7 @@ export function Header({ mode, setMode }: HeaderProps) {
                         alt={user.displayName ?? 'User'}
                       />
                       <AvatarFallback>
-                        <User className="h-4 w-4" />
+                        {user.displayName ? user.displayName.charAt(0).toUpperCase() : <User className="h-4 w-4" />}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -136,11 +136,11 @@ export function Header({ mode, setMode }: HeaderProps) {
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        {user.isAnonymous ? "Anonymous User" : user.displayName}
+                        {user.displayName ?? "User"}
                       </p>
-                      <p className="text-xs leading-none text-muted-foreground">
-                        {user.uid}
-                      </p>
+                       {user.email && <p className="text-xs leading-none text-muted-foreground">
+                        {user.email}
+                      </p>}
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />

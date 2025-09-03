@@ -15,7 +15,7 @@ import {
   signOut as firebaseSignOut,
 } from 'firebase/auth';
 import { auth, db } from '@/lib/firebase';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 
 interface AuthContextType {
   user: User | null;
@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             email: user.email,
             displayName: user.displayName,
             photoURL: user.photoURL,
-            createdAt: new Date(),
+            createdAt: serverTimestamp(),
             channels: [],
           });
         }
@@ -57,7 +57,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = async () => {
     await firebaseSignOut(auth);
     setUser(null);
-    // No need to programmatically route, the main page logic will handle it
   };
 
   const contextValue = useMemo(
@@ -66,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       loading,
       signOut,
     }),
-    [user, loading]
+    [user, loading, signOut]
   );
 
   return (
