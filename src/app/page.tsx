@@ -4,7 +4,6 @@ import { Inbox } from '@/components/inbox';
 import { Separator } from '@/components/ui/separator';
 import { ChangeEmailAddress } from '@/components/change-email-address';
 import { AdBanner } from '@/components/ad-banner';
-import { DevPanel } from '@/components/dev-panel';
 
 export default function Home() {
   return (
@@ -35,7 +34,6 @@ export default function Home() {
         <ChangeEmailAddress />
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t border-border mt-auto space-y-4">
-        <DevPanel />
         <p>TopFreeMail &copy; 2024. All Rights Reserved.</p>
       </footer>
     </div>
