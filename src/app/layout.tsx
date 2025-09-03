@@ -29,7 +29,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <ThemeProvider
-          storageKey="topfreemail-theme"
+          attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange

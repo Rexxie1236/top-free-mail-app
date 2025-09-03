@@ -30,6 +30,40 @@ export function Header({ mode, setMode }: HeaderProps) {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+  const SingleModeIcon = () => (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+      <path d="M20 6l-8 7-8-7" />
+    </svg>
+  );
+
+  const ChannelModeIcon = () => (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 6h16" />
+      <path d="M4 12h16" />
+      <path d="M4 18h16" />
+    </svg>
+  );
+
+
   return (
     <header className="py-4 px-4 md:px-6 border-b border-border/50 sticky top-0 bg-background/80 backdrop-blur-sm z-10 rounded-b-xl">
       <div className="flex items-center justify-between gap-3">
@@ -55,37 +89,13 @@ export function Header({ mode, setMode }: HeaderProps) {
             >
               <DropdownMenuRadioItem value="single">
                 <div className="flex items-center gap-2">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <polyline points="3 7 12 13 21 7" />
-                  </svg>
+                   <SingleModeIcon />
                   <span>Single Mode</span>
                 </div>
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="channel">
                 <div className="flex items-center gap-2">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="3" y="3" width="18" height="6" rx="1" />
-                    <rect x="3" y="11" width="18" height="10" rx="1" />
-                  </svg>
+                  <ChannelModeIcon />
                   <span>Channel Mode</span>
                 </div>
               </DropdownMenuRadioItem>
