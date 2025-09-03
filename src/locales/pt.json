@@ -102,5 +102,32 @@
         "description": "O e-mail foi excluído com sucesso."
       }
     }
+  },
+  "devPanel": {
+    "title": "Painel do Desenvolvedor: Simular E-mail",
+    "description": "Use este formulário para adicionar um novo e-mail à coleção 'inbox' do Firestore para testar a funcionalidade da caixa de entrada.",
+    "recipientLabel": "E-mail do Destinatário",
+    "recipientPlaceholder": "ex: user@topfreemail.dev",
+    "senderLabel": "E-mail do Remetente",
+    "senderPlaceholder": "ex: test@example.com",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "ex: E-mail de Teste",
+    "bodyLabel": "Corpo do E-mail",
+    "bodyPlaceholder": "Digite o conteúdo do e-mail aqui.",
+    "sendButton": "Simular Recebimento de E-mail",
+    "error": {
+      "allFieldsRequired": {
+        "title": "Todos os campos são obrigatórios",
+        "description": "Por favor, preencha todos os campos para enviar um e-mail de teste."
+      },
+      "submissionFailed": {
+        "title": "Falha no Envio",
+        "description": "Ocorreu um erro ao enviar o e-mail de teste."
+      }
+    },
+    "success": {
+      "title": "E-mail Enviado",
+      "description": "O e-mail de teste foi adicionado à caixa de entrada."
+    }
   }
 }

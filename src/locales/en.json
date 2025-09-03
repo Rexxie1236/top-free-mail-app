@@ -147,5 +147,32 @@
         "description": "The email has been successfully deleted."
       }
     }
+  },
+  "devPanel": {
+    "title": "Developer Panel: Simulate Email",
+    "description": "Use this form to add a new email to the Firestore 'inbox' collection to test the inbox functionality.",
+    "recipientLabel": "Recipient Email",
+    "recipientPlaceholder": "e.g., user@topfreemail.dev",
+    "senderLabel": "Sender Email",
+    "senderPlaceholder": "e.g., test@example.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "e.g., Test Email",
+    "bodyLabel": "Email Body",
+    "bodyPlaceholder": "Type the content of the email here.",
+    "sendButton": "Simulate Receive Email",
+    "error": {
+      "allFieldsRequired": {
+        "title": "All fields are required",
+        "description": "Please fill out all the fields to send a test email."
+      },
+      "submissionFailed": {
+        "title": "Submission Failed",
+        "description": "There was an error sending the test email."
+      }
+    },
+    "success": {
+      "title": "Email Sent",
+      "description": "The test email has been added to the inbox."
+    }
   }
 }

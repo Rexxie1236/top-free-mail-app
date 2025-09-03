@@ -102,5 +102,32 @@
         "description": "El correo ha sido eliminado con éxito."
       }
     }
+  },
+  "devPanel": {
+    "title": "Panel de desarrollador: Simular correo electrónico",
+    "description": "Utilice este formulario para agregar un nuevo correo electrónico a la colección 'inbox' de Firestore para probar la funcionalidad de la bandeja de entrada.",
+    "recipientLabel": "Correo electrónico del destinatario",
+    "recipientPlaceholder": "p.ej., user@topfreemail.dev",
+    "senderLabel": "Correo electrónico del remitente",
+    "senderPlaceholder": "p.ej., test@example.com",
+    "subjectLabel": "Asunto",
+    "subjectPlaceholder": "p.ej., Correo de prueba",
+    "bodyLabel": "Cuerpo del correo electrónico",
+    "bodyPlaceholder": "Escriba aquí el contenido del correo electrónico.",
+    "sendButton": "Simular recepción de correo electrónico",
+    "error": {
+      "allFieldsRequired": {
+        "title": "Todos los campos son obligatorios",
+        "description": "Por favor, complete todos los campos para enviar un correo electrónico de prueba."
+      },
+      "submissionFailed": {
+        "title": "Falló el envío",
+        "description": "Se produjo un error al enviar el correo electrónico de prueba."
+      }
+    },
+    "success": {
+      "title": "Correo electrónico enviado",
+      "description": "El correo electrónico de prueba se ha agregado a la bandeja de entrada."
+    }
   }
 }

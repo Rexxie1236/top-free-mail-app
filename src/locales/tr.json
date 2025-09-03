@@ -102,5 +102,32 @@
         "description": "E-posta başarıyla silindi."
       }
     }
+  },
+  "devPanel": {
+    "title": "Geliştirici Paneli: E-posta Simülasyonu",
+    "description": "Gelen kutusu işlevselliğini test etmek için Firestore 'inbox' koleksiyonuna yeni bir e-posta eklemek için bu formu kullanın.",
+    "recipientLabel": "Alıcı E-postası",
+    "recipientPlaceholder": "ör. user@topfreemail.dev",
+    "senderLabel": "Gönderen E-postası",
+    "senderPlaceholder": "ör. test@example.com",
+    "subjectLabel": "Konu",
+    "subjectPlaceholder": "ör. Test E-postası",
+    "bodyLabel": "E-posta Gövdesi",
+    "bodyPlaceholder": "E-postanın içeriğini buraya yazın.",
+    "sendButton": "E-posta Alımını Simüle Et",
+    "error": {
+      "allFieldsRequired": {
+        "title": "Tüm alanlar zorunludur",
+        "description": "Bir test e-postası göndermek için lütfen tüm alanları doldurun."
+      },
+      "submissionFailed": {
+        "title": "Gönderim Başarısız",
+        "description": "Test e-postası gönderilirken bir hata oluştu."
+      }
+    },
+    "success": {
+      "title": "E-posta Gönderildi",
+      "description": "Test e-postası gelen kutusuna eklendi."
+    }
   }
 }

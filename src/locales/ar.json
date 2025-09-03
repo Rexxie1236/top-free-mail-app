@@ -102,5 +102,32 @@
         "description": "تم حذف البريد الإلكتروني بنجاح."
       }
     }
+  },
+  "devPanel": {
+    "title": "لوحة المطور: محاكاة البريد الإلكتروني",
+    "description": "استخدم هذا النموذج لإضافة بريد إلكتروني جديد إلى مجموعة 'inbox' في Firestore لاختبار وظائف صندوق الوارد.",
+    "recipientLabel": "البريد الإلكتروني للمستلم",
+    "recipientPlaceholder": "مثال: user@topfreemail.dev",
+    "senderLabel": "البريد الإلكتروني للمرسل",
+    "senderPlaceholder": "مثال: test@example.com",
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "مثال: بريد إلكتروني تجريبي",
+    "bodyLabel": "نص البريد الإلكتروني",
+    "bodyPlaceholder": "اكتب محتوى البريد الإلكتروني هنا.",
+    "sendButton": "محاكاة استلام البريد الإلكتروني",
+    "error": {
+      "allFieldsRequired": {
+        "title": "جميع الحقول مطلوبة",
+        "description": "يرجى ملء جميع الحقول لإرسال بريد إلكتروني تجريبي."
+      },
+      "submissionFailed": {
+        "title": "فشل الإرسال",
+        "description": "حدث خطأ أثناء إرسال البريد الإلكتروني التجريبي."
+      }
+    },
+    "success": {
+      "title": "تم إرسال البريد الإلكتروني",
+      "description": "تمت إضافة البريد الإلكتروني التجريبي إلى صندوق الوارد."
+    }
   }
 }

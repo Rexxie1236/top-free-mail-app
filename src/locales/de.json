@@ -102,5 +102,32 @@
         "description": "Die E-Mail wurde erfolgreich gelöscht."
       }
     }
+  },
+  "devPanel": {
+    "title": "Entwicklerpanel: E-Mail simulieren",
+    "description": "Verwenden Sie dieses Formular, um eine neue E-Mail zur Firestore-Sammlung 'inbox' hinzuzufügen, um die Posteingangsfunktionalität zu testen.",
+    "recipientLabel": "Empfänger-E-Mail",
+    "recipientPlaceholder": "z.B. user@topfreemail.dev",
+    "senderLabel": "Absender-E-Mail",
+    "senderPlaceholder": "z.B. test@example.com",
+    "subjectLabel": "Betreff",
+    "subjectPlaceholder": "z.B. Test-E-Mail",
+    "bodyLabel": "E-Mail-Text",
+    "bodyPlaceholder": "Geben Sie hier den Inhalt der E-Mail ein.",
+    "sendButton": "E-Mail-Empfang simulieren",
+    "error": {
+      "allFieldsRequired": {
+        "title": "Alle Felder sind erforderlich",
+        "description": "Bitte füllen Sie alle Felder aus, um eine Test-E-Mail zu senden."
+      },
+      "submissionFailed": {
+        "title": "Übermittlung fehlgeschlagen",
+        "description": "Beim Senden der Test-E-Mail ist ein Fehler aufgetreten."
+      }
+    },
+    "success": {
+      "title": "E-Mail gesendet",
+      "description": "Die Test-E-Mail wurde dem Posteingang hinzugefügt."
+    }
   }
 }

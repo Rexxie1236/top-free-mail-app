@@ -102,5 +102,32 @@
         "description": "ইমেলটি সফলভাবে মুছে ফেলা হয়েছে।"
       }
     }
+  },
+  "devPanel": {
+    "title": "ডেভেলপার প্যানেল: ইমেল সিমুলেট করুন",
+    "description": "ইনবক্স কার্যকারিতা পরীক্ষা করতে ফায়ারস্টোর 'ইনবক্স' সংগ্রহে একটি নতুন ইমেল যুক্ত করতে এই ফর্মটি ব্যবহার করুন।",
+    "recipientLabel": "প্রাপকের ইমেল",
+    "recipientPlaceholder": "যেমন, user@topfreemail.dev",
+    "senderLabel": "প্রেরকের ইমেল",
+    "senderPlaceholder": "যেমন, test@example.com",
+    "subjectLabel": "বিষয়",
+    "subjectPlaceholder": "যেমন, পরীক্ষার ইমেল",
+    "bodyLabel": "ইমেলের মূল অংশ",
+    "bodyPlaceholder": "এখানে ইমেলের বিষয়বস্তু টাইপ করুন।",
+    "sendButton": "ইমেল প্রাপ্তি সিমুলেট করুন",
+    "error": {
+      "allFieldsRequired": {
+        "title": "সমস্ত ক্ষেত্র প্রয়োজনীয়",
+        "description": "একটি পরীক্ষার ইমেল পাঠাতে দয়া করে সমস্ত ক্ষেত্র পূরণ করুন।"
+      },
+      "submissionFailed": {
+        "title": "জমা ব্যর্থ হয়েছে",
+        "description": "পরীক্ষার ইমেল পাঠাতে একটি ত্রুটি ঘটেছে।"
+      }
+    },
+    "success": {
+      "title": "ইমেল পাঠানো হয়েছে",
+      "description": "পরীক্ষার ইমেলটি ইনবক্সে যুক্ত করা হয়েছে।"
+    }
   }
 }

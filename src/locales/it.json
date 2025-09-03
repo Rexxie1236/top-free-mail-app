@@ -102,5 +102,32 @@
         "description": "L'email è stata eliminata con successo."
       }
     }
+  },
+  "devPanel": {
+    "title": "Pannello sviluppatore: Simula email",
+    "description": "Usa questo modulo per aggiungere una nuova email alla collezione 'inbox' di Firestore per testare la funzionalità della casella di posta.",
+    "recipientLabel": "Email del destinatario",
+    "recipientPlaceholder": "es. user@topfreemail.dev",
+    "senderLabel": "Email del mittente",
+    "senderPlaceholder": "es. test@example.com",
+    "subjectLabel": "Oggetto",
+    "subjectPlaceholder": "es. Email di prova",
+    "bodyLabel": "Corpo dell'email",
+    "bodyPlaceholder": "Scrivi qui il contenuto dell'email.",
+    "sendButton": "Simula ricezione email",
+    "error": {
+      "allFieldsRequired": {
+        "title": "Tutti i campi sono obbligatori",
+        "description": "Per favore, compila tutti i campi per inviare un'email di prova."
+      },
+      "submissionFailed": {
+        "title": "Invio fallito",
+        "description": "Si è verificato un errore durante l'invio dell'email di prova."
+      }
+    },
+    "success": {
+      "title": "Email inviata",
+      "description": "L'email di prova è stata aggiunta alla casella di posta."
+    }
   }
 }

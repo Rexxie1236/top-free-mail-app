@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { ChangeEmailAddress } from '@/components/change-email-address';
 import { AdBanner } from '@/components/ad-banner';
 import { ChannelView } from '@/components/channel-view';
+import { DevPanel } from '@/components/dev-panel';
 import { useTranslation } from '@/hooks/use-translation';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
@@ -75,6 +76,12 @@ export default function Home() {
       <Header mode={mode} setMode={setMode} />
       <main className="flex-grow container mx-auto px-4 md:px-8 py-4 md:py-6">
         {renderContent()}
+        {process.env.NODE_ENV === 'development' && (
+          <>
+            <Separator className="my-12 md:my-16 bg-border/50" />
+            <DevPanel />
+          </>
+        )}
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t border-border mt-auto space-y-4">
         <p>{T('home.footer')}</p>
