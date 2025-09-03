@@ -58,15 +58,19 @@ export function EmailDisplay() {
     return () => clearInterval(timer);
   }, [handleRefreshInbox]);
 
-  const generateNewEmail = () => {
-    const randomPart = generateRandomString(10);
-    const newEmail = `${randomPart}@topfreemail.dev`;
+  const resetStateForNewEmail = (newEmail: string) => {
     setEmail(newEmail);
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('currentEmail', newEmail);
       window.dispatchEvent(new Event('emailChanged'));
     }
     setCountdown(REFRESH_INTERVAL);
+  }
+
+  const generateNewEmail = () => {
+    const randomPart = generateRandomString(10);
+    const newEmail = `${randomPart}@topfreemail.dev`;
+    resetStateForNewEmail(newEmail);
   };
 
   const handleEmailChange = useCallback(() => {
@@ -74,6 +78,7 @@ export function EmailDisplay() {
       const storedEmail = sessionStorage.getItem('currentEmail');
       if (storedEmail) {
         setEmail(storedEmail);
+        setCountdown(REFRESH_INTERVAL);
       } else {
         generateNewEmail();
       }
