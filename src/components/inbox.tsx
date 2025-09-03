@@ -16,6 +16,7 @@ import { Wand2, Loader2, Trash2, Inbox as InboxIcon } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, query, where, onSnapshot, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import { useTranslation } from '@/hooks/use-translation';
+import { useAuth } from '@/hooks/use-auth';
 
 interface Email {
   id: string;
@@ -33,6 +34,7 @@ export function Inbox() {
   const [loadingEmails, setLoadingEmails] = useState(true);
   const { toast } = useToast();
   const { T } = useTranslation();
+  const { user } = useAuth();
 
   const handleEmailChange = useCallback(() => {
     const storedEmail = typeof window !== 'undefined' ? sessionStorage.getItem('currentEmail') : null;
@@ -102,6 +104,16 @@ export function Inbox() {
   };
 
   const deleteEmail = async (emailId: string) => {
+    // Deleting emails is only allowed for logged-in users,
+    // which is enforced by the security rules.
+    if (!user) {
+        toast({
+            variant: 'destructive',
+            title: "Authentication Required",
+            description: "You must be logged in to delete emails."
+        });
+        return;
+    }
     try {
       await deleteDoc(doc(db, "inbox", emailId));
       toast({
@@ -113,7 +125,7 @@ export function Inbox() {
       toast({
         variant: 'destructive',
         title: T('inbox.error.delete.title'),
-        description: T('inbox.error.delete.description'),
+        description: "Your security rules prevent you from deleting this email.",
       });
     }
   };
@@ -157,18 +169,21 @@ export function Inbox() {
                   </span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-muted-foreground hover:bg-destructive/20 hover:text-destructive shrink-0"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      deleteEmail(email.id);
-                    }}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                    <span className="sr-only">{T('inbox.deleteAriaLabel')}</span>
-                  </Button>
+                  {/* Only show delete button for logged in users */}
+                  {user && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-muted-foreground hover:bg-destructive/20 hover:text-destructive shrink-0"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteEmail(email.id);
+                      }}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      <span className="sr-only">{T('inbox.deleteAriaLabel')}</span>
+                    </Button>
+                  )}
                 </div>
               </div>
             </AccordionTrigger>
