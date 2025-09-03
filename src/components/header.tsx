@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { MoreVertical, Paintbrush, SunMoon, Info } from 'lucide-react';
-import { useTheme } from '@/components/theme-provider';
+import { useTheme } from 'next-themes';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 
@@ -94,18 +94,9 @@ export function Header({ mode, setMode }: HeaderProps) {
             <DropdownMenuSeparator />
 
             <DropdownMenuLabel>Settings</DropdownMenuLabel>
-            <DropdownMenuItem
-              onSelect={(e) => e.preventDefault()}
-              className="flex items-center justify-between"
-            >
-              <Label
-                htmlFor="modernize-email-switch"
-                className="flex items-center gap-2 cursor-pointer"
-              >
+            <DropdownMenuItem>
                 <Paintbrush className="mr-2 h-4 w-4" />
                 <span>Modernize Email</span>
-              </Label>
-              <Switch id="modernize-email-switch" />
             </DropdownMenuItem>
             <DropdownMenuItem
               onSelect={(e) => e.preventDefault()}

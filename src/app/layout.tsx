@@ -28,7 +28,12 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <ThemeProvider storageKey="topfreemail-theme">
+        <ThemeProvider
+          storageKey="topfreemail-theme"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
           <Toaster />
         </ThemeProvider>
