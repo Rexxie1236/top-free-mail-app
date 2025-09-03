@@ -16,6 +16,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
+  DropdownMenuGroup,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import {
@@ -102,14 +103,9 @@ export function Header({ mode, setMode }: HeaderProps) {
           </Link>
           <div className="flex items-center gap-2">
             {!loading && !user && (
-              <>
-                <Button asChild variant="ghost">
-                  <Link href="/login">{T('header.login')}</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/signup">{T('header.signUp')}</Link>
-                </Button>
-              </>
+              <Button asChild>
+                <Link href="/login">{T('header.login')}</Link>
+              </Button>
             )}
 
             {user && (
@@ -122,7 +118,7 @@ export function Header({ mode, setMode }: HeaderProps) {
                         alt={user.displayName ?? 'User'}
                       />
                       <AvatarFallback>
-                        {user.email?.charAt(0).toUpperCase()}
+                        <User className="h-4 w-4" />
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -131,16 +127,16 @@ export function Header({ mode, setMode }: HeaderProps) {
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        {user.displayName}
+                        {user.isAnonymous ? "Anonymous User" : user.displayName}
                       </p>
                       <p className="text-xs leading-none text-muted-foreground">
-                        {user.email}
+                        {user.uid}
                       </p>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                     <DropdownMenuItem disabled>
                       <User className="mr-2 h-4 w-4" />
                       <span>{T('header.profile')}</span>
                     </DropdownMenuItem>
