@@ -19,6 +19,9 @@ import { ScrollArea } from './ui/scroll-area';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { useTranslation } from '@/hooks/use-translation';
+import { useAuth } from '@/hooks/use-auth';
+import { db } from '@/lib/firebase';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 
 function generateRandomString(length: number) {
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -34,14 +37,17 @@ export function ChannelView() {
   const [activeChannel, setActiveChannel] = useState<string | null>(null);
   const [newChannelName, setNewChannelName] = useState('');
   const { T } = useTranslation();
+  const { user } = useAuth();
 
-  const getChannelsFromStorage = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      const storedChannels = sessionStorage.getItem('channels');
-      return storedChannels ? JSON.parse(storedChannels) : [];
+  const getChannelsFromDb = useCallback(async () => {
+    if (!user) return [];
+    const userDocRef = doc(db, 'users', user.uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      return userDoc.data().channels || [];
     }
     return [];
-  }, []);
+  }, [user]);
 
   const getActiveChannelFromStorage = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -52,53 +58,59 @@ export function ChannelView() {
 
 
   useEffect(() => {
-    const storedChannels = getChannelsFromStorage();
-    const active = getActiveChannelFromStorage();
-    
-    if (storedChannels.length > 0) {
-      setChannels(storedChannels);
-       if (active && storedChannels.includes(active)) {
-        setActiveChannel(active);
-      } else {
-        const newActive = storedChannels[0];
-        setActiveChannel(newActive);
-        if (typeof window !== 'undefined') {
-          sessionStorage.setItem('currentEmail', newActive);
+    const init = async () => {
+      if(!user) return;
+
+      const storedChannels = await getChannelsFromDb();
+      const active = getActiveChannelFromStorage();
+      
+      if (storedChannels.length > 0) {
+        setChannels(storedChannels);
+         if (active && storedChannels.includes(active)) {
+          setActiveChannel(active);
+        } else {
+          const newActive = storedChannels[0];
+          setActiveChannel(newActive);
+          if (typeof window !== 'undefined') {
+            sessionStorage.setItem('currentEmail', newActive);
+          }
         }
+      } else {
+        createNewChannel();
       }
-    } else {
-      createNewChannel();
     }
+    init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user, getChannelsFromDb, getActiveChannelFromStorage]);
 
-  const syncChannelsToStorage = (newChannels: string[]) => {
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('channels', JSON.stringify(newChannels));
-    }
-  };
-
-  const createNewChannel = () => {
+  const createNewChannel = async () => {
+    if (!user) return;
     const namePart = newChannelName.trim() === '' ? generateRandomString(10) : newChannelName.trim().replace(/\s+/g, '.');
     const newEmail = `${namePart}@topfreemail.dev`;
+    
+    const userDocRef = doc(db, 'users', user.uid);
+    await updateDoc(userDocRef, { channels: arrayUnion(newEmail) });
+
     const newChannels = [...channels, newEmail];
     setChannels(newChannels);
-    syncChannelsToStorage(newChannels);
     switchActiveChannel(newEmail);
     setNewChannelName('');
   };
 
-  const deleteChannel = (channelToDelete: string) => {
+  const deleteChannel = async (channelToDelete: string) => {
+    if (!user) return;
+    const userDocRef = doc(db, 'users', user.uid);
+    await updateDoc(userDocRef, { channels: arrayRemove(channelToDelete) });
+
     const newChannels = channels.filter((c) => c !== channelToDelete);
     setChannels(newChannels);
-    syncChannelsToStorage(newChannels);
 
     if (activeChannel === channelToDelete) {
       if (newChannels.length > 0) {
         switchActiveChannel(newChannels[0]);
       } else {
         // If the last channel is deleted, create a new one.
-        createNewChannel();
+        await createNewChannel();
       }
     }
   };

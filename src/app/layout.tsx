@@ -6,6 +6,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import { TranslationProvider, useTranslation } from '@/hooks/use-translation';
+import { AuthProvider } from '@/hooks/use-auth';
 
 // export const metadata: Metadata = {
 //   title: 'TopFreeMail',
@@ -56,8 +57,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <TranslationProvider>
-      <AppLayout>{children}</AppLayout>
-    </TranslationProvider>
+    <AuthProvider>
+      <TranslationProvider>
+        <AppLayout>{children}</AppLayout>
+      </TranslationProvider>
+    </AuthProvider>
   );
 }

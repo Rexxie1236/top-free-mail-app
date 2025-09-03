@@ -22,14 +22,18 @@ import {
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from '@/hooks/use-translation';
+import { useAuth } from '@/hooks/use-auth';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export function ChangeEmailAddress() {
   const [login, setLogin] = useState('');
   const [domain, setDomain] = useState('topfreemail.dev');
   const { toast } = useToast();
   const { T } = useTranslation();
+  const { user } = useAuth();
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!login) {
       toast({
         variant: 'destructive',
@@ -38,10 +42,14 @@ export function ChangeEmailAddress() {
       });
       return;
     }
+    if (!user) return; // Should not happen if component is rendered
 
     const newEmail = `${login}@${domain}`;
 
     if (typeof window !== 'undefined') {
+      const userDocRef = doc(db, 'users', user.uid);
+      await updateDoc(userDocRef, { channels: arrayUnion(newEmail) });
+      
       sessionStorage.setItem('currentEmail', newEmail);
       window.dispatchEvent(new Event('emailChanged'));
       toast({

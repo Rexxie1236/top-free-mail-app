@@ -13,7 +13,30 @@
     "lightTheme": "Light Theme",
     "darkTheme": "Dark Theme",
     "language": "Language",
-    "about": "About"
+    "about": "About",
+    "login": "Log In",
+    "signUp": "Sign Up",
+    "profile": "Profile",
+    "logout": "Log Out"
+  },
+  "auth": {
+    "loginTitle": "Welcome Back!",
+    "loginDescription": "Sign in to access your channels and emails.",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "loginButton": "Log In",
+    "orContinueWith": "Or continue with",
+    "dontHaveAccount": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "signupTitle": "Create an Account",
+    "signupDescription": "Get started with your secure, temporary email service.",
+    "signupButton": "Sign Up",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log In",
+    "error": {
+      "title": "Authentication Error",
+      "invalidCredentials": "The email or password you entered is incorrect. Please try again."
+    }
   },
   "about": {
     "title": "About TopFreeMail",
