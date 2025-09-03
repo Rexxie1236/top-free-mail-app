@@ -1,3 +1,4 @@
+
 {
   "home": {
     "description": "Forget about spam, advertising mailings, hacking and attacking robots. Keep your real mailbox clean and secure. Temp Mail provides temporary, secure, anonymous, free, disposable email address.",
@@ -30,12 +31,25 @@
     "signUpLink": "Sign Up",
     "signupTitle": "Create an Account",
     "signupDescription": "Get started with your secure, temporary email service.",
-    "signupButton": "Sign Up",
+    "signupButton": "Create Account",
     "haveAccount": "Already have an account?",
     "loginLink": "Log In",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "phoneLabel": "Phone Number",
+    "confirmPasswordLabel": "Confirm Password",
     "error": {
       "title": "Authentication Error",
       "invalidCredentials": "The email or password you entered is incorrect. Please try again."
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "passwordRequired": "Password is required",
+      "passwordLength": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match"
     }
   },
   "about": {
