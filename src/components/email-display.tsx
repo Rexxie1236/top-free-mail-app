@@ -66,6 +66,7 @@ export function EmailDisplay() {
       sessionStorage.setItem('currentEmail', newEmail);
       window.dispatchEvent(new Event('emailChanged'));
     }
+    setCountdown(REFRESH_INTERVAL);
   };
 
   const handleEmailChange = useCallback(() => {
