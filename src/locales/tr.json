@@ -1,0 +1,131 @@
+
+{
+  "home": {
+    "description": "Spam, reklam postaları, bilgisayar korsanlığı ve saldıran robotları unutun. Gerçek posta kutunuzu temiz ve güvende tutun. Temp Mail geçici, güvenli, anonim, ücretsiz, tek kullanımlık e-posta adresi sağlar.",
+    "inboxTitle": "Gelen Kutunuz",
+    "footer": "TopFreeMail © 2024. Tüm Hakları Saklıdır."
+  },
+  "header": {
+    "mode": "Mod",
+    "singleMode": "Tekli Mod",
+    "channelMode": "Kanal Modu",
+    "settings": "Ayarlar",
+    "modernize": "E-postayı Modernleştir",
+    "lightTheme": "Açık Tema",
+    "darkTheme": "Karanlık Tema",
+    "language": "Dil",
+    "about": "Hakkında"
+  },
+  "about": {
+    "title": "TopFreeMail Hakkında",
+    "description": "TopFreeMail, birincil gelen kutunuzu temiz ve güvenli tutmak için başvuracağınız çözümdür.",
+    "protection": "Sizi spam, reklam postaları ve çevrimiçi tehditlerden korumak için geçici, güvenli, anonim ve ücretsiz tek kullanımlık e-posta adresleri sağlıyoruz.",
+    "singleMode": "Tekli Mod",
+    "singleModeDesc": "Tek seferlik kullanım için hızlı bir şekilde geçici bir e-posta oluşturun.",
+    "channelMode": "Kanal Modu",
+    "channelModeDesc": "Farklı hizmetler için aynı anda birden fazla geçici e-posta adresini zahmetsizce yönetin.",
+    "aiPowered": "Yapay Zeka Destekli",
+    "aiPoweredDesc": "Uzun e-postaları özetlemek için yapay zekayı kullanın, gelen kutunuzu daha akıllı ve daha verimli hale getirin.",
+    "close": "Kapat"
+  },
+  "changeEmail": {
+    "title": "E-posta Adresini Değiştir",
+    "description": "İstediğiniz bir e-postayı girerek ve bir alan adı seçerek geçici e-posta adresinizi değiştirebilir veya kurtarabilirsiniz.",
+    "loginLabel": "Giriş",
+    "loginPlaceholder": "Giriş",
+    "domainLabel": "Alan Adı",
+    "domainPlaceholder": "Bir alan adı seçin",
+    "saveButton": "Adresi Kaydet",
+    "error": {
+      "emptyLogin": {
+        "title": "Giriş boş olamaz",
+        "description": "Lütfen e-posta adresiniz için bir giriş adı girin."
+      }
+    },
+    "success": {
+      "title": "E-posta Adresi Güncellendi",
+      "description": "Yeni e-posta adresiniz"
+    }
+  },
+  "channel": {
+    "title": "E-posta Kanalları",
+    "description": "Birden fazla geçici e-posta adresini yönetin.",
+    "newAddress": "Yeni Adres Oluştur",
+    "optionalName": "İsteğe bağlı: bir ad yazın",
+    "inboxTitle": "Gelen Kutunuz"
+  },
+  "devPanel": {
+    "title": "Geliştirici Paneli: E-postayı Simüle Et",
+    "description": "Şu anda etkin olan adres için Firestore veritabanına bir test e-postası eklemek için bu formu kullanın.",
+    "senderLabel": "Gönderen",
+    "subjectLabel": "Konu",
+    "bodyLabel": "Gövde",
+    "sendButton": "Test E-postası Gönder",
+    "error": {
+      "noRecipient": {
+        "title": "Alıcı ayarlanmadı",
+        "description": "Lütfen önce bir e-posta adresi oluşturun veya ayarlayın."
+      },
+      "sendFailed": {
+        "title": "Test e-postası gönderilemedi",
+        "description": "Daha fazla ayrıntı için konsolu kontrol edin."
+      }
+    },
+    "success": {
+      "title": "Test E-postası Gönderildi!",
+      "description": {
+        "part1": "adresine bir e-posta",
+        "part2": "gelen kutusuna eklendi."
+      }
+    }
+  },
+  "emailDisplay": {
+    "title": "Geçici E-posta Adresiniz",
+    "ariaLabel": "Geçici E-posta Adresi",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "tooltip": {
+      "qr": "QR Kodunu Göster",
+      "new": "Yeni E-posta Oluştur",
+      "refresh": "Gelen Kutusunu Yenile"
+    },
+    "toast": {
+      "inboxRefreshed": {
+        "title": "Gelen Kutusu Yenilendi",
+        "description": "Yeni e-postalar kontrol edildi."
+      },
+      "copied": {
+        "title": "Panoya kopyalandı!"
+      }
+    }
+  },
+  "inbox": {
+    "loading": "Gelen kutunuz yükleniyor...",
+    "empty": {
+      "title": "Gelen kutunuz boş.",
+      "description": "Geçici adresinize gönderilen e-postalar burada görünecektir."
+    },
+    "deleteAriaLabel": "E-postayı sil",
+    "summaryTitle": "Yapay Zeka Özeti",
+    "summarizeButton": "Yapay Zeka ile Özetle",
+    "error": {
+      "fetch": {
+        "title": "E-postaları getirirken hata oluştu",
+        "description": "Gelen kutusuna bağlanılamadı. Lütfen bağlantınızı ve güvenlik kurallarınızı kontrol edin."
+      },
+      "summarize": {
+        "title": "Özetleme Başarısız Oldu"
+      },
+      "delete": {
+        "title": "Silme Başarısız Oldu",
+        "description": "E-posta silinemedi. Lütfen tekrar deneyin."
+      }
+    },
+    "success": {
+      "delete": {
+        "title": "E-posta Silindi",
+        "description": "E-posta başarıyla silindi."
+      }
+    }
+  }
+}
