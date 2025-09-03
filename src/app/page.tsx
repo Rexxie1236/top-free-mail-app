@@ -18,6 +18,8 @@ export default function Home() {
           temporary, secure, anonymous, free, disposable email address.
         </p>
 
+        <AdBanner />
+
         <Separator className="my-8 bg-border/50" />
 
         <div className="space-y-6">
