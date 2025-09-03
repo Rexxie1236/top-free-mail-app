@@ -15,6 +15,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { MoreVertical, Paintbrush, SunMoon, Info } from 'lucide-react';
 import { useTheme } from '@/components/theme-provider';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 interface HeaderProps {
   mode: AppMode;
@@ -92,13 +94,35 @@ export function Header({ mode, setMode }: HeaderProps) {
             <DropdownMenuSeparator />
 
             <DropdownMenuLabel>Settings</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Paintbrush className="mr-2 h-4 w-4" />
-              <span>Modernize Email</span>
+            <DropdownMenuItem
+              onSelect={(e) => e.preventDefault()}
+              className="flex items-center justify-between"
+            >
+              <Label
+                htmlFor="modernize-email-switch"
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <Paintbrush className="mr-2 h-4 w-4" />
+                <span>Modernize Email</span>
+              </Label>
+              <Switch id="modernize-email-switch" />
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={toggleTheme}>
-              <SunMoon className="mr-2 h-4 w-4" />
-              <span>{theme === 'dark' ? 'Light' : 'Dark'} Theme</span>
+            <DropdownMenuItem
+              onSelect={(e) => e.preventDefault()}
+              className="flex items-center justify-between"
+            >
+              <Label
+                htmlFor="theme-switch"
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <SunMoon className="mr-2 h-4 w-4" />
+                <span>{theme === 'dark' ? 'Dark' : 'Light'} Theme</span>
+              </Label>
+              <Switch
+                id="theme-switch"
+                checked={theme === 'dark'}
+                onCheckedChange={toggleTheme}
+              />
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Info className="mr-2 h-4 w-4" />
