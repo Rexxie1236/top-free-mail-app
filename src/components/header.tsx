@@ -6,12 +6,15 @@ import { Logo } from '@/components/logo';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { MoreVertical } from 'lucide-react';
+import { MoreVertical, Paintbrush, SunMoon, Info } from 'lucide-react';
 
 interface HeaderProps {
   mode: AppMode;
@@ -33,10 +36,11 @@ export function Header({ mode, setMode }: HeaderProps) {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon">
               <MoreVertical className="h-5 w-5" />
-              <span className="sr-only">Switch Mode</span>
+              <span className="sr-only">Open main menu</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuLabel>Mode</DropdownMenuLabel>
             <DropdownMenuRadioGroup
               value={mode}
               onValueChange={(value) => setMode(value as AppMode)}
@@ -78,6 +82,22 @@ export function Header({ mode, setMode }: HeaderProps) {
                 </div>
               </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuLabel>Settings</DropdownMenuLabel>
+            <DropdownMenuItem>
+              <Paintbrush className="mr-2 h-4 w-4" />
+              <span>Modernize Email</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <SunMoon className="mr-2 h-4 w-4" />
+              <span>Dark/Light Theme</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Info className="mr-2 h-4 w-4" />
+              <span>About</span>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
