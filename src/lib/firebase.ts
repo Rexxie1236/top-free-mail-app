@@ -11,8 +11,8 @@ const firebaseConfig = {
   "storageBucket": "topfreemail-i02c2.appspot.com",
   "apiKey": "AIzaSyCyBTr4WCoBh7t8CemrQciOzDKv_67LLs0",
   "authDomain": "topfreemail-i02c2.firebaseapp.com",
-  "measurementId": "G-5G3Y731W1K",
-  "messagingSenderId": "570411716706"
+  "messagingSenderId": "570411716706",
+  "measurementId": "G-5G3Y731W1K"
 };
 
 // Initialize Firebase
