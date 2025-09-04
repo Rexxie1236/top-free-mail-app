@@ -102,32 +102,5 @@
         "description": "メールは正常に削除されました。"
       }
     }
-  },
-  "devPanel": {
-    "title": "開発者パネル：メールのシミュレーション",
-    "description": "このフォームを使用して、Firestoreの「inbox」コレクションに新しいメールを追加し、受信トレイの機能をテストします。",
-    "recipientLabel": "受信者のメール",
-    "recipientPlaceholder": "例：user@topfreemail.dev",
-    "senderLabel": "送信者のメール",
-    "senderPlaceholder": "例：test@example.com",
-    "subjectLabel": "件名",
-    "subjectPlaceholder": "例：テストメール",
-    "bodyLabel": "メール本文",
-    "bodyPlaceholder": "ここにメールの内容を入力してください。",
-    "sendButton": "メール受信のシミュレーション",
-    "error": {
-      "allFieldsRequired": {
-        "title": "すべてのフィールドは必須です",
-        "description": "テストメールを送信するには、すべてのフィールドに入力してください。"
-      },
-      "submissionFailed": {
-        "title": "送信に失敗しました",
-        "description": "テストメールの送信中にエラーが発生しました。"
-      }
-    },
-    "success": {
-      "title": "メールが送信されました",
-      "description": "テストメールが受信トレイに追加されました。"
-    }
   }
 }

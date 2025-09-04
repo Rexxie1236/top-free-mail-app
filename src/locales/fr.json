@@ -102,32 +102,5 @@
         "description": "L'e-mail a été supprimé avec succès."
       }
     }
-  },
-  "devPanel": {
-    "title": "Panneau de développeur : Simuler un e-mail",
-    "description": "Utilisez ce formulaire pour ajouter un nouvel e-mail à la collection 'inbox' de Firestore afin de tester la fonctionnalité de la boîte de réception.",
-    "recipientLabel": "E-mail du destinataire",
-    "recipientPlaceholder": "ex: user@topfreemail.dev",
-    "senderLabel": "E-mail de l'expéditeur",
-    "senderPlaceholder": "ex: test@example.com",
-    "subjectLabel": "Sujet",
-    "subjectPlaceholder": "ex: E-mail de test",
-    "bodyLabel": "Corps de l'e-mail",
-    "bodyPlaceholder": "Saisissez le contenu de l'e-mail ici.",
-    "sendButton": "Simuler la réception d'un e-mail",
-    "error": {
-      "allFieldsRequired": {
-        "title": "Tous les champs sont requis",
-        "description": "Veuillez remplir tous les champs pour envoyer un e-mail de test."
-      },
-      "submissionFailed": {
-        "title": "Échec de la soumission",
-        "description": "Une erreur s'est produite lors de l'envoi de l'e-mail de test."
-      }
-    },
-    "success": {
-      "title": "E-mail envoyé",
-      "description": "L'e-mail de test a été ajouté à la boîte de réception."
-    }
   }
 }

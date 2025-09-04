@@ -102,32 +102,5 @@
         "description": "ईमेल सफलतापूर्वक हटा दिया गया है।"
       }
     }
-  },
-  "devPanel": {
-    "title": "डेवलपर पैनल: ईमेल का अनुकरण करें",
-    "description": "इनबॉक्स की कार्यक्षमता का परीक्षण करने के लिए फायरस्टोर 'इनबॉक्स' संग्रह में एक नया ईमेल जोड़ने के लिए इस फ़ॉर्म का उपयोग करें।",
-    "recipientLabel": "प्राप्तकर्ता का ईमेल",
-    "recipientPlaceholder": "उदा., user@topfreemail.dev",
-    "senderLabel": "प्रेषक का ईमेल",
-    "senderPlaceholder": "उदा., test@example.com",
-    "subjectLabel": "विषय",
-    "subjectPlaceholder": "उदा., परीक्षण ईमेल",
-    "bodyLabel": "ईमेल का मुख्य भाग",
-    "bodyPlaceholder": "ईमेल की सामग्री यहाँ टाइप करें।",
-    "sendButton": "ईमेल प्राप्ति का अनुकरण करें",
-    "error": {
-      "allFieldsRequired": {
-        "title": "सभी फ़ील्ड आवश्यक हैं",
-        "description": "एक परीक्षण ईमेल भेजने के लिए कृपया सभी फ़ील्ड भरें।"
-      },
-      "submissionFailed": {
-        "title": "सबमिशन विफल",
-        "description": "परीक्षण ईमेल भेजते समय एक त्रुटि हुई।"
-      }
-    },
-    "success": {
-      "title": "ईमेल भेजा गया",
-      "description": "परीक्षण ईमेल इनबॉक्स में जोड़ दिया गया है।"
-    }
   }
 }

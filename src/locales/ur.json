@@ -102,32 +102,5 @@
         "description": "ای میل کامیابی سے حذف ہو گئی ہے۔"
       }
     }
-  },
-  "devPanel": {
-    "title": "ڈیولپر پینل: ای میل کی تقلید کریں",
-    "description": "ان باکس کی فعالیت کو جانچنے کے لیے فائر اسٹور 'ان باکس' کلیکشن میں ایک نیا ای میل شامل کرنے کے لیے اس فارم کا استعمال کریں۔",
-    "recipientLabel": "وصول کنندہ کا ای میل",
-    "recipientPlaceholder": "مثال کے طور پر، user@topfreemail.dev",
-    "senderLabel": "بھیجنے والے کا ای میل",
-    "senderPlaceholder": "مثال کے طور پر، test@example.com",
-    "subjectLabel": "مضمون",
-    "subjectPlaceholder": "مثال کے طور پر، ٹیسٹ ای میل",
-    "bodyLabel": "ای میل کا متن",
-    "bodyPlaceholder": "ای میل کا مواد یہاں ٹائپ کریں۔",
-    "sendButton": "ای میل کی وصولی کی تقلید کریں",
-    "error": {
-      "allFieldsRequired": {
-        "title": "تمام فیلڈز درکار ہیں",
-        "description": "ٹیسٹ ای میل بھیجنے کے لیے براہ کرم تمام فیلڈز کو پر کریں۔"
-      },
-      "submissionFailed": {
-        "title": "جمع کرانے میں ناکامی",
-        "description": "ٹیسٹ ای میل بھیجتے وقت ایک خرابی پیش آئی۔"
-      }
-    },
-    "success": {
-      "title": "ای میل بھیج دی گئی",
-      "description": "ٹیسٹ ای میل ان باکس میں شامل کر دی گئی ہے۔"
-    }
   }
 }
