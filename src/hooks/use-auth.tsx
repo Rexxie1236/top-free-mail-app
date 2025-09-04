@@ -18,7 +18,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
   sendPasswordResetEmail,
   getRedirectResult,
 } from 'firebase/auth';
@@ -122,7 +122,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signInWithGoogle = useCallback(async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      // Using signInWithRedirect is more robust for all browser environments
+      await signInWithRedirect(auth, provider);
       return null;
     } catch (error) {
       console.error('Google Sign In Error:', error);
