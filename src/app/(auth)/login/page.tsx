@@ -154,7 +154,7 @@ export default function LoginPage() {
             </Button>
           </form>
         </Form>
-        <Separator className="my-4" />
+        {/* <Separator className="my-4" />
         <Button
           onClick={handleGoogleLogin}
           className="w-full"
@@ -167,7 +167,7 @@ export default function LoginPage() {
             <GoogleIcon />
           )}
           {T('auth.orContinueWith')} Google
-        </Button>
+        </Button> */}
         <div className="mt-4 text-center text-sm">
           {T('auth.dontHaveAccount')}{' '}
           <Link href="/signup" className="underline">
