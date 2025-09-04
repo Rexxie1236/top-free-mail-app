@@ -120,6 +120,7 @@ export default function LoginPage() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{T('auth.emailLabel')}</FormLabel>
+
                   <FormControl>
                     <Input placeholder="name@example.com" {...field} />
                   </FormControl>
