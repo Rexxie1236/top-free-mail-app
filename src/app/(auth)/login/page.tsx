@@ -155,20 +155,6 @@ export default function LoginPage() {
             </Button>
           </form>
         </Form>
-        <Separator className="my-4" />
-        <Button
-          onClick={handleGoogleLogin}
-          className="w-full"
-          disabled={isGoogleLoading || isLoading}
-          variant="outline"
-        >
-          {isGoogleLoading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <GoogleIcon />
-          )}
-          {T('auth.orContinueWith')} Google
-        </Button>
         <div className="mt-4 text-center text-sm">
           {T('auth.dontHaveAccount')}{' '}
           <Link href="/signup" className="underline">
