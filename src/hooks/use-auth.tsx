@@ -20,6 +20,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
+  getRedirectResult,
 } from 'firebase/auth';
 import { auth, db } from '@/lib/firebase';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
@@ -76,6 +77,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, handleUser);
     return () => unsubscribe();
   }, [handleUser]);
+  
+  useEffect(() => {
+    getRedirectResult(auth).catch((error) => {
+        console.error("Error from redirect", error);
+    });
+  }, []);
 
   const signUpWithEmail = useCallback(async (data: SignUpData) => {
     const { email, password, firstName, lastName, phone } = data;
