@@ -1,10 +1,9 @@
-
+// This is a basic service worker
 const CACHE_NAME = 'topfreemail-cache-v1';
 const urlsToCache = [
   '/',
   '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  // Add other important assets here
 ];
 
 self.addEventListener('install', event => {
