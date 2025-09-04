@@ -43,7 +43,7 @@ export function InstallPWA() {
   }
 
   return (
-    <Button onClick={handleInstallClick}>
+    <Button onClick={handleInstallClick} variant="outline" size="sm">
       <Download className="mr-2 h-4 w-4" />
       {T('header.installApp')}
     </Button>
