@@ -1,3 +1,4 @@
+
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -7,10 +8,10 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   "projectId": "topfreemail-i02c2",
   "appId": "1:570411716706:web:9c1be4a364a9e0d69d013b",
-  "storageBucket": "topfreemail-i02c2.firebasestorage.app",
+  "storageBucket": "topfreemail-i02c2.appspot.com",
   "apiKey": "AIzaSyCyBTr4WCoBh7t8CemrQciOzDKv_67LLs0",
   "authDomain": "topfreemail-i02c2.firebaseapp.com",
-  "measurementId": "",
+  "measurementId": "G-5G3Y731W1K",
   "messagingSenderId": "570411716706"
 };
 
