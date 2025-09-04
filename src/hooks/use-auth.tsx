@@ -157,7 +157,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signInWithGoogle,
       sendPasswordReset,
     }),
-    [user, loading, signUpWithEmail, signInWithEmail, signInWithGoogle, sendPasswordReset]
+    [user, loading, signOut, signUpWithEmail, signInWithEmail, signInWithGoogle, sendPasswordReset]
   );
 
   return (
