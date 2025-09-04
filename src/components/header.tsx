@@ -40,6 +40,7 @@ import { languages } from '@/locales/languages';
 import { useAuth } from '@/hooks/use-auth';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useRouter } from 'next/navigation';
+import { InstallPWA } from './install-pwa';
 
 interface HeaderProps {
   mode: AppMode;
@@ -111,6 +112,7 @@ export function Header({ mode, setMode }: HeaderProps) {
             </span>
           </Link>
           <div className="flex items-center gap-2">
+            <InstallPWA />
             {!loading && !user && (
               <Button asChild>
                 <Link href="/login">{T('header.login')}</Link>

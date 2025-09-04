@@ -18,7 +18,8 @@
     "login": "Log In",
     "signUp": "Sign Up",
     "profile": "Profile",
-    "logout": "Log Out"
+    "logout": "Log Out",
+    "installApp": "Install App"
   },
   "auth": {
     "loginTitle": "Welcome Back!",

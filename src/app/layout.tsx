@@ -2,6 +2,7 @@
 'use client';
 
 import type { Metadata } from 'next';
+import { useEffect } from 'react';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -19,6 +20,18 @@ function AppLayout({
   children: React.ReactNode;
 }>) {
   const { direction } = useTranslation();
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('SW registered: ', registration);
+        }).catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+        });
+      });
+    }
+  }, []);
 
   return (
     <html lang="en" suppressHydrationWarning dir={direction}>
